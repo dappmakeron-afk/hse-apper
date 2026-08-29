@@ -1,5 +1,23 @@
 # Fieldwise — HSE Field Companion (Phase 1 prototype)
 
+**Live app:** https://dappmakeron-afk.github.io/hse-apper/
+
+## For HSE officers using the app (not editing it)
+
+1. Open the link above in Chrome on your phone.
+2. Tap the **three-dot menu** (top right) → **Add to Home screen** → **Install**.
+   It now sits on your home screen as its own app icon, no browser bar.
+3. It works with no signal once it's loaded the first time — the whole app
+   is cached on your phone.
+4. Records you save stay on **your own device only** — they're not shared
+   with other officers automatically, and clearing your phone's browser
+   data will erase them.
+
+If a new task or feature gets added later, just reopen the app while you
+have signal — it checks for updates automatically in the background.
+
+---
+
 A task-based Job Hazard Assessment / Toolbox Talk / PPE generator for plant
 HSE officers. Pick a task, get the hazards, controls, and a "why" note for
 each control. Fill it in on site, save it to your phone. No server, no
@@ -18,24 +36,6 @@ hse-app/
 └── icons/                    app icons
 ```
 
-## Run it locally in VS Code
-
-1. Open the `hse-app` folder in VS Code.
-2. Install the **Live Server** extension (search "Live Server" by Ritwick
-   Dey in the Extensions panel) — this is the easiest way to run a PWA
-   locally, since service workers need to be served over `http://`, not
-   opened as a plain file.
-3. Right-click `index.html` → **Open with Live Server**.
-4. It opens in your browser at something like `http://127.0.0.1:5500`.
-   Everything works there, including offline mode (try switching your
-   laptop to airplane mode after the first load, then refresh).
-
-## Try it on your Android phone before deploying
-
-While Live Server is running, your phone (on the same Wi-Fi) can open
-`http://<your-computer's-local-IP>:5500` — VS Code's status bar or the Live
-Server output shows this address. Open it in Chrome on your phone, then use
-Chrome's menu → **Add to Home screen** to test the installed-app feel.
 
 ## Data & privacy note
 
@@ -46,10 +46,4 @@ devices yet, and clearing browser data/cache on the phone will erase them
 term. Phase 3 (in the roadmap we discussed) is where this moves to shared,
 backed-up storage across the department.
 
-## What's deliberately NOT in Phase 1
 
-- No accounts/login, no multi-user data, no cloud sync
-- No exporting to PDF (records are in-app for now; export is a natural
-  Phase 2 addition)
-- Task list is fixed to the 8 highest-frequency plant activities — adding
-  more is just editing `data.js` per the guide above
