@@ -54,6 +54,8 @@
     <section id="view-task" class="view">
       <button class="backlink" id="backToHome">&larr; All tasks</button>
 
+      <div class="print-header" id="printHeader"><!-- filled by JS, print-only --></div>
+
       <div class="ticket-head" id="ticketHead">
         <!-- filled by JS -->
       </div>
@@ -83,7 +85,10 @@
         </label>
       </div>
 
-      <button class="btn-primary" id="saveRecordBtn">Save as field record</button>
+      <div class="action-row">
+        <button class="btn-primary" id="saveRecordBtn">Save as field record</button>
+        <button class="btn-secondary" id="exportPdfBtn">Export / Print PDF</button>
+      </div>
       <p class="save-hint" id="saveHint" aria-live="polite"></p>
     </section>
 

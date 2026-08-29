@@ -5,7 +5,7 @@
 // to localStorage (device-only, no server, no account).
 // ============================================================
 
-const STORAGE_KEY = "fieldwise_records_v3";
+const STORAGE_KEY = "fieldwise_records_v1";
 
 const state = {
   currentTask: null,
@@ -185,6 +185,32 @@ document.getElementById("tabs").addEventListener("click", (e) => {
   document
     .querySelectorAll(".tabpanel")
     .forEach((p) => p.classList.toggle("active", p.id === "panel-" + btn.dataset.tab));
+});
+
+// ---------- PDF EXPORT (browser print → Save as PDF) ----------
+document.getElementById("exportPdfBtn").addEventListener("click", () => {
+  const task = state.currentTask;
+  if (!task) return;
+
+  const site = document.getElementById("fieldSite").value.trim() || "—";
+  const supervisor = document.getElementById("fieldSupervisor").value.trim() || "—";
+  const date = document.getElementById("fieldDate").value || new Date().toISOString().slice(0, 10);
+  const generated = new Date().toLocaleString();
+
+  document.getElementById("printHeader").innerHTML = `
+    <p class="ph-app">Fieldwise — HSE Field Companion</p>
+    <h1>${task.label} — Field Record</h1>
+    <div class="ph-meta">
+      <span>Site: <b>${site}</b></span>
+      <span>Supervisor: <b>${supervisor}</b></span>
+      <span>Date: <b>${date}</b></span>
+      <span>Generated: <b>${generated}</b></span>
+    </div>
+    <div class="ph-permits">
+      ${task.permits.length ? "Permits required: " + task.permits.join(", ") : "No standing permit required"}
+    </div>`;
+
+  window.print();
 });
 
 // ---------- SAVE RECORD ----------

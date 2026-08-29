@@ -479,12 +479,155 @@ button { font-family: inherit; }
 }
 .btn-primary:active { transform: translateY(1px); }
 
+.action-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+.action-row .btn-primary { margin-top: 0; }
+
+.btn-secondary {
+  width: 100%;
+  background: transparent;
+  color: var(--teal);
+  border: 1px solid var(--teal);
+  border-radius: 8px;
+  padding: 14px;
+  font-weight: 700;
+  font-size: 14.5px;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+}
+.btn-secondary:active { transform: translateY(1px); }
+
 .save-hint {
   text-align: center;
   font-size: 12.5px;
   color: var(--ok);
   min-height: 18px;
   margin: 8px 0 0;
+}
+
+.print-header { display: none; }
+
+/* ==========================================================
+   PRINT / PDF EXPORT
+   Browser "Save as PDF" is the export mechanism — no library,
+   no server, works offline. This stylesheet swaps the dark
+   on-screen theme for a plain light document for paper/PDF,
+   and forces all three tab panels (JHA/Toolbox/PPE) to print
+   together regardless of which tab is active on screen.
+   ========================================================== */
+@media print {
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body { background: #fff !important; color: #17191A !important; }
+
+  .topbar, .backlink, .tabs, .offline-banner,
+  .navbtn, .record-meta, .action-row, .save-hint,
+  .task-grid, .hero { display: none !important; }
+
+  #main { max-width: 100%; padding: 0; margin: 0; }
+
+  .print-header {
+    display: block !important;
+    padding: 0 0 14px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid #17191A;
+  }
+  .print-header .ph-app {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #555;
+    margin: 0 0 4px;
+  }
+  .print-header h1 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    margin: 0 0 8px;
+    color: #17191A;
+  }
+  .print-header .ph-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 22px;
+    font-size: 12.5px;
+    color: #333;
+  }
+  .print-header .ph-meta b { color: #17191A; }
+  .print-header .ph-permits {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #333;
+  }
+
+  .ticket-head {
+    background: #fff !important;
+    border: 1px solid #999 !important;
+    break-inside: avoid;
+  }
+  .ticket-head::before { display: none !important; }
+  .ticket-eyebrow, .ticket-sub { color: #444 !important; }
+  .ticket-title { color: #17191A !important; }
+  .permit-chip {
+    background: #eee !important;
+    color: #17191A !important;
+    border: 1px solid #999;
+  }
+
+  .tabpanel { display: block !important; margin-bottom: 22px; }
+  .tabpanel::before {
+    content: attr(data-print-label);
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #555;
+    margin: 0 0 10px;
+    padding-top: 6px;
+    border-top: 1px solid #ccc;
+  }
+  #panel-jha::before { content: "Job Hazard Assessment / Risk Assessment"; border-top: none; padding-top: 0; }
+  #panel-toolbox::before { content: "Toolbox Talk"; }
+  #panel-ppe::before { content: "PPE & Permits"; }
+
+  .hazard-card {
+    background: #fff !important;
+    border: 1px solid #bbb !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .hazard-title { color: #17191A !important; }
+  .hazard-scores, .hazard-scores b { color: #333 !important; }
+  .control-list { color: #17191A !important; }
+  .risk-badge {
+    border: 1.5px solid #17191A !important;
+    background: #fff !important;
+    color: #17191A !important;
+  }
+  .why-box {
+    background: #f4f4f2 !important;
+    border: 1px solid #ccc !important;
+    color: #333 !important;
+  }
+  .why-box svg { color: #555 !important; }
+
+  .section-label { color: #444 !important; }
+  .check-item { border-bottom: 1px solid #ddd !important; break-inside: avoid; }
+  .check-label { color: #17191A !important; }
+  .check-item.done .check-label { color: #666 !important; }
+  .check-box {
+    background: #fff !important;
+    border: 1.5px solid #666 !important;
+  }
+  .check-box.checked {
+    background: #17191A !important;
+    border-color: #17191A !important;
+  }
+  .check-box.checked::after { border-color: #fff !important; }
 }
 
 /* ==========================================================
