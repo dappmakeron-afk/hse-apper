@@ -5,7 +5,7 @@
 // to localStorage (device-only, no server, no account).
 // ============================================================
 
-const STORAGE_KEY = "fieldwise_records_v1";
+const STORAGE_KEY = "fieldwise_records_v3";
 
 const state = {
   currentTask: null,
