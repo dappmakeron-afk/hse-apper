@@ -33,7 +33,7 @@ hse-app/
 ## Try it on your Android phone before deploying
 
 While Live Server is running, your phone (on the same Wi-Fi) can open
-`http://<your-computer's-local-IP>:5500` — VS Code's status bar or the Live
+`http://<your-computer's-local-IPv4>:5500` — VS Code's status bar or the Live
 Server output shows this address. Open it in Chrome on your phone, then use
 Chrome's menu → **Add to Home screen** to test the installed-app feel.
 
