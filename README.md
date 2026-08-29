@@ -37,67 +37,6 @@ While Live Server is running, your phone (on the same Wi-Fi) can open
 Server output shows this address. Open it in Chrome on your phone, then use
 Chrome's menu → **Add to Home screen** to test the installed-app feel.
 
-## Deploy for free — GitHub Pages
-
-This gets you a permanent `https://` URL you can open on any phone, with
-zero hosting cost:
-
-1. Create a free GitHub account if you don't have one.
-2. Create a new **public** repository (e.g. `fieldwise-hse`).
-3. In VS Code: `Source Control` panel → **Publish to GitHub**, or from the
-   terminal inside the `hse-app` folder:
-   ```
-   git init
-   git add .
-   git commit -m "Fieldwise HSE Phase 1"
-   git branch -M main
-   git remote add origin https://github.com/<your-username>/fieldwise-hse.git
-   git push -u origin main
-   ```
-4. On GitHub: repo → **Settings** → **Pages** → under "Build and
-   deployment," set Source to **Deploy from a branch**, branch `main`,
-   folder `/ (root)`. Save.
-5. After a minute or two, GitHub gives you a URL like
-   `https://<your-username>.github.io/fieldwise-hse/`. Open that on your
-   Android phone in Chrome, then **Add to Home screen** — it now behaves
-   like a real installed app, works offline after the first load, and cost
-   nothing to host.
-
-Any time you edit the app, `git add . && git commit -m "..." && git push`
-updates the live version. If you change any cached file, bump
-`CACHE_NAME` in `service-worker.js` (e.g. `fieldwise-v2`) so installed
-phones pick up the update instead of serving the old cached version.
-
-## Adding or editing tasks (this is the part you'll do most)
-
-Everything content-related lives in `data.js` in one array called
-`TASK_LIBRARY`. Each task is one object. Copy an existing task block as a
-template — the shape is:
-
-```js
-{
-  id: "unique-id",
-  label: "Task Name",
-  sub: "One-line description",
-  icon: "flame",              // see ICONS list in app.js for available icons
-  permits: ["Permit Name"],   // [] if none required
-  hazards: [
-    {
-      hazard: "What could go wrong",
-      likelihood: "Unlikely" | "Possible" | "Likely",
-      severity: "Minor" | "Moderate" | "Major" | "Fatal",
-      controls: ["Control 1", "Control 2"],
-      why: "One sentence on why this control matters / where it comes from"
-    }
-  ],
-  toolboxTalk: ["Point 1", "Point 2"],
-  ppe: ["Item 1", "Item 2"]
-}
-```
-
-Add the new object to the `TASK_LIBRARY` array in `data.js`, save, and it
-appears on the home screen automatically — no other file needs to change.
-
 ## Data & privacy note
 
 All saved field records live in the phone's/browser's `localStorage` only.
