@@ -32,6 +32,7 @@
       </div>
       <nav class="topnav">
         <button class="navbtn" data-view="home" aria-current="page">Tasks</button>
+        <button class="navbtn" data-view="reference">Reference</button>
         <button class="navbtn" data-view="records">Records</button>
       </nav>
     </div>
@@ -100,6 +101,25 @@
       </div>
       <div id="recordsList" class="records-list"></div>
       <p class="empty-state" id="recordsEmpty">No records saved yet. Generate a task card and tap "Save as field record."</p>
+    </section>
+
+    <!-- ===== REFERENCE VIEW ===== -->
+    <section id="view-reference" class="view">
+      <div class="hero hero-compact">
+        <p class="eyebrow">Know before you go</p>
+        <h1>Reference Library</h1>
+        <p class="hero-sub">PPE guide, tool/equipment classification, and your OSH Act Ch. 88:08 duties — for quick lookup on site, no signal needed.</p>
+      </div>
+
+      <div class="tabs" id="refTabs">
+        <button class="tab active" data-reftab="ppe">PPE Guide</button>
+        <button class="tab" data-reftab="tools">Tools &amp; Equipment</button>
+        <button class="tab" data-reftab="act">OSH Act (T&amp;T)</button>
+      </div>
+
+      <div class="tabpanel active" id="refpanel-ppe"></div>
+      <div class="tabpanel" id="refpanel-tools"></div>
+      <div class="tabpanel" id="refpanel-act"></div>
     </section>
 
   </main>

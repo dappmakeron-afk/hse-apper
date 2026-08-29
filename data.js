@@ -552,6 +552,141 @@ const TASK_LIBRARY = [
       "Walk the material laydown area — confirm stacking is stable and secure"
     ],
     ppe: ["Hard hat", "Safety boots (steel toe)", "Waterproof gloves for concrete work", "Safety glasses", "Respiratory protection for dry cutting", "High-visibility vest"],
+  },
+  {
+    id: "electrical-work",
+    label: "Electrical Work",
+    sub: "Live testing, isolation verification, work near energized panels/circuits",
+    icon: "bolt",
+    permits: ["Electrical Isolation Certificate", "Live Work Permit (only if de-energizing is genuinely not practicable)"],
+    hazards: [
+      {
+        hazard: "Electric shock or electrocution from contact with live parts",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "De-energize and prove dead before work starts — live work is the exception, never the default",
+          "Only qualified, authorized persons perform electrical work, live or isolated",
+          "If live work is genuinely unavoidable, it needs a written justification signed off before work starts, not a verbal decision on site"
+        ],
+        why: "De-energized work is the primary control in every recognized electrical safety framework — live work is a documented last resort, not a shortcut for a job that's inconvenient to isolate."
+      },
+      {
+        hazard: "Arc flash / arc blast",
+        likelihood: "Unlikely",
+        severity: "Fatal",
+        controls: [
+          "Arc-rated PPE matched to the specific equipment's incident energy/arc flash label, not a generic assumption",
+          "Maintain minimum approach distance for the system voltage",
+          "Use insulated, voltage-rated tools for any work near live parts"
+        ],
+        why: "Arc flash incident energy varies enormously between panels — the label on the specific piece of equipment is the only reliable source for what PPE is actually adequate."
+      },
+      {
+        hazard: "Incorrect voltage test or faulty test equipment giving a false 'dead' reading",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Prove the tester on a known live source before testing the target circuit, and again after",
+          "Use a voltage-rated tester matched to the system being tested",
+          "Never rely on drawings, labels, or a previous shift's word alone to confirm de-energized state"
+        ],
+        why: "A dead-circuit reading is worthless if the tester itself has failed silently — prove-tester-prove is the sequence that catches that failure mode."
+      },
+      {
+        hazard: "Stored energy in capacitors, UPS systems, or backup/standby power feeds",
+        likelihood: "Unlikely",
+        severity: "Major",
+        controls: [
+          "Identify and safely discharge capacitive or stored energy per the equipment manual before work",
+          "Confirm no backup generator or UPS auto-transfer switch could re-energize the circuit",
+          "Treat a circuit as live until stored energy is actually confirmed discharged, not just switched off"
+        ],
+        why: "Backup and standby supplies are a classic cause of an apparently isolated circuit re-energizing without warning — auto-transfer doesn't announce itself."
+      }
+    ],
+    toolboxTalk: [
+      "Confirm isolation and the prove-dead test result before anyone touches the circuit",
+      "Confirm who the qualified/authorized person is for this specific task",
+      "Confirm arc-rated PPE matches this equipment's incident energy rating",
+      "If live work is unavoidable, confirm the written justification is signed and understood by the crew",
+      "Confirm no backup power, UPS, or generator could re-energize this circuit",
+      "Confirm what happens if someone contacts live equipment — how to safely break contact, who calls for help"
+    ],
+    ppe: ["Insulated/arc-rated gloves matched to system voltage", "Arc-rated flash suit or coveralls per incident energy", "Face shield / arc-rated hood", "Insulated hand tools", "Voltage-rated tester (proven before and after use)"],
+  },
+  {
+    id: "vehicle-operations",
+    label: "Vehicle Operations / Journey Management",
+    sub: "Driving between sites, site vehicle use, journey planning",
+    icon: "truck",
+    permits: ["Journey Management Plan (long or higher-risk trips, per site policy)"],
+    hazards: [
+      {
+        hazard: "Road traffic collision due to weather or road conditions",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Check weather and flood advisories before departure, especially in the wet season",
+          "Delay or reroute if flooding is reported anywhere on the planned route",
+          "Reduce speed and following distance for wet-road conditions, not just when rain is actually falling"
+        ],
+        why: "Sudden heavy rain and localized flooding are a routine feature of driving in Trinidad, not an exceptional event — a journey plan has to treat them as an expected variable, not an excuse after the fact."
+      },
+      {
+        hazard: "Driver fatigue",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Set a maximum continuous driving time before a mandatory break on longer trips",
+          "Avoid scheduling driving tasks immediately after a night shift without a rest period first",
+          "Any driver who reports feeling unfit to drive is taken at their word, no exceptions"
+        ],
+        why: "Fatigue-related driving risk builds gradually and is often invisible to the driver themselves — by the time it's obvious, the margin for reaction is already gone."
+      },
+      {
+        hazard: "Distraction from phone use while driving",
+        likelihood: "Likely",
+        severity: "Moderate",
+        controls: [
+          "No handheld phone use while the vehicle is moving — pull over safely for any call or message that can't wait",
+          "Set navigation before departure, not while driving",
+          "Passengers handle communication/navigation where possible so the driver doesn't have to"
+        ],
+        why: "Distraction-related collisions are consistently under-recognized relative to how often they actually contribute — this is one of the cheapest controls in this whole library to enforce."
+      },
+      {
+        hazard: "Vehicle mechanical failure or undetected pre-trip defect",
+        likelihood: "Possible",
+        severity: "Moderate",
+        controls: [
+          "Pre-trip walk-around before departure — tires, lights, mirrors, fluid levels",
+          "Never take a vehicle with a known defect; report and tag it out immediately",
+          "Confirm spare tire, jack, and basic emergency equipment are present and usable"
+        ],
+        why: "A five-minute pre-trip check is one of the cheapest controls against a mechanical failure at speed, and one of the most frequently skipped."
+      },
+      {
+        hazard: "Reversing or parking incidents in congested plant/site areas",
+        likelihood: "Likely",
+        severity: "Minor",
+        controls: [
+          "Use a spotter/banksman for reversing in congested or pedestrian-heavy areas",
+          "Confirm mirrors and reversing camera/sensors are functional before relying on them",
+          "Park only in designated bays, not wherever is convenient"
+        ],
+        why: "Reversing incidents are a high-frequency, lower-severity category individually — but a site with a lot of them is a reliable early warning sign for a more serious vehicle incident."
+      }
+    ],
+    toolboxTalk: [
+      "Check today's weather and road/flood advisories before departure",
+      "Confirm the planned route and any known hazards along it — flooding, road works, high-risk junctions",
+      "Confirm the driver has had adequate rest before a long trip",
+      "Confirm the pre-trip vehicle walk-around has been done",
+      "Agree the no-phone-while-driving rule for this trip, out loud, before leaving",
+      "Confirm who to contact, and how, if the journey is delayed or the driver doesn't arrive as expected"
+    ],
+    ppe: ["Seatbelt worn by all occupants, 100% of the time", "High-visibility vest when exiting the vehicle on-site", "Appropriate footwear for site conditions on arrival"],
   }
 ];
 
@@ -567,3 +702,261 @@ function riskBand(score) {
   if (score >= 4) return { label: "Medium", cls: "risk-med" };
   return { label: "Low", cls: "risk-low" };
 }
+
+// ============================================================
+// PPE LIBRARY — reference guide, not task-specific.
+// "act" fields cite the OSH Act Ch. 88:08 provision that backs
+// the requirement, where one applies directly.
+// ============================================================
+const PPE_LIBRARY = [
+  {
+    name: "Hard hat / safety helmet",
+    description: "Rigid shell helmet protecting the head from falling objects, impact, and limited electrical contact.",
+    whenToUse: "Any area with overhead work, moving machinery, or where required by site signage — standard baseline PPE on most plant sites.",
+    act: "OSH Act s.23 — suitable protective devices required wherever there's risk of head injury, with instruction in their use."
+  },
+  {
+    name: "Safety glasses / spectacles",
+    description: "Impact-resistant lenses with side shields against flying particles and dust.",
+    whenToUse: "Grinding, drilling, cutting, general workshop and process area work.",
+    act: "OSH Act s.23 — eye protection required wherever there's risk of eye injury."
+  },
+  {
+    name: "Goggles",
+    description: "Sealed eye protection against splashes, fine dust, and chemical spray — more protection than glasses against liquids and fine particulate.",
+    whenToUse: "Chemical handling/transfer, concrete work, grinding where splash or dust is a factor."
+  },
+  {
+    name: "Face shield",
+    description: "Full-face polycarbonate shield worn over safety glasses, protecting the whole face from flying debris, sparks, or chemical splash.",
+    whenToUse: "Grinding, chipping, battery work, and any task combining eye and facial exposure."
+  },
+  {
+    name: "Welding helmet (shaded / auto-darkening)",
+    description: "Helmet with a filter lens matched to the welding process, protecting eyes and face from arc radiation, sparks, and heat.",
+    whenToUse: "Any arc welding, plasma cutting, or brazing task.",
+    act: "Treated as a named exception to general eye-protection minimums in OSHA 10/30-Hour PPE modules, because arc radiation isn't covered by standard eye protection."
+  },
+  {
+    name: "Ear plugs",
+    description: "Disposable or reusable inserts reducing noise exposure, worn inside the ear canal.",
+    whenToUse: "Moderate sustained noise — compressors, pumps, general workshop background noise."
+  },
+  {
+    name: "Ear muffs",
+    description: "Cupped over-ear protection, generally higher attenuation than plugs, and easier to visually confirm compliance.",
+    whenToUse: "High-noise tools — grinders, jackhammers, chop saws — or combined with plugs in very high-noise areas.",
+    act: "OSH Act s.34 — duty on the owner/occupier/employer to prevent hearing impairment and ensure protective equipment is worn at appropriate times."
+  },
+  {
+    name: "Respirator — half-face (cartridge)",
+    description: "Covers nose and mouth, filters dust, mist, or specific vapours depending on the cartridge fitted.",
+    whenToUse: "Painting, dry cutting, dust-generating work — cartridge type matched to the specific product's SDS, not assumed.",
+    act: "OSH Act s.32 — respiratory protection of an approved standard shall be provided and maintained where necessary."
+  },
+  {
+    name: "Respirator — full-face / supplied-air",
+    description: "Covers the entire face or supplies breathing air from a separate source, used where cartridge filtration isn't sufficient.",
+    whenToUse: "Confined space with poor or unknown atmosphere, oxygen-deficient environments, high-hazard chemical exposure, abrasive blasting."
+  },
+  {
+    name: "Gloves — general work",
+    description: "Basic hand protection against abrasion, cuts, and dirt for everyday tasks.",
+    whenToUse: "General handling, housekeeping, light mechanical work."
+  },
+  {
+    name: "Gloves — chemical-resistant",
+    description: "Nitrile, neoprene, or similar material selected against the specific chemical in use — not a universal glove.",
+    whenToUse: "Painting, chemical transfer, cleaning with solvents. Match glove material to the product's SDS, since one glove type does not resist all chemicals."
+  },
+  {
+    name: "Gloves — insulated / electrical-rated",
+    description: "Rubber insulating gloves rated to a specific voltage class, tested and dated.",
+    whenToUse: "Any live electrical work or work near energized parts — never substitute general work gloves."
+  },
+  {
+    name: "Safety boots (steel / composite toe)",
+    description: "Reinforced-toe footwear protecting against impact and compression, often with puncture-resistant soles.",
+    whenToUse: "Virtually all plant/site work — standard baseline PPE."
+  },
+  {
+    name: "High-visibility vest / clothing",
+    description: "Fluorescent material with reflective strips improving visibility to vehicle and plant operators.",
+    whenToUse: "Any area with vehicle or mobile equipment movement, including site walkways near active traffic."
+  },
+  {
+    name: "Full body harness (fall arrest)",
+    description: "Straps distributing fall-arrest forces across the body, connected to a rated anchor point via a lanyard.",
+    whenToUse: "Any work at height where guardrails aren't practical, per site fall protection procedure."
+  },
+  {
+    name: "Flame-resistant (FR) coveralls",
+    description: "Fabric engineered to self-extinguish and resist ignition, worn as a barrier against flash fire and arc flash.",
+    whenToUse: "Hot work, electrical work with arc flash potential, and process areas with flash fire risk."
+  },
+];
+
+// ============================================================
+// TOOLS & EQUIPMENT LIBRARY — hot work vs cold work
+// classification and the PPE each tool typically demands.
+// "Hot work" here follows the common plant-permit definition:
+// any activity producing a flame, spark, or heat capable of
+// acting as an ignition source — not just welding.
+// ============================================================
+const TOOLS_LIBRARY = [
+  {
+    name: "Angle grinder",
+    classification: "Hot Work",
+    classificationNote: "Produces sparks capable of igniting flammable material or atmosphere — treated as hot work under most plant permit systems, with the same radius/fire-watch logic as welding.",
+    ppe: ["Face shield over safety glasses", "Ear protection", "Cut-resistant gloves", "FR clothing if near flammables"],
+    hazardNote: "Disc failure/kickback, sparks, flying fragments, noise."
+  },
+  {
+    name: "Cutting torch (oxy-fuel)",
+    classification: "Hot Work",
+    classificationNote: "Open flame and molten metal — always hot work, always needs a fire watch per permit.",
+    ppe: ["Cutting goggles or helmet, correct shade", "FR coveralls", "Welding gloves", "Hand/face protection from slag"],
+    hazardNote: "Burns, fire, fuel gas leaks, cylinder explosion risk."
+  },
+  {
+    name: "Arc / MIG / TIG welding set",
+    classification: "Hot Work",
+    classificationNote: "Arc, spatter, and heat — always hot work.",
+    ppe: ["Welding helmet, correct filter shade", "FR coveralls", "Welding gauntlets", "Ear protection in an enclosed/noisy bay"],
+    hazardNote: "Arc flash/UV, metal fume, burns, electric shock."
+  },
+  {
+    name: "Bench grinder",
+    classification: "Hot Work",
+    classificationNote: "Fixed, but still spark-producing on metal — same hot-work logic as an angle grinder applies in its immediate area.",
+    ppe: ["Face shield or grinder-mounted eye shield", "Ear protection", "Snug-fitting gloves (loose gloves are a snag risk on rotating wheels)"],
+    hazardNote: "Wheel failure, sparks, entanglement."
+  },
+  {
+    name: "Abrasive / chop saw (metal cutting)",
+    classification: "Hot Work",
+    classificationNote: "Cutting metal with an abrasive wheel throws sparks the same way grinding does — hot work rules apply.",
+    ppe: ["Face shield", "Ear protection", "Gloves", "FR clothing near flammables"],
+    hazardNote: "Sparks, kickback, disc failure, noise."
+  },
+  {
+    name: "Soldering iron / heat gun",
+    classification: "Hot Work (small-scale)",
+    classificationNote: "An open heat source — technically hot work, though some sites apply a lower-threshold 'controlled hot work' category for small electrical soldering. Check local site procedure before assuming it's exempt.",
+    ppe: ["Safety glasses", "Heat-resistant gloves for extended contact", "Ventilation for solder fume"],
+    hazardNote: "Burns, fume inhalation (rosin/flux), fire from hot-tip contact with combustible surfaces."
+  },
+  {
+    name: "Circular saw (wood/composite cutting)",
+    classification: "Cold Work",
+    classificationNote: "No spark or ignition source when cutting non-metal — cold work, but blade-contact and dust hazards remain.",
+    ppe: ["Safety glasses", "Ear protection", "Dust mask for prolonged cutting", "Gloves removed when hands are near the blade"],
+    hazardNote: "Blade contact, kickback, dust."
+  },
+  {
+    name: "Electric hand drill",
+    classification: "Cold Work",
+    classificationNote: "No ignition source under normal use — cold work.",
+    ppe: ["Safety glasses", "General work gloves", "Ear protection for prolonged use"],
+    hazardNote: "Bit breakage/ejection, entanglement on loose clothing, drilling into hidden services."
+  },
+  {
+    name: "Pneumatic impact wrench / air tools",
+    classification: "Cold Work",
+    classificationNote: "No spark/ignition source, but the compressed air supply itself carries its own hazard.",
+    ppe: ["Safety glasses", "Ear protection (pneumatic tools are consistently loud)", "Gloves", "Vibration-reducing gloves for prolonged use"],
+    hazardNote: "Noise, hand-arm vibration, compressed-air injection injury, flying fasteners."
+  },
+  {
+    name: "Jackhammer / breaker",
+    classification: "Cold Work",
+    classificationNote: "No ignition source — cold work, but among the highest noise and vibration exposures on this list.",
+    ppe: ["Ear protection (mandatory)", "Safety glasses", "Anti-vibration gloves", "Steel-toe, puncture-resistant boots", "Dust mask if dry-cutting concrete"],
+    hazardNote: "Hand-arm vibration, noise, silica dust, musculoskeletal strain."
+  },
+  {
+    name: "Grit / abrasive blasting equipment",
+    classification: "Cold Work",
+    classificationNote: "No ignition source from the blast process itself — cold work, though check what's being removed: old coatings can be flammable.",
+    ppe: ["Full-face supplied-air blast hood/respirator", "Ear protection", "Heavy-duty coveralls", "Abrasion-rated gloves"],
+    hazardNote: "Silica/abrasive media inhalation, media rebound, noise."
+  },
+  {
+    name: "Pressure washer",
+    classification: "Cold Work",
+    classificationNote: "Cold work — no ignition source, though petrol/diesel-powered units should be refuelled cold and away from ignition sources.",
+    ppe: ["Face shield or safety glasses (splash/debris)", "Ear protection if engine-driven", "Waterproof gloves", "Safety boots"],
+    hazardNote: "High-pressure injection injury (same logic as airless paint spray), slip hazard on wet surfaces."
+  },
+];
+
+// ============================================================
+// OSH ACT (TRINIDAD & TOBAGO) QUICK REFERENCE
+// Pulled directly from the Chapter 88:08 text published by the
+// Ministry of the Attorney General and Legal Affairs (unofficial
+// version, updated to 31 Dec 2016 at time of writing). Section
+// numbers are quoted so they can be checked against the current
+// authorised text at rgd.legalaffairs.gov.tt.
+// ============================================================
+const OSH_ACT_REFERENCE = [
+  {
+    section: "Section 6(1)–(2)",
+    title: "Employer's General Duty",
+    text: "Every employer must ensure, so far as is reasonably practicable, the safety, health and welfare at work of all employees. This specifically includes safe plant and systems of work, safe handling/storage/transport of substances, provision of adequate PPE with instruction in its use, sufficient training and supervision, and a safe working environment and means of access/egress."
+  },
+  {
+    section: "Section 8",
+    title: "Occupier's General Duty",
+    text: "The occupier of an industrial establishment must ensure compliance with the Safety, Fire, Health and Welfare provisions of the Act. Occupiers with 25 or more employees must prepare a written safety and health policy and a written emergency plan, based on the annual risk assessment, and bring both to employees' attention."
+  },
+  {
+    section: "Section 10(1)",
+    title: "Employee's General Duties",
+    text: "Every employee must take reasonable care for their own safety and that of others affected by their acts; cooperate with employer duties under the Act; report any contravention they're aware of; correctly use PPE provided; and not be impaired by an intoxicant to a degree that endangers their own or others' safety at work."
+  },
+  {
+    section: "Section 13A",
+    title: "Annual Risk Assessment",
+    text: "Every employer must make a suitable and sufficient annual assessment of the risks to employees' safety and health, and to others who may be affected by the undertaking. The assessment must be reviewed if there's reason to suspect it's no longer valid or if circumstances change significantly. Employers with 25+ employees must keep a record of the findings."
+  },
+  {
+    section: "Sections 15–21 (Part III)",
+    title: "Right to Refuse Unsafe Work",
+    text: "An employee may refuse to do particular work where they have sufficient reason to believe there is serious/imminent danger, a dangerous machine or plant, a dangerous physical condition of the workplace, or a contravention of the Act likely to endanger themselves or another employee. The refusal must be reported immediately to the employer and safety committee (or the Chief Inspector, where there's no committee). An inspector must investigate and decide within 24 hours of the refusal. The employee is deemed to be at work and paid throughout."
+  },
+  {
+    section: "Sections 6(2)(c) & 23",
+    title: "PPE — Provision and Use",
+    text: "Employers must provide adequate, suitable PPE 'of an approved standard' and instruction in its use, wherever employees face risk of head, eye, ear, hand, or foot injury, injury from an air contaminant, or other bodily injury. A notice must be posted in any area where PPE is mandatory, and no one may be permitted in that area without wearing it."
+  },
+  {
+    section: "Section 25",
+    title: "Confined Spaces — Legal Requirements",
+    text: "Sets out detailed entry requirements: easy egress, mechanical equipment disconnected and locked out, supply lines blanked off, and testing/certification by a competent person. Where a hazardous atmosphere exists or is likely (oxygen below 18% or above 23%, or hazardous gas/vapour/dust/fume), additional requirements apply — purging and ventilation, a standby worker with rescue equipment stationed outside, and, where the atmosphere can't be made safe, supplied breathing apparatus plus a harness and line to an attendant equipped with an alarm."
+  },
+  {
+    section: "Sections 25A–25D",
+    title: "Machine Guarding",
+    text: "Every prime mover, transmission machinery, and dangerous part of any machine must be securely fenced or guarded, unless its position or construction makes it inherently as safe as if it were fenced."
+  },
+  {
+    section: "Section 34",
+    title: "Noise and Vibration",
+    text: "The owner, occupier, or employer must take adequate steps to prevent hearing impairment from noise and disease from vibration. This includes ensuring protective equipment is worn at appropriate times, arranging medical exams (including audiometric testing) for exposed employees, and keeping records of results."
+  },
+  {
+    section: "Sections 46 & 46A",
+    title: "Accident Notification Timelines",
+    text: "Death or critical injury: the Chief Inspector must be informed immediately by phone, fax, or email, followed by written notice within 48 hours. Incidents with potential for critical injury — fire, explosion, toxic release — carry the same 48-hour written notice requirement. Other injuries causing inability to work or requiring medical attention: written notice within 4 days."
+  },
+  {
+    section: "Section 47",
+    title: "Preservation of the Accident Scene",
+    text: "Following a death or critical injury, nothing at the scene may be interfered with, disturbed, or removed — except to save life, maintain an essential public service, or prevent unnecessary damage — until an inspector gives permission."
+  },
+  {
+    section: "Sections 26–29 (Part V)",
+    title: "Fire Safety Provisions",
+    text: "Applies where more than 20 employees work in a building, more than 10 work above the ground floor, or explosive/highly flammable substances are stored or used. Requires a certified means of escape, fire exits that are unlocked or quickly openable from inside, illuminated exit signage, an audible fire warning distinct from other site signals, adequate firefighting equipment, and trained personnel with a record of drill frequency."
+  },
+];

@@ -25,6 +25,8 @@ const ICONS = {
   info: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="8" r="0.9" fill="currentColor" stroke="none"/></svg>`,
   spray: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 8h6l1.5 12a1.5 1.5 0 0 1-1.5 1.5H9A1.5 1.5 0 0 1 7.5 20z"/><path d="M10 8V5a2 2 0 0 1 4 0v3"/><path d="M4 6h1.5M4 9h1.5M4 12h1.5"/></svg>`,
   brick: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="8" height="5"/><rect x="13" y="5" width="8" height="5"/><rect x="7" y="14" width="8" height="5"/><path d="M3 14h2M19 14h2"/></svg>`,
+  bolt: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg>`,
+  truck: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="12" height="9" rx="1"/><path d="M14 10.5h3.5L20 13.5V16h-2"/><circle cx="6.5" cy="18.3" r="1.6"/><circle cx="16.5" cy="18.3" r="1.6"/><path d="M4.3 18.3h.8M14 18.3h1M19 16h-.7"/></svg>`,
 };
 
 // ---------- VIEW ROUTING ----------
@@ -36,6 +38,7 @@ function showView(name) {
     else b.removeAttribute("aria-current");
   });
   if (name === "records") renderRecordsList();
+  if (name === "reference") renderReferenceIfNeeded();
   window.scrollTo(0, 0);
 }
 
@@ -213,6 +216,64 @@ document.getElementById("exportPdfBtn").addEventListener("click", () => {
   window.print();
 });
 
+// ---------- REFERENCE LIBRARY (PPE / Tools / OSH Act) ----------
+function renderPPEReference() {
+  const panel = document.getElementById("refpanel-ppe");
+  panel.innerHTML = PPE_LIBRARY.map(
+    (item) => `
+    <div class="ref-card">
+      <p class="ref-card-title">${item.name}</p>
+      <p class="ref-card-desc">${item.description}</p>
+      <p class="ref-card-when"><b>When to use:</b> ${item.whenToUse}</p>
+      ${item.act ? `<div class="ref-card-act">${ICONS.info}<span>${item.act}</span></div>` : ""}
+    </div>`
+  ).join("");
+}
+
+function renderToolsReference() {
+  const panel = document.getElementById("refpanel-tools");
+  panel.innerHTML = TOOLS_LIBRARY.map((tool) => {
+    const isHot = tool.classification.toLowerCase().startsWith("hot");
+    const badgeCls = isHot ? "class-hot" : "class-cold";
+    return `
+    <div class="ref-card">
+      <div class="ref-card-top">
+        <p class="ref-card-title">${tool.name}</p>
+        <span class="class-badge ${badgeCls}">${tool.classification}</span>
+      </div>
+      <p class="ref-card-desc">${tool.classificationNote}</p>
+      <p class="ref-card-when"><b>PPE required:</b> ${tool.ppe.join(" · ")}</p>
+      <p class="ref-card-when"><b>Watch for:</b> ${tool.hazardNote}</p>
+    </div>`;
+  }).join("");
+}
+
+function renderOshActReference() {
+  const panel = document.getElementById("refpanel-act");
+  panel.innerHTML =
+    `<p class="section-label">OSH Act Chapter 88:08 — plain-language summary, section numbers for lookup</p>` +
+    OSH_ACT_REFERENCE.map(
+      (ref) => `
+    <div class="ref-card">
+      <div class="ref-card-top">
+        <p class="ref-card-title">${ref.title}</p>
+        <span class="act-badge">${ref.section}</span>
+      </div>
+      <p class="ref-card-desc">${ref.text}</p>
+    </div>`
+    ).join("") +
+    `<p class="ref-footnote">Summarised from the unofficial consolidated Act (Ministry of the Attorney General and Legal Affairs, updated to 31 Dec 2016). Always check the current authorised text at rgd.legalaffairs.gov.tt before relying on this for a legal or disciplinary matter.</p>`;
+}
+
+document.getElementById("refTabs").addEventListener("click", (e) => {
+  const btn = e.target.closest(".tab");
+  if (!btn) return;
+  document.querySelectorAll("#refTabs .tab").forEach((t) => t.classList.toggle("active", t === btn));
+  document
+    .querySelectorAll("#view-reference .tabpanel")
+    .forEach((p) => p.classList.toggle("active", p.id === "refpanel-" + btn.dataset.reftab));
+});
+
 // ---------- SAVE RECORD ----------
 document.getElementById("saveRecordBtn").addEventListener("click", () => {
   const task = state.currentTask;
@@ -327,5 +388,14 @@ if ("serviceWorker" in navigator) {
 }
 
 // ---------- INIT ----------
+let referenceRendered = false;
+function renderReferenceIfNeeded() {
+  if (referenceRendered) return;
+  renderPPEReference();
+  renderToolsReference();
+  renderOshActReference();
+  referenceRendered = true;
+}
+
 renderTaskGrid();
 updateOfflineBanner();
