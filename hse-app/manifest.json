@@ -1,0 +1,16 @@
+{
+  "name": "Fieldwise — HSE Field Companion",
+  "short_name": "Fieldwise",
+  "description": "Task-based JHA, Toolbox Talk and PPE generator for plant HSE officers.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#17191A",
+  "theme_color": "#17191A",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
