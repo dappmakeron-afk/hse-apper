@@ -417,6 +417,141 @@ const TASK_LIBRARY = [
       "Confirm housekeeping standards for material laydown areas"
     ],
     ppe: ["Hard hat", "Safety boots", "High-visibility clothing", "Safety glasses"],
+  },
+  {
+    id: "painting",
+    label: "Painting / Coating Application",
+    sub: "Brush, roller, or spray-applied paints, primers, and protective coatings",
+    icon: "spray",
+    permits: ["Hot Work Permit if spraying near ignition sources", "Confined Space Entry Permit if coating inside a tank/vessel"],
+    hazards: [
+      {
+        hazard: "Inhalation of solvent vapours / VOCs",
+        likelihood: "Likely",
+        severity: "Moderate",
+        controls: [
+          "Check the product SDS before starting — ventilation and respirator requirements come from it, not assumption",
+          "Use local exhaust ventilation or forced air in enclosed/poorly ventilated areas",
+          "Match respiratory protection (organic vapour cartridge, or supplied air in confined spaces) to the specific product"
+        ],
+        why: "Hazard communication and SDS review is core OSHA 10/30-Hour general industry content — every coating product's actual hazards are on its SDS, not on the tin's marketing label."
+      },
+      {
+        hazard: "Fire/explosion from flammable solvent-based coatings",
+        likelihood: "Unlikely",
+        severity: "Major",
+        controls: [
+          "No hot work, smoking, or open flame in the application/storage area",
+          "Bond and ground metal containers when transferring solvent-based product",
+          "Store paints and thinners away from heat sources and out of direct sun"
+        ],
+        why: "Solvent-based coatings are flammable liquids first and paint second — treat storage and transfer with the same discipline as any flammable liquid."
+      },
+      {
+        hazard: "High-pressure airless spray injection injury",
+        likelihood: "Unlikely",
+        severity: "Major",
+        controls: [
+          "Never point the spray gun at any part of the body, yours or anyone else's",
+          "Engage the trigger lock any time you're not actively spraying",
+          "Treat any injection injury as a medical emergency immediately, even if it looks like a minor puncture — the damage is under the skin, not on the surface"
+        ],
+        why: "Airless spray injection injuries look minor on the surface and are frequently under-reported until infection or tissue damage progresses — this is one of the few paint-related injuries that is a genuine emergency."
+      },
+      {
+        hazard: "Skin and eye contact causing irritation or dermatitis",
+        likelihood: "Possible",
+        severity: "Minor",
+        controls: [
+          "Chemical-resistant gloves matched to the specific product (nitrile is not universal)",
+          "Safety glasses or goggles, especially overhead/spray work",
+          "Wash exposed skin before breaks and at the end of the task, not just at end of shift"
+        ],
+        why: "Repeated low-level solvent contact is a cumulative-harm hazard — the damage builds over a career, not a shift."
+      }
+    ],
+    toolboxTalk: [
+      "Confirm which product is being used today and pull up its SDS with the crew",
+      "Confirm ventilation is adequate for the space — don't assume an open door is enough",
+      "Confirm respiratory protection matches the product, not just 'a mask'",
+      "If spraying: confirm trigger locks are used any time the gun isn't actively in use",
+      "Confirm no hot work or ignition sources are planned nearby today",
+      "Remind the crew: any spray injection injury goes straight to medical attention, no exceptions"
+    ],
+    ppe: ["Respirator matched to product SDS", "Chemical-resistant gloves", "Safety glasses/goggles", "Coveralls", "Hearing protection if using pneumatic spray equipment"],
+  },
+  {
+    id: "civil-work",
+    label: "Civil / General Construction Work",
+    sub: "Formwork, concrete placement, masonry, blockwork, general groundworks",
+    icon: "brick",
+    permits: ["Hot Work Permit if cutting/grinding masonry with sparks present", "Excavation Permit if groundworks involve digging"],
+    hazards: [
+      {
+        hazard: "Manual handling injuries from cement bags, blocks, rebar, formwork panels",
+        likelihood: "Likely",
+        severity: "Moderate",
+        controls: [
+          "Use mechanical aids (trolleys, hoists) for repetitive or heavy loads rather than defaulting to manual carry",
+          "Team-lift awkward or heavy items rather than one person overreaching",
+          "Rotate tasks across a shift to reduce cumulative strain on any one worker"
+        ],
+        why: "Musculoskeletal injury from repetitive manual handling is one of the most common — and most preventable — injury categories in general construction work."
+      },
+      {
+        hazard: "Chemical burns from wet cement/concrete contact with skin",
+        likelihood: "Possible",
+        severity: "Moderate",
+        controls: [
+          "Waterproof gloves and boots when placing or finishing concrete",
+          "Never kneel directly in wet concrete — use boards or knee protection",
+          "Wash off any skin contact promptly, don't wait until a break"
+        ],
+        why: "Wet concrete is caustic (high pH) — burns often aren't felt until real skin damage has already occurred, which is why prompt washing matters more than most people assume."
+      },
+      {
+        hazard: "Formwork or shoring collapse during concrete pour",
+        likelihood: "Unlikely",
+        severity: "Major",
+        controls: [
+          "Formwork erected and inspected against its design/engineering before any pour",
+          "Props and shoring checked for damage and correct load rating before use",
+          "Control pour rate and sequence per the formwork design — don't overload one section"
+        ],
+        why: "A formwork failure during a pour is one of the few civil-work incidents that can injure multiple people simultaneously — inspection before the pour is the point of no return."
+      },
+      {
+        hazard: "Silica dust exposure from cutting or grinding masonry/concrete",
+        likelihood: "Likely",
+        severity: "Moderate",
+        controls: [
+          "Wet-cutting methods in preference to dry cutting wherever practical",
+          "Local dust extraction on grinders/cutters where wet cutting isn't an option",
+          "Respiratory protection rated for silica dust during any dry cutting"
+        ],
+        why: "Silica dust harm is cumulative and often invisible on the day — the OSHA 30-Hour general industry syllabus treats it as a long-term respiratory hazard, not a nuisance dust."
+      },
+      {
+        hazard: "Struck-by from reversing concrete trucks/pumps or falling materials",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Banksman/spotter for any reversing plant or delivery vehicle on site",
+          "Secure stacking of blocks, panels, and materials — nothing leaning unsecured",
+          "Keep pedestrian routes separated from vehicle/plant movement where possible"
+        ],
+        why: "Vehicle movement on an active civil site is a leading struck-by cause — a dedicated spotter is a cheap control against a severe outcome."
+      }
+    ],
+    toolboxTalk: [
+      "Confirm today's manual handling loads and whether mechanical aids are available and being used",
+      "Confirm formwork/shoring has been inspected before today's pour, if pouring",
+      "Confirm wet-cutting or dust extraction is set up before any masonry cutting starts",
+      "Confirm the banksman/spotter for any vehicle movement on site today",
+      "Remind the crew: wash off wet concrete contact immediately, don't wait",
+      "Walk the material laydown area — confirm stacking is stable and secure"
+    ],
+    ppe: ["Hard hat", "Safety boots (steel toe)", "Waterproof gloves for concrete work", "Safety glasses", "Respiratory protection for dry cutting", "High-visibility vest"],
   }
 ];
 
