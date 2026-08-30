@@ -27,6 +27,10 @@ const ICONS = {
   brick: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="8" height="5"/><rect x="13" y="5" width="8" height="5"/><rect x="7" y="14" width="8" height="5"/><path d="M3 14h2M19 14h2"/></svg>`,
   bolt: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg>`,
   truck: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="12" height="9" rx="1"/><path d="M14 10.5h3.5L20 13.5V16h-2"/><circle cx="6.5" cy="18.3" r="1.6"/><circle cx="16.5" cy="18.3" r="1.6"/><path d="M4.3 18.3h.8M14 18.3h1M19 16h-.7"/></svg>`,
+  person: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7" r="3.2"/><path d="M5 21c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg>`,
+  anchor: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="5" r="2"/><path d="M12 7v13"/><path d="M6 13c0 4 3 6.5 6 7 3-.5 6-3 6-7"/><path d="M4 13h4M16 13h4"/></svg>`,
+  trash: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M6 7l1 13h10l1-13"/><path d="M10 11v6M14 11v6"/></svg>`,
+  badge: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10" r="2.5"/><path d="M8 17c0-2 1.8-3 4-3s4 1 4 3"/></svg>`,
 };
 
 // ---------- VIEW ROUTING ----------
@@ -265,6 +269,88 @@ function renderOshActReference() {
     `<p class="ref-footnote">Summarised from the unofficial consolidated Act (Ministry of the Attorney General and Legal Affairs, updated to 31 Dec 2016). Always check the current authorised text at rgd.legalaffairs.gov.tt before relying on this for a legal or disciplinary matter.</p>`;
 }
 
+function renderChemicalsReference() {
+  const panel = document.getElementById("refpanel-chemicals");
+  panel.innerHTML =
+    `<p class="section-label">Common substances on a T&T petrochemical estate — not a substitute for the product's own SDS</p>` +
+    CHEMICALS_LIBRARY.map(
+      (c) => `
+    <div class="ref-card">
+      <p class="ref-card-title">${c.name}</p>
+      <p class="ref-card-desc"><b>${c.hazardClass}</b></p>
+      <p class="ref-card-when"><b>Signs of exposure:</b> ${c.exposureSigns}</p>
+      <p class="ref-card-when"><b>Immediate response:</b> ${c.immediateResponse}</p>
+      <p class="ref-card-when"><b>Incompatible with:</b> ${c.incompatible}</p>
+      <div class="ref-card-act">${ICONS.info}<span>${c.note}</span></div>
+    </div>`
+    ).join("") +
+    `<p class="ref-footnote">Always defer to the specific product's Safety Data Sheet for exact figures, first-aid measures, and handling requirements — this is a quick-recognition reference, not a replacement for it.</p>`;
+}
+
+function renderEmaReference() {
+  const panel = document.getElementById("refpanel-ema");
+  panel.innerHTML =
+    `<p class="section-label">Environmental Management Act Ch. 35:05 — separate legislation from the OSH Act, regulating environmental impact rather than workplace safety</p>` +
+    EMA_REFERENCE.map(
+      (ref) => `
+    <div class="ref-card">
+      <div class="ref-card-top">
+        <p class="ref-card-title">${ref.title}</p>
+        <span class="act-badge">${ref.section}</span>
+      </div>
+      <p class="ref-card-desc">${ref.text}</p>
+    </div>`
+    ).join("") +
+    `<p class="ref-footnote">Summarised from the unofficial consolidated Act, updated to 31 Dec 2016. Environmental notification (EMA) is in addition to, not instead of, any OSH Act accident notification or your site's emergency response procedure.</p>`;
+}
+
+function renderWeatherReference() {
+  const panel = document.getElementById("refpanel-weather");
+  const hs = WEATHER_REFERENCE.heatStress;
+  const lt = WEATHER_REFERENCE.lightning;
+  panel.innerHTML = `
+    <div class="ref-card">
+      <p class="ref-card-title">${hs.title}</p>
+      <p class="ref-card-desc">${hs.intro}</p>
+      <p class="ref-card-when"><b>Early signs:</b> ${hs.earlySigns.join(" · ")}</p>
+      <p class="ref-card-when"><b>Severe signs (emergency):</b> ${hs.severeSigns.join(" · ")}</p>
+      <ul class="control-list">${hs.response.map((r) => `<li>${r}</li>`).join("")}</ul>
+      <div class="ref-card-act">${ICONS.info}<span>Prevention: ${hs.prevention.join(" · ")}</span></div>
+    </div>
+    <div class="ref-card">
+      <p class="ref-card-title">${lt.title}</p>
+      <p class="ref-card-desc">${lt.intro}</p>
+      <p class="ref-card-when"><b>Stop-work triggers:</b></p>
+      <ul class="control-list">${lt.triggers.map((t) => `<li>${t}</li>`).join("")}</ul>
+      <p class="ref-card-when"><b>Actions:</b></p>
+      <ul class="control-list">${lt.actions.map((a) => `<li>${a}</li>`).join("")}</ul>
+    </div>`;
+}
+
+function renderIncidentReference() {
+  const panel = document.getElementById("refpanel-incident");
+  const inv = INCIDENT_INVESTIGATION;
+  panel.innerHTML = `
+    <div class="ref-card">
+      <p class="ref-card-title">${inv.title}</p>
+      <p class="ref-card-desc">${inv.intro}</p>
+    </div>` +
+    inv.steps.map(
+      (s, i) => `
+    <div class="ref-card">
+      <div class="ref-card-top">
+        <p class="ref-card-title">${i + 1}. ${s.title}</p>
+      </div>
+      <p class="ref-card-desc">${s.description}</p>
+    </div>`
+    ).join("") +
+    `<div class="ref-card">
+      <p class="ref-card-title">Worked example — the 5 Whys</p>
+      <p class="ref-card-desc"><b>Issue:</b> ${inv.example.issue}</p>
+      <ul class="control-list">${inv.example.chain.map((c) => `<li>${c}</li>`).join("")}</ul>
+    </div>`;
+}
+
 document.getElementById("refTabs").addEventListener("click", (e) => {
   const btn = e.target.closest(".tab");
   if (!btn) return;
@@ -394,6 +480,10 @@ function renderReferenceIfNeeded() {
   renderPPEReference();
   renderToolsReference();
   renderOshActReference();
+  renderChemicalsReference();
+  renderEmaReference();
+  renderWeatherReference();
+  renderIncidentReference();
   referenceRendered = true;
 }
 

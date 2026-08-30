@@ -1,7 +1,7 @@
 // Fieldwise HSE — offline app-shell cache.
 // Bump CACHE_NAME whenever you change any cached file so old
 // installs pick up the update instead of serving stale content.
-const CACHE_NAME = "fieldwise-v4";
+const CACHE_NAME = "fieldwise-v5";
 
 const APP_SHELL = [
   "./",

@@ -687,6 +687,253 @@ const TASK_LIBRARY = [
       "Confirm who to contact, and how, if the journey is delayed or the driver doesn't arrive as expected"
     ],
     ppe: ["Seatbelt worn by all occupants, 100% of the time", "High-visibility vest when exiting the vehicle on-site", "Appropriate footwear for site conditions on arrival"],
+  },
+  {
+    id: "lone-working",
+    label: "Lone Working",
+    sub: "Working alone or out of direct sight/contact of others",
+    icon: "person",
+    permits: ["Lone Worker Authorization (per site policy)"],
+    hazards: [
+      {
+        hazard: "Delayed help if an incident occurs",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Establish a check-in schedule (call, radio, or app) at agreed intervals before the task starts",
+          "Confirm someone knows the worker's location, task, and expected finish time",
+          "Carry a means of raising an alarm appropriate to the location, and confirm it has signal/charge before starting"
+        ],
+        why: "The core risk in lone working isn't the task itself — it's the absence of anyone to notice something went wrong. The check-in system is the actual control, not a formality."
+      },
+      {
+        hazard: "Task turns out to require two people",
+        likelihood: "Possible",
+        severity: "Moderate",
+        controls: [
+          "Assess before starting whether the task can safely be done alone at all — some tasks simply aren't permitted solo under site procedure",
+          "Stop and call for a second person rather than improvising if the task proves more than expected"
+        ],
+        why: "Deciding a task is 'lone-workable' has to happen before it starts, not be discovered mid-task when it's harder to stop and ask for help."
+      },
+      {
+        hazard: "Medical event with no witness (fall, cardiac event, allergic reaction)",
+        likelihood: "Unlikely",
+        severity: "Fatal",
+        controls: [
+          "Ensure emergency contacts are current and any disclosed medical conditions are known where relevant",
+          "Set a maximum time before an automatic escalation if a check-in is missed",
+          "Avoid assigning genuinely high-risk solo tasks (height, confined space, live electrical) to lone workers regardless of check-in systems"
+        ],
+        why: "A check-in system tells you something is wrong faster — it doesn't prevent the event itself. High-risk tasks need an actual second person, not just faster notification."
+      },
+      {
+        hazard: "Personal security risk in remote or after-hours locations",
+        likelihood: "Unlikely",
+        severity: "Moderate",
+        controls: [
+          "Confirm site access and lighting are adequate for after-hours or remote work",
+          "Avoid scheduling lone work in isolated areas after dark where avoidable",
+          "Carry a charged phone and know the fastest route to an occupied area"
+        ],
+        why: "Personal security is as much a lone-working hazard as a medical one, and gets overlooked because the JHA conversation defaults to physical/mechanical hazards."
+      }
+    ],
+    toolboxTalk: [
+      "Confirm the check-in schedule and who's monitoring it before starting",
+      "Confirm this specific task is actually permitted to be done alone under site procedure",
+      "Confirm the communication device has signal/charge and a backup if it fails",
+      "Confirm someone knows the exact location and expected finish time",
+      "Agree what happens if a check-in is missed — who escalates, and when",
+      "Confirm the worker knows the fastest way to raise an alarm from this specific location"
+    ],
+    ppe: ["Lone-worker alarm device or app (per site policy)", "Charged communication device", "Standard PPE for the underlying task"],
+  },
+  {
+    id: "marine-jetty",
+    label: "Marine / Jetty Operations",
+    sub: "Work on jetties, berths, vessel loading/unloading, dockside operations",
+    icon: "anchor",
+    permits: ["Jetty/Berth Work Permit", "Vessel-side Work Permit (per port/terminal procedure)"],
+    hazards: [
+      {
+        hazard: "Fall into water from jetty edge or vessel gangway",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Guardrails/edge protection on jetty walkways maintained and inspected",
+          "Life rings and throw lines positioned at intervals along the jetty, confirmed present before work starts",
+          "Personal flotation device (PFD) worn for any task with fall-into-water risk"
+        ],
+        why: "A fall from a jetty combines drowning risk with potential impact injury against the structure or vessel hull — both need addressing, not just one."
+      },
+      {
+        hazard: "Struck or crushed between vessel and jetty (surge/mooring movement)",
+        likelihood: "Unlikely",
+        severity: "Fatal",
+        controls: [
+          "No standing in the direct line between vessel and jetty fendering during berthing/mooring operations",
+          "Confirm mooring lines are properly tensioned and monitored, especially in swell conditions",
+          "Maintain clear communication between vessel crew, jetty crew, and mooring gang throughout the operation"
+        ],
+        why: "Vessel surge against a jetty can move with enormous force and little warning — the control is positioning and communication, not personal alertness alone."
+      },
+      {
+        hazard: "Hazardous cargo/product exposure during loading or unloading",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Confirm product SDS and any vapour/gas monitoring requirements before connecting hoses/arms",
+          "Static bonding/grounding between vessel and shore connections before transfer begins",
+          "Emergency shutdown procedure and location confirmed by all parties before starting transfer"
+        ],
+        why: "Loading/unloading combines chemical-transfer hazards with the added complexity of two separate organizations — vessel and shore — needing to agree on the same procedure in real time."
+      },
+      {
+        hazard: "Slips on wet, algae-covered, or uneven jetty surfaces",
+        likelihood: "Likely",
+        severity: "Moderate",
+        controls: [
+          "Regular inspection and cleaning of walkway surfaces, especially areas exposed to spray/rain",
+          "Adequate lighting for night operations",
+          "Non-slip footwear appropriate for marine/wet-deck conditions"
+        ],
+        why: "Jetty surfaces are wet far more often than they're dry — a high-frequency, low-drama hazard that's easy to under-prioritize next to the more dramatic ones on this list."
+      }
+    ],
+    toolboxTalk: [
+      "Confirm PFDs are worn and life rings/throw lines are in place before work starts",
+      "Confirm communication protocol between vessel crew, jetty crew, and mooring gang",
+      "Confirm the product SDS and monitoring requirements for today's cargo",
+      "Confirm static bonding/grounding is connected before any transfer begins",
+      "Confirm the emergency shutdown location and procedure with all parties",
+      "Walk the jetty surface for slip hazards before starting, especially after rain"
+    ],
+    ppe: ["Personal flotation device (PFD)", "Hard hat", "Non-slip safety boots", "High-visibility clothing", "Gas monitor for cargo transfer operations", "Chemical-resistant gloves matched to product"],
+  },
+  {
+    id: "waste-handling",
+    label: "Waste Handling & Segregation",
+    sub: "Collection, sorting, storage, and disposal of general and hazardous waste",
+    icon: "trash",
+    permits: ["Hazardous Waste Transport/Disposal documentation (licensed contractor only)"],
+    hazards: [
+      {
+        hazard: "Mixing incompatible hazardous wastes",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Segregate hazardous waste streams at the point of generation — never combine without confirming compatibility",
+          "Label all hazardous waste containers clearly with contents and hazard class",
+          "Use only designated, compatible storage containers for each waste stream"
+        ],
+        why: "Waste incompatibility incidents (fire, toxic gas generation) usually trace back to convenience mixing at the point of collection, not a dramatic single event."
+      },
+      {
+        hazard: "Cuts, punctures, or contamination from sharps or unknown waste contents",
+        likelihood: "Possible",
+        severity: "Moderate",
+        controls: [
+          "Never hand-sort general waste without puncture-resistant gloves",
+          "Treat any unlabeled or unknown-content container as hazardous until identified",
+          "Use mechanical aids (grabbers, carts) rather than direct hand contact where possible"
+        ],
+        why: "The hazard in general waste handling is almost always what someone else put in the bin, not the bin itself."
+      },
+      {
+        hazard: "Manual handling injury from waste bins/containers",
+        likelihood: "Likely",
+        severity: "Moderate",
+        controls: [
+          "Use wheeled bins/mechanical aids rather than manual carrying wherever possible",
+          "Team-lift heavy or awkward containers",
+          "Don't overfill bins beyond a safely liftable weight"
+        ],
+        why: "Waste handling is repetitive manual work by nature — the same musculoskeletal-injury logic from other tasks in this library applies here just as much."
+      },
+      {
+        hazard: "Improper disposal leading to environmental release",
+        likelihood: "Unlikely",
+        severity: "Major",
+        controls: [
+          "Use only licensed waste contractors for hazardous waste removal, with documentation retained",
+          "Confirm waste storage areas have adequate containment (bunding) against spill or rainwater runoff",
+          "Report any waste-related spill or suspected illegal dumping through the same channel as any other environmental incident"
+        ],
+        why: "Improper waste disposal is both an OSH matter and squarely an EMA matter — see the Environmental reference section for the regulatory duties this connects to."
+      }
+    ],
+    toolboxTalk: [
+      "Confirm today's waste streams are being segregated correctly, not combined for convenience",
+      "Confirm any unlabeled containers are treated as unknown/hazardous until identified",
+      "Confirm mechanical aids are used for heavy or awkward waste containers",
+      "Confirm hazardous waste is only handed off to a licensed, documented contractor",
+      "Check waste storage areas for containment/bunding adequacy",
+      "Remind the crew: puncture-resistant gloves for any general waste sorting"
+    ],
+    ppe: ["Puncture-resistant gloves", "Safety boots", "High-visibility vest", "Coveralls for hazardous waste handling", "Respiratory protection if handling dust/fume-generating waste"],
+  },
+  {
+    id: "contractor-induction",
+    label: "Contractor / Visitor Site Induction",
+    sub: "Orienting new contractors, visitors, or personnel unfamiliar with the site",
+    icon: "badge",
+    permits: [],
+    hazards: [
+      {
+        hazard: "Contractor/visitor unaware of site-specific hazards or restricted zones",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Walk through a site map identifying restricted/high-hazard zones before access is granted",
+          "Confirm the visitor/contractor's scope of work and restrict access to only what's needed for it",
+          "Issue site-specific PPE requirements before entry, not after arrival at the work area"
+        ],
+        why: "Someone unfamiliar with a site doesn't know what they don't know — the induction is the only point where that gap gets closed before it becomes an incident."
+      },
+      {
+        hazard: "Unfamiliarity with site emergency procedures",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Confirm muster point location and alarm signals as part of every induction, without exception",
+          "Provide emergency contact numbers specific to the site, not just general numbers",
+          "Confirm the visitor/contractor knows who their site escort/contact is at all times"
+        ],
+        why: "An emergency is exactly the moment someone unfamiliar with the site is least likely to figure things out on their own — this has to be front-loaded before anything else."
+      },
+      {
+        hazard: "Contractor's own equipment or work method not assessed against site standards",
+        likelihood: "Possible",
+        severity: "Moderate",
+        controls: [
+          "Review the contractor's own risk assessment/method statement against site requirements before work starts",
+          "Confirm contractor equipment (electrical, lifting, PPE) meets site inspection/certification standards, not just their home company's",
+          "Assign a site contact responsible for ongoing oversight, not just initial induction"
+        ],
+        why: "A contractor's method statement written for a different site doesn't automatically account for this site's specific hazards — someone has to actually cross-check it."
+      },
+      {
+        hazard: "Language or communication barrier affecting comprehension of the safety briefing",
+        likelihood: "Unlikely",
+        severity: "Moderate",
+        controls: [
+          "Confirm the induction is actually understood, not just delivered — ask questions rather than relying on a signature alone",
+          "Provide visual/pictorial safety information where language could be a barrier",
+          "Pair an unfamiliar contractor with an experienced escort for their first period on site"
+        ],
+        why: "A signed induction form proves attendance, not comprehension — the two aren't the same thing, and only one of them actually protects anyone."
+      }
+    ],
+    toolboxTalk: [
+      "Confirm the visitor/contractor's scope of work and restrict site access accordingly",
+      "Walk through muster points, alarm signals, and emergency contacts as a mandatory step",
+      "Confirm PPE requirements are communicated and met before site entry",
+      "Review the contractor's method statement/risk assessment against site standards",
+      "Confirm comprehension through questions, not just a signature",
+      "Assign and confirm a site contact/escort for the duration of the visit"
+    ],
+    ppe: ["Visitor/contractor badge or ID", "Standard site PPE (hard hat, safety boots, high-vis) issued at induction", "Task-specific PPE per the contractor's actual scope of work"],
   }
 ];
 
@@ -960,3 +1207,212 @@ const OSH_ACT_REFERENCE = [
     text: "Applies where more than 20 employees work in a building, more than 10 work above the ground floor, or explosive/highly flammable substances are stored or used. Requires a certified means of escape, fire exits that are unlocked or quickly openable from inside, illuminated exit signage, an audible fire warning distinct from other site signals, adequate firefighting equipment, and trained personnel with a record of drill frequency."
   },
 ];
+
+// ============================================================
+// CHEMICALS REFERENCE — common substances on a T&T petrochemical
+// estate. Not exhaustive and not a substitute for the specific
+// product's SDS — always defer to the SDS for exact figures.
+// ============================================================
+const CHEMICALS_LIBRARY = [
+  {
+    name: "Ammonia (anhydrous)",
+    hazardClass: "Toxic gas, corrosive, flammable within a narrow range",
+    exposureSigns: "Sharp irritating odour even at very low concentration, eye/throat irritation, coughing, and at higher concentration chemical burns to eyes/skin/lungs and breathing difficulty.",
+    immediateResponse: "Move upwind and away immediately. Remove contaminated clothing. Flush skin/eyes with water for at least 15 minutes if contact occurred. Seek medical attention even for what seems like brief exposure — respiratory effects can develop after the fact.",
+    incompatible: "Strong acids, halogens, oxidizers — do not mix or store together.",
+    note: "One of the primary products handled on the Point Lisas estate. Its own strong odour is a warning most people notice well before a harmful concentration — never ignore it as 'just the smell of the plant.'"
+  },
+  {
+    name: "Methanol",
+    hazardClass: "Flammable liquid, toxic by ingestion/inhalation/skin absorption",
+    exposureSigns: "Headache, dizziness, nausea; at higher exposure, visual disturbance is a distinctive warning sign specific to methanol and should be treated as a medical emergency, not just discomfort.",
+    immediateResponse: "Remove from exposure/fresh air immediately. Remove contaminated clothing, flush skin with water. Any visual disturbance following exposure needs urgent medical attention — this isn't a 'wait and see' symptom.",
+    incompatible: "Strong oxidizers.",
+    note: "Also produced at Point Lisas. Vapour is flammable and heavier than air — can travel and pool in low areas, which matters for excavation or confined space work nearby."
+  },
+  {
+    name: "Natural gas / LNG",
+    hazardClass: "Flammable gas, asphyxiant in high concentration",
+    exposureSigns: "Odourless in its raw state — commercial natural gas has an odourant (mercaptan) added specifically so a leak is noticeable. Symptoms of exposure to a leak are primarily asphyxiation risk (from oxygen displacement) rather than direct toxicity.",
+    immediateResponse: "Evacuate the area, eliminate ignition sources, do not operate electrical switches in the area. Report immediately per site gas leak procedure.",
+    incompatible: "Any ignition source — oxidizers not typically the primary concern, ignition control is.",
+    note: "LNG's extremely low storage temperature also creates cryogenic burn/frostbite risk on contact, separate from the flammability hazard."
+  },
+  {
+    name: "Sulphuric acid",
+    hazardClass: "Corrosive, strong oxidizer under some conditions",
+    exposureSigns: "Immediate burning pain on contact, visible tissue damage on skin/eyes, respiratory irritation from mist/vapour.",
+    immediateResponse: "Flush affected area with copious water for at least 15–20 minutes while removing contaminated clothing. Do not attempt to neutralize the acid directly on skin. Seek medical attention for any significant contact.",
+    incompatible: "Water (adding water TO concentrated acid causes violent reaction — always add acid to water, never the reverse, if dilution is required), most metals (generates flammable hydrogen gas), organic materials.",
+    note: "Common in water treatment and various process applications — treat any transfer or handling as a high-consequence task regardless of how routine it feels."
+  },
+  {
+    name: "Chlorine",
+    hazardClass: "Toxic gas, oxidizer",
+    exposureSigns: "Sharp, distinctive odour at low concentration; eye/throat/lung irritation, coughing, and at higher concentrations severe respiratory distress.",
+    immediateResponse: "Evacuate upwind immediately. Do not attempt to approach a leak without appropriate respiratory protection. Seek medical attention for any symptomatic exposure.",
+    incompatible: "Ammonia (produces toxic gas), flammable materials, most metals.",
+    note: "Commonly used in water treatment. Cylinder leaks are a recognized site emergency scenario — know your site's specific chlorine leak response before you need it, not during."
+  },
+  {
+    name: "Diesel / fuel oil",
+    hazardClass: "Combustible liquid (not as readily ignitable as gasoline, but still a fire hazard), mild toxicity",
+    exposureSigns: "Skin/eye irritation on contact, headache/nausea from prolonged vapour exposure in enclosed spaces.",
+    immediateResponse: "Remove contaminated clothing, wash skin. Ventilate enclosed spaces where vapour has accumulated. Treat spills as a slip hazard and environmental release, not just a fire risk.",
+    incompatible: "Strong oxidizers.",
+    note: "Because it's less obviously dangerous than the other substances on this list, it's the one most often handled casually — the spill/environmental-release consequence is usually the bigger practical risk on a day-to-day basis."
+  },
+];
+
+// ============================================================
+// EMA (ENVIRONMENTAL MANAGEMENT AUTHORITY) QUICK REFERENCE
+// Pulled directly from the Environmental Management Act Chapter
+// 35:05 (unofficial version, updated to 31 Dec 2016). This is
+// separate legislation from the OSH Act — the EMA regulates
+// environmental impact, not workplace safety.
+// ============================================================
+const EMA_REFERENCE = [
+  {
+    section: "Section 35",
+    title: "Certificate of Environmental Clearance (CEC)",
+    text: "No person may proceed with an activity the Minister has designated as requiring a CEC until they've applied for and received one from the EMA. The Designated Activities Order lists 44 activities requiring a CEC. Where an Environmental Impact Assessment is required, it must go through public comment before a Certificate is issued."
+  },
+  {
+    section: "Section 38",
+    title: "CEC Blocks Other Approvals Until Issued",
+    text: "Where an activity requires an EIA, no other government entity may grant any permit, licence, or authorisation for that activity until the CEC has been issued. Getting other approvals first does not bypass this requirement."
+  },
+  {
+    section: "Section 47",
+    title: "Record-Keeping and Monitoring",
+    text: "The EMA can require anyone releasing a pollutant, or handling a hazardous substance, to sample and analyse it, install and maintain monitoring equipment, keep records of sampling/monitoring/audit activity, and submit reports and compliance certifications on request."
+  },
+  {
+    section: "Sections 55–58",
+    title: "Waste Management",
+    text: "The EMA runs a waste management programme and separately identifies categories of hazardous waste. Waste disposal activities and waste-handling facilities require an EMA permit or licence. Handling or disposing of waste in violation of an applicable licence, permit, or standard is prohibited outright."
+  },
+  {
+    section: "Sections 59–60",
+    title: "Hazardous Substances — Handling and Permits",
+    text: "Once a substance is designated hazardous, it may only be handled according to approved performance standards and procedures, or under a licence/permit granted by the EMA. This applies whether you handle it directly or arrange for someone else to handle it on your behalf."
+  },
+  {
+    section: "Section 61",
+    title: "Notification of Spills, Releases and Incidents",
+    text: "Anyone in charge of premises or a vehicle must notify the EMA as soon as they have knowledge of a spill, release, or other incident involving a hazardous substance or pollutant. The notification must include a description of the incident, an assessment of the damage or risk to health/environment, and a description of the response measures taken and planned."
+  },
+  {
+    section: "Sections 49–54",
+    title: "Air, Noise and Water Pollution Permits",
+    text: "Processes releasing air or water pollutants generally require an EMA permit, with conditions covering design, construction, operation, and monitoring. Noise emissions are capped by the Noise Pollution Control Rules, 2001 — releasing pollutants or noise in violation of permit conditions or prescribed standards is a distinct offence from the underlying activity itself."
+  },
+  {
+    section: "Sections 62–66, 71",
+    title: "Enforcement — Notices, Orders, and Individual Liability",
+    text: "Where the EMA believes an environmental requirement has been violated, it issues a written Notice of Violation, which can escalate to an Administrative Order requiring the violation to stop and any environmental damage to be remedied, plus a possible administrative civil assessment. Individual directors, managers, or supervisors can be held personally liable for a company's violation if it happened with their direct consent, or if they failed to exercise reasonable diligence to prevent it — this isn't only a corporate liability."
+  },
+];
+
+// ============================================================
+// WEATHER & HEAT STRESS REFERENCE — standalone quick-reference,
+// not buried inside individual task hazards, because both heat
+// stress and severe weather are routine operational realities
+// in Trinidad, not edge cases.
+// ============================================================
+const WEATHER_REFERENCE = {
+  heatStress: {
+    title: "Heat Stress — Recognition & Response",
+    intro: "Heat exhaustion and heat stroke sit on the same spectrum — heat exhaustion is the warning stage; heat stroke is a medical emergency. Knowing the difference, and acting fast, matters more than any single number on a thermometer.",
+    earlySigns: [
+      "Heavy sweating",
+      "Weakness or fatigue beyond what the task explains",
+      "Cool, pale, clammy skin",
+      "Fast, weak pulse",
+      "Nausea, dizziness, or headache",
+      "Muscle cramps",
+    ],
+    severeSigns: [
+      "Body temperature feels very hot to the touch",
+      "Skin that is hot and dry, OR still sweating heavily but with confusion — either pattern is dangerous",
+      "Fast, strong pulse",
+      "Confusion, slurred speech, or agitation",
+      "Loss of consciousness",
+    ],
+    response: [
+      "Early signs: move the person to shade or a cool area immediately, loosen/remove excess clothing, sip cool water, cool the skin with wet cloths, and rest until fully recovered before returning to work.",
+      "Severe signs: treat as a medical emergency — call for emergency medical help immediately. Move to a cool area, cool the person rapidly (wet cloths or ice packs at neck, armpits, groin) while waiting for help. Do not give fluids if the person is confused or unconscious.",
+      "Never send someone showing severe signs back to work 'to walk it off' — heat stroke can escalate quickly and is fatal if not treated promptly.",
+    ],
+    prevention: [
+      "Build in a work/rest cycle for extreme heat, not just a fixed lunch break",
+      "Hydration on a schedule, before thirst sets in — thirst is already a lagging indicator",
+      "Shaded rest areas genuinely accessible during the task, not just in theory",
+      "Allow new or returning workers time to acclimatize rather than a full-intensity first day",
+      "Use a buddy system on hot days — early signs are often easier for someone else to notice first",
+    ],
+  },
+  lightning: {
+    title: "Lightning / Severe Weather Stop-Work Protocol",
+    intro: "Trinidad's sudden afternoon squalls and thunderstorms are routine, not exceptional — this needs a pre-agreed trigger, not an in-the-moment judgement call.",
+    triggers: [
+      "The 30-30 rule: if the time between seeing lightning and hearing thunder is 30 seconds or less, stop work immediately",
+      "Any work at height, on open ground, near metal structures (pipe racks, scaffolding, fencing), or near water is highest priority to stop first",
+      "Don't wait for rain to start — lightning risk precedes visible rain, often by several minutes",
+    ],
+    actions: [
+      "Suspend all work at height, on open/exposed ground, and near tall or metal structures",
+      "Move to a substantial building or a fully enclosed, hard-topped vehicle — an open-sided shelter is not adequate protection",
+      "Stay away from isolated tall structures, trees, metal fencing, and water",
+      "Do not resume work until at least 30 minutes have passed since the last observed lightning or thunder",
+      "Log the stoppage and resumption time — this is exactly the kind of record a JHA/toolbox talk record should capture",
+    ],
+  },
+};
+
+// ============================================================
+// INCIDENT INVESTIGATION REFERENCE — basic root-cause method
+// (5 Whys) for when you have to investigate an incident, not
+// just report it. Pairs with the accident notification duties
+// in the OSH Act reference above.
+// ============================================================
+const INCIDENT_INVESTIGATION = {
+  title: "Basic Incident Investigation Method",
+  intro: "The goal is finding the systemic cause, not just the immediate one — a corrective action aimed only at 'the worker should have been more careful' almost never prevents recurrence.",
+  steps: [
+    {
+      title: "Secure the scene and gather immediate facts",
+      description: "Before anything else, capture what/who/when/where while it's fresh — photos, positions of equipment, environmental conditions. Remember the OSH Act's scene preservation duty (s.47) for anything involving death or critical injury: nothing may be disturbed except to save life, maintain an essential service, or prevent further damage, until an inspector permits it."
+    },
+    {
+      title: "Interview witnesses separately",
+      description: "Talk to each witness on their own, using factual, non-blame language. People describe events more accurately without a group narrative already forming, and separately gathered accounts let you cross-check for consistency."
+    },
+    {
+      title: "Ask 'why' repeatedly (5 Whys)",
+      description: "Start from the immediate cause and keep asking why, one layer at a time, until you reach something systemic — a missing procedure, a training gap, a maintenance schedule, a resourcing decision. Five is a guideline, not a hard rule: stop when you hit a genuinely systemic cause, even if that's the third why or the seventh."
+    },
+    {
+      title: "Look for contributing factors, not just one root cause",
+      description: "Most real incidents have more than one contributing factor. Resist collapsing the investigation into a single cause just because you found one plausible chain — ask what else had to be true for this to happen."
+    },
+    {
+      title: "Develop corrective actions aimed at the root cause",
+      description: "An action item that only addresses the immediate cause (e.g. 're-trained the worker') without addressing the systemic one (e.g. 'no PM schedule existed for that seal') will not prevent recurrence. Aim corrective actions at the level where the 5 Whys actually stopped."
+    },
+    {
+      title: "Verify the corrective action actually worked",
+      description: "Set a follow-up date to confirm the corrective action was implemented and is functioning as intended — a corrective action that exists only on paper isn't a corrective action."
+    },
+  ],
+  example: {
+    issue: "Worker slipped on a wet floor near a machine.",
+    chain: [
+      "Why was the floor wet? — A machine seal was leaking.",
+      "Why was the seal leaking? — It had exceeded its service life.",
+      "Why had it exceeded its service life? — There was no preventive maintenance schedule for that seal.",
+      "Why was there no PM schedule? — The maintenance plan for that machine class was never formally established after installation.",
+      "Root cause: a gap in the maintenance planning process at commissioning — not the worker's footing, and not even the leaking seal itself.",
+    ],
+  },
+};
