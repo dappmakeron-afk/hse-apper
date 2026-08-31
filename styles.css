@@ -796,3 +796,198 @@ button { font-family: inherit; }
   box-shadow: 0 4px 18px rgba(0,0,0,0.4);
 }
 .offline-banner.show { transform: translateX(-50%) translateY(0); }
+
+/* ==========================================================
+   SEARCH INPUT (records & incidents)
+   ========================================================== */
+.search-input {
+  width: 100%;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 11px 14px;
+  color: var(--paper);
+  font-family: var(--font-body);
+  font-size: 14px;
+  margin: 4px 0 16px;
+}
+.search-input::placeholder { color: var(--text-faint); }
+.search-input:focus { outline: none; border-color: var(--teal); }
+
+/* ==========================================================
+   INCIDENT TYPE PICKER
+   ========================================================== */
+.type-picker {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.type-btn {
+  background: var(--ink);
+  border: 1px solid var(--line);
+  color: var(--text-mute);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 8px 12px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.type-btn.active {
+  background: rgba(242,169,0,0.14);
+  border-color: var(--amber-dim);
+  color: var(--amber);
+}
+
+/* ==========================================================
+   YES/NO TOGGLE (injury / environmental release)
+   ========================================================== */
+.yn-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 14px 0 6px;
+}
+.yn-label { font-size: 13.5px; color: var(--text); line-height: 1.4; }
+.yn-toggle { display: flex; flex: none; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.yn-btn {
+  background: var(--ink);
+  border: none;
+  color: var(--text-mute);
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+.yn-btn + .yn-btn { border-left: 1px solid var(--line); }
+.yn-btn.active { background: rgba(209,69,59,0.18); color: #F0847C; }
+.yn-toggle:has(.yn-btn[data-yn="no"].active) .yn-btn[data-yn="no"] { background: rgba(58,122,168,0.18); color: #8CC0E6; }
+
+.ref-card textarea {
+  width: 100%;
+  background: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--paper);
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.5;
+  resize: vertical;
+  margin-top: 4px;
+}
+.ref-card textarea::placeholder { color: var(--text-faint); }
+.ref-card textarea:focus { outline: none; border-color: var(--teal); }
+.ref-card .field { display: block; margin-bottom: 12px; }
+.ref-card .field:last-child { margin-bottom: 0; }
+.ref-card .field span {
+  display: block;
+  font-size: 12px;
+  color: var(--text-mute);
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+/* ==========================================================
+   SIGNATURE CAPTURE
+   ========================================================== */
+.signoff-row {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: var(--ink);
+}
+.signoff-name {
+  width: 100%;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 9px 11px;
+  color: var(--paper);
+  font-size: 13.5px;
+  margin-bottom: 8px;
+}
+.signoff-name::placeholder { color: var(--text-faint); }
+.sig-wrap { display: flex; flex-direction: column; gap: 6px; }
+.sig-pad {
+  width: 100%;
+  height: 120px;
+  display: block;
+  background: #fff;
+  border-radius: 7px;
+  border: 1px solid var(--line);
+  touch-action: none;
+  cursor: crosshair;
+}
+.sig-actions { display: flex; gap: 10px; }
+.sig-actions button {
+  background: none;
+  border: none;
+  color: var(--text-mute);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 0;
+  cursor: pointer;
+}
+.sig-actions .sig-clear { color: var(--teal); }
+.sig-actions .sig-remove { color: #F0847C; margin-left: auto; }
+
+#addSignoffBtn { margin-top: 4px; }
+
+/* ==========================================================
+   PRINT — Incident report & Crew Sign-Off additions
+   ========================================================== */
+@media print {
+  .type-picker, .yn-toggle, .signoff-add-btn,
+  .sig-actions, #newIncidentBtn, #incidentsSearch,
+  #recordsSubTabs, #incidentTicketHead,
+  #view-incident .ref-card { display: none !important; }
+
+  .signoff-row {
+    background: #fff !important;
+    border: 1px solid #bbb !important;
+    break-inside: avoid;
+  }
+  .signoff-name {
+    background: #fff !important;
+    border: 1px solid #999 !important;
+    color: #17191A !important;
+  }
+  .sig-pad { border: 1px solid #999 !important; }
+
+  #panel-signoff::before { content: "Crew Sign-Off"; }
+
+  .print-header .ph-section {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+  }
+  .print-header .ph-section-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #555;
+    margin: 0 0 6px;
+  }
+  .print-header .ph-sig-row {
+    display: inline-block;
+    margin: 8px 14px 0 0;
+    text-align: center;
+  }
+  .print-header .ph-sig-row img {
+    display: block;
+    width: 160px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .print-header .ph-sig-name {
+    font-size: 11.5px;
+    color: #333;
+    margin-top: 3px;
+  }
+}

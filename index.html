@@ -65,11 +65,13 @@
         <button class="tab active" data-tab="jha">JHA / Risk Assessment</button>
         <button class="tab" data-tab="toolbox">Toolbox Talk</button>
         <button class="tab" data-tab="ppe">PPE &amp; Permits</button>
+        <button class="tab" data-tab="signoff">Crew Sign-Off</button>
       </div>
 
       <div class="tabpanel active" id="panel-jha"></div>
       <div class="tabpanel" id="panel-toolbox"></div>
       <div class="tabpanel" id="panel-ppe"></div>
+      <div class="tabpanel" id="panel-signoff"></div>
 
       <div class="record-meta">
         <label class="field">
@@ -97,10 +99,111 @@
     <section id="view-records" class="view">
       <div class="hero hero-compact">
         <p class="eyebrow">Saved on this device</p>
-        <h1>Field Records</h1>
+        <h1>Records</h1>
       </div>
-      <div id="recordsList" class="records-list"></div>
-      <p class="empty-state" id="recordsEmpty">No records saved yet. Generate a task card and tap "Save as field record."</p>
+
+      <div class="tabs" id="recordsSubTabs">
+        <button class="tab active" data-recordstab="field">Field Records</button>
+        <button class="tab" data-recordstab="incidents">Incidents / Near-Miss</button>
+      </div>
+
+      <div class="tabpanel active" id="recordspanel-field">
+        <input type="search" class="search-input" id="recordsSearch" placeholder="Search by task, site, or supervisor..." />
+        <div id="recordsList" class="records-list"></div>
+        <p class="empty-state" id="recordsEmpty">No records saved yet. Generate a task card and tap "Save as field record."</p>
+      </div>
+
+      <div class="tabpanel" id="recordspanel-incidents">
+        <button class="btn-primary" id="newIncidentBtn" type="button">+ Report Incident / Near-Miss</button>
+        <input type="search" class="search-input" id="incidentsSearch" placeholder="Search by site, type, or description..." />
+        <div id="incidentsList" class="records-list"></div>
+        <p class="empty-state" id="incidentsEmpty">No incident or near-miss reports yet. This is separate from your task JHAs — use it any time, whether or not the event maps to one of the 16 tasks.</p>
+      </div>
+    </section>
+
+    <!-- ===== INCIDENT / NEAR-MISS REPORT FORM ===== -->
+    <section id="view-incident" class="view">
+      <button class="backlink" id="backToRecordsFromIncident">&larr; Records</button>
+
+      <div class="print-header" id="incidentPrintHeader"><!-- filled by JS, print-only --></div>
+
+      <div class="ticket-head" id="incidentTicketHead">
+        <p class="ticket-eyebrow">Incident / Near-Miss Report</p>
+        <h2 class="ticket-title">What happened?</h2>
+        <div class="type-picker" id="incidentTypePicker">
+          <button type="button" class="type-btn active" data-itype="Near-Miss">Near-Miss</button>
+          <button type="button" class="type-btn" data-itype="Incident">Incident</button>
+          <button type="button" class="type-btn" data-itype="Hazard Observation">Hazard Observation</button>
+        </div>
+      </div>
+
+      <div class="record-meta">
+        <label class="field">
+          <span>Site / Location</span>
+          <input type="text" id="incSite" placeholder="e.g. Point Lisas — Tank Farm 3" />
+        </label>
+        <label class="field">
+          <span>Date</span>
+          <input type="date" id="incDate" />
+        </label>
+        <label class="field">
+          <span>Time</span>
+          <input type="time" id="incTime" />
+        </label>
+        <label class="field">
+          <span>Reported by</span>
+          <input type="text" id="incReportedBy" placeholder="Name" />
+        </label>
+      </div>
+
+      <div class="ref-card">
+        <p class="ref-card-title">Description</p>
+        <label class="field">
+          <span>What happened — sequence of events</span>
+          <textarea id="incDescription" rows="4" placeholder="Describe what happened, in order"></textarea>
+        </label>
+        <label class="field">
+          <span>Immediate cause (if known)</span>
+          <textarea id="incCause" rows="2" placeholder="What directly led to this — optional at this stage"></textarea>
+        </label>
+        <label class="field">
+          <span>Immediate actions taken</span>
+          <textarea id="incActions" rows="2" placeholder="What was done right away"></textarea>
+        </label>
+      </div>
+
+      <div class="ref-card">
+        <p class="ref-card-title">Injury &amp; Environmental Impact</p>
+        <div class="yn-row">
+          <span class="yn-label">Was anyone injured?</span>
+          <div class="yn-toggle" id="incInjuryToggle">
+            <button type="button" class="yn-btn" data-yn="yes">Yes</button>
+            <button type="button" class="yn-btn active" data-yn="no">No</button>
+          </div>
+        </div>
+        <textarea id="incInjuryDetails" rows="2" placeholder="Injury details, if yes" style="display:none"></textarea>
+
+        <div class="yn-row">
+          <span class="yn-label">Environmental release (spill, discharge, emission)?</span>
+          <div class="yn-toggle" id="incEnvToggle">
+            <button type="button" class="yn-btn" data-yn="yes">Yes</button>
+            <button type="button" class="yn-btn active" data-yn="no">No</button>
+          </div>
+        </div>
+        <textarea id="incEnvDetails" rows="2" placeholder="Release details, if yes — see the Environmental (EMA) reference for notification duties" style="display:none"></textarea>
+      </div>
+
+      <div class="ref-card">
+        <p class="ref-card-title">Witness / Crew Sign-Off</p>
+        <p class="ref-card-desc">Anyone present or who witnessed the event can sign below to confirm this account.</p>
+        <div id="incidentSignoffPanel"></div>
+      </div>
+
+      <div class="action-row">
+        <button class="btn-primary" id="saveIncidentBtn">Save report</button>
+        <button class="btn-secondary" id="exportIncidentPdfBtn">Export / Print PDF</button>
+      </div>
+      <p class="save-hint" id="incidentSaveHint" aria-live="polite"></p>
     </section>
 
     <!-- ===== REFERENCE VIEW ===== -->
