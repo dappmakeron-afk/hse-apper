@@ -502,7 +502,7 @@ document.getElementById("saveRecordBtn").addEventListener("click", () => {
   const task = state.currentTask;
   if (!task) return;
 
-  const signedCrew = state.signoffs.filter((s) => s.name && s.sig).map((s) => s.name);
+  const signedCrew = state.signoffs.filter((s) => s.sig).map((s) => s.name || "Signature");
 
   const record = {
     id: "rec_" + Date.now(),
@@ -723,8 +723,6 @@ wireYesNoToggle("incEnvToggle", "incEnvDetails", "incidentEnv");
 
 // ---------- SAVE INCIDENT ----------
 document.getElementById("saveIncidentBtn").addEventListener("click", () => {
-  const signed = state.incidentSignoffs.filter((s) => s.name && s.sig);
-
   const record = {
     id: state.incident || "inc_" + Date.now(),
     type: state.incidentType,
@@ -739,7 +737,7 @@ document.getElementById("saveIncidentBtn").addEventListener("click", () => {
     injuryDetails: document.getElementById("incInjuryDetails").value.trim(),
     envRelease: state.incidentEnv,
     envDetails: document.getElementById("incEnvDetails").value.trim(),
-    signoffs: state.incidentSignoffs.filter((s) => s.name || s.sig),
+    signoffs: state.incidentSignoffs.filter((s) => s.sig),
     savedAt: new Date().toISOString(),
   };
 
@@ -772,9 +770,9 @@ document.getElementById("exportIncidentPdfBtn").addEventListener("click", () => 
   const generated = new Date().toLocaleString();
 
   const signedRows = state.incidentSignoffs
-    .filter((s) => s.name && s.sig)
+    .filter((s) => s.sig)
     .map(
-      (s) => `<div class="ph-sig-row"><img src="${s.sig}" alt="signature" /><p class="ph-sig-name">${s.name}</p></div>`
+      (s) => `<div class="ph-sig-row"><img src="${s.sig}" alt="signature" /><p class="ph-sig-name">${s.name || "Signature"}</p></div>`
     )
     .join("");
 
