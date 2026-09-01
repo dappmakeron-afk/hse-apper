@@ -38,6 +38,7 @@ const ICONS = {
   anchor: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="5" r="2"/><path d="M12 7v13"/><path d="M6 13c0 4 3 6.5 6 7 3-.5 6-3 6-7"/><path d="M4 13h4M16 13h4"/></svg>`,
   trash: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M6 7l1 13h10l1-13"/><path d="M10 11v6M14 11v6"/></svg>`,
   badge: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10" r="2.5"/><path d="M8 17c0-2 1.8-3 4-3s4 1 4 3"/></svg>`,
+  wrench: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2z"/></svg>`,
 };
 
 // ---------- SIGNATURE PAD ----------
@@ -488,6 +489,42 @@ function renderIncidentReference() {
     </div>`;
 }
 
+function swatchStyle(item) {
+  if (item.swatch === "stripes") {
+    return `background: repeating-linear-gradient(45deg, ${item.hex1}, ${item.hex1} 8px, ${item.hex2} 8px, ${item.hex2} 16px);`;
+  }
+  return `background: ${item.hex};`;
+}
+
+function renderBarricadesReference() {
+  const panel = document.getElementById("refpanel-barricades");
+  panel.innerHTML =
+    `<p class="section-label">Tape colour guide — general safety-sign convention used across plant sites</p>` +
+    TAPE_COLOURS.map(
+      (t) => `
+    <div class="ref-card">
+      <div class="tape-row">
+        <span class="tape-swatch" style="${swatchStyle(t)}"></span>
+        <p class="ref-card-title" style="margin:0;">${t.colour}</p>
+      </div>
+      <p class="ref-card-desc"><b>${t.meaning}</b></p>
+      <p class="ref-card-when">${t.example}</p>
+    </div>`
+    ).join("") +
+    `<p class="section-label" style="margin-top:22px;">Barricade specifications</p>` +
+    BARRICADE_SPECS.map(
+      (b) => `
+    <div class="ref-card">
+      <p class="ref-card-title">${b.title}</p>
+      <p class="ref-card-desc">${b.text}</p>
+    </div>`
+    ).join("") +
+    `<div class="ref-card">
+      <p class="ref-card-title">Best practices</p>
+      <ul class="control-list">${BARRICADE_PRACTICES.map((p) => `<li>${p}</li>`).join("")}</ul>
+    </div>`;
+}
+
 document.getElementById("refTabs").addEventListener("click", (e) => {
   const btn = e.target.closest(".tab");
   if (!btn) return;
@@ -917,6 +954,7 @@ function renderReferenceIfNeeded() {
   renderEmaReference();
   renderWeatherReference();
   renderIncidentReference();
+  renderBarricadesReference();
   referenceRendered = true;
 }
 

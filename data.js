@@ -934,6 +934,79 @@ const TASK_LIBRARY = [
       "Assign and confirm a site contact/escort for the duration of the visit"
     ],
     ppe: ["Visitor/contractor badge or ID", "Standard site PPE (hard hat, safety boots, high-vis) issued at induction", "Task-specific PPE per the contractor's actual scope of work"],
+  },
+  {
+    id: "hand-power-tools",
+    label: "Hand & Power Tool Use",
+    sub: "General hand tools, portable power tools, and pneumatic/compressed-air tools",
+    icon: "wrench",
+    permits: ["Hot Work Permit if grinding/cutting produces sparks — see Tools & Equipment reference"],
+    hazards: [
+      {
+        hazard: "Wrong or damaged tool used for the task",
+        likelihood: "Likely",
+        severity: "Moderate",
+        controls: [
+          "Select the tool actually designed for the task, not the closest one to hand",
+          "Inspect for cracks, looseness, or wear before every use — tag and remove any damaged tool from service immediately",
+          "Never use a tool that's been modified or had a guard or safety device removed"
+        ],
+        why: "Misuse and poor maintenance are consistently the two leading causes of hand-tool injury — both are fully preventable at the point of picking the tool up, before any work starts."
+      },
+      {
+        hazard: "Flying particles, chips, or fragments",
+        likelihood: "Likely",
+        severity: "Moderate",
+        controls: [
+          "Eye protection (safety glasses minimum, face shield for grinding/chipping/cutting) worn every time, not just when it feels needed",
+          "Use the wheel/blade guard — never remove it to work faster",
+          "Secure the workpiece in a vice or clamp rather than holding it in your hand while cutting or striking"
+        ],
+        why: "A shattered grinding wheel or a chiselled fragment travels fast enough that reaction time alone won't protect an unshielded eye."
+      },
+      {
+        hazard: "Electric shock from power tools",
+        likelihood: "Unlikely",
+        severity: "Major",
+        controls: [
+          "Inspect cords, plugs, and switches before use — no exposed wiring, no missing ground pin",
+          "Use double-insulated tools or a GFCI (ground fault circuit interrupter) in wet, damp, or outdoor locations",
+          "Never use electrical tools in standing water or rain unless specifically rated for it"
+        ],
+        why: "Electricity gives no visible warning before it becomes dangerous — the inspection has to happen every time, not just when a tool looks obviously worn."
+      },
+      {
+        hazard: "Compressed-air tool injury (blow guns, pneumatic tools)",
+        likelihood: "Unlikely",
+        severity: "Major",
+        controls: [
+          "Never use compressed air to clean clothing, skin, or hair — it can penetrate skin and enter the bloodstream",
+          "Check hoses and fittings for cracks or wear before use, and use safety clips or retainers on connections",
+          "Bleed off line pressure before disconnecting any fitting"
+        ],
+        why: "Compressed air is one of the most underestimated hazards on a tool list — it doesn't look dangerous, but a skin injection injury from it is a genuine medical emergency."
+      },
+      {
+        hazard: "Hand-arm vibration syndrome (HAVS) from prolonged tool use",
+        likelihood: "Possible",
+        severity: "Moderate",
+        controls: [
+          "Limit continuous use of vibrating tools (grinders, breakers, impact wrenches) with scheduled breaks",
+          "Use anti-vibration gloves and ergonomically designed tools where available",
+          "Report tingling, numbness, or whitening in the fingers immediately — these are early HAVS symptoms, not something to work through"
+        ],
+        why: "HAVS is cumulative and often irreversible once symptoms appear — the exposure limit is a time-based control, not a one-off precaution."
+      }
+    ],
+    toolboxTalk: [
+      "Confirm the right tool is available for today's task — not just the closest one",
+      "Inspect tools together before starting: cracks, looseness, damaged cords, missing guards",
+      "Confirm eye/face protection is worn for any cutting, grinding, or striking task",
+      "If compressed air is in use, confirm it's never pointed at skin or clothing",
+      "Check that power tool cords and plugs are in good condition, especially near water",
+      "Remind the crew: numbness or tingling from vibrating tools gets reported, not worked through"
+    ],
+    ppe: ["Safety glasses / face shield for cutting or grinding", "Cut-resistant or general work gloves matched to the task", "Hearing protection for prolonged power tool use", "Anti-vibration gloves for extended grinder/breaker use", "Safety boots"],
   }
 ];
 
@@ -1010,6 +1083,11 @@ const PPE_LIBRARY = [
     name: "Gloves — general work",
     description: "Basic hand protection against abrasion, cuts, and dirt for everyday tasks.",
     whenToUse: "General handling, housekeeping, light mechanical work."
+  },
+  {
+    name: "Gloves — cut-resistant",
+    description: "Rated by cut-resistance level (commonly ANSI/EN cut scale), engineered specifically against blades and sharp edges rather than general abrasion.",
+    whenToUse: "Hand tool work with cutting edges, sheet metal handling, glass handling, box cutters/utility knives. A general work glove is not a substitute — cut-resistance is a specific, tested property, not a byproduct of any thick glove."
   },
   {
     name: "Gloves — chemical-resistant",
@@ -1134,6 +1212,13 @@ const TOOLS_LIBRARY = [
     classificationNote: "Cold work — no ignition source, though petrol/diesel-powered units should be refuelled cold and away from ignition sources.",
     ppe: ["Face shield or safety glasses (splash/debris)", "Ear protection if engine-driven", "Waterproof gloves", "Safety boots"],
     hazardNote: "High-pressure injection injury (same logic as airless paint spray), slip hazard on wet surfaces."
+  },
+  {
+    name: "Compressed air blow gun / pneumatic tools",
+    classification: "Cold Work",
+    classificationNote: "No ignition source under normal use — cold work. The hazard here is the air pressure itself, not heat or spark.",
+    ppe: ["Safety glasses / face shield", "Ear protection", "Gloves"],
+    hazardNote: "Never used to clean skin, hair, or clothing — compressed air can penetrate skin and cause a fatal air embolism at surprisingly low pressures. Also: hose/fitting failure, flying debris from cleaning surfaces."
   },
 ];
 
@@ -1416,3 +1501,95 @@ const INCIDENT_INVESTIGATION = {
     ],
   },
 };
+
+// ============================================================
+// BARRICADES & SIGNAGE REFERENCE
+// General safety-sign colour convention (ANSI Z535 / ISO 3864
+// family, the same convention OSHA general industry sign
+// provisions draw on) applied to barricade tape and physical
+// barriers — not a Trinidad-specific standard, but universally
+// used on plant sites here.
+// ============================================================
+const TAPE_COLOURS = [
+  {
+    colour: "Red",
+    swatch: "solid",
+    hex: "#C81E1E",
+    meaning: "Danger — immediate, serious hazard",
+    example: "Fire hazards, electrical danger, do-not-enter zones, active confined space entry points"
+  },
+  {
+    colour: "Red & white diagonal stripes",
+    swatch: "stripes",
+    hex1: "#C81E1E",
+    hex2: "#F2F0EA",
+    meaning: "Do not cross — serious or immediate hazard boundary",
+    example: "Excavation edges, fall-hazard perimeters, active lifting exclusion zones"
+  },
+  {
+    colour: "Black & yellow diagonal stripes",
+    swatch: "stripes",
+    hex1: "#17191A",
+    hex2: "#FFC400",
+    meaning: "Caution — physical hazard boundary",
+    example: "The standard general-purpose barricade tape for marking a hazard perimeter on a plant site"
+  },
+  {
+    colour: "Yellow",
+    swatch: "solid",
+    hex: "#FFC400",
+    meaning: "Caution — potential hazard requiring care",
+    example: "Temporary hazard marking, trip/slip risk, general work-in-progress boundary"
+  },
+  {
+    colour: "Orange",
+    swatch: "solid",
+    hex: "#E8590C",
+    meaning: "Warning — machinery or equipment with moving parts",
+    example: "Machine-guarding boundaries, equipment actively in operation"
+  },
+  {
+    colour: "Green",
+    swatch: "solid",
+    hex: "#1E8E5A",
+    meaning: "Safety information / safe condition",
+    example: "First aid stations, muster points, emergency equipment location"
+  },
+  {
+    colour: "Blue",
+    swatch: "solid",
+    hex: "#3A5A78",
+    meaning: "Mandatory instruction",
+    example: "Areas requiring specific PPE before entry, notice/information boundary"
+  },
+];
+
+const BARRICADE_SPECS = [
+  {
+    title: "Height",
+    text: "At least 1m (3–4 ft) off the ground so the barrier is genuinely visible and not easily stepped over — low tape gets ignored or missed entirely in a busy plant environment."
+  },
+  {
+    title: "Material",
+    text: "Durable and weather-resistant. Trinidad's sun and rain degrade cheap tape far faster than in a temperate climate — expect to replace it more often than the packaging suggests."
+  },
+  {
+    title: "Visibility",
+    text: "High-contrast colour, with reflective elements for any barrier that needs to remain visible after dark or in low light."
+  },
+  {
+    title: "Coverage",
+    text: "Fully enclose the hazard, not just the side facing the main walkway — people approach from unexpected angles more often than officers plan for."
+  },
+  {
+    title: "Tape is a warning, not a physical barrier",
+    text: "For anything with real fall, vehicle, or drop risk, pair tape with an actual physical barricade (stands, fencing, hard barriers) — tape alone stops no one who's determined or distracted."
+  },
+];
+
+const BARRICADE_PRACTICES = [
+  "Barricade before work starts, not partway through once someone's already walked into the area.",
+  "Post a sign at the entry point explaining the specific hazard — tape with no context just becomes background noise.",
+  "Inspect barricades and tape daily and after any heavy rain or wind, especially on an outdoor plant site.",
+  "Remove promptly once the hazard is gone. Old tape left up past its relevance is exactly how people learn to stop respecting it.",
+];

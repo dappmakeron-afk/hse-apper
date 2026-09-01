@@ -469,6 +469,20 @@ button { font-family: inherit; }
   border-top: 1px solid var(--line);
 }
 
+.tape-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.tape-swatch {
+  flex: none;
+  width: 34px;
+  height: 22px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+}
+
 /* ==========================================================
    TOOLBOX TALK / CHECKLISTS
    ========================================================== */
