@@ -2,7 +2,7 @@
 
 **Live app:** https://dappmakeron-afk.github.io/hse-apper/
 
-## For HSE officers using the app (not editing it)
+## For HSE officers using the app (not editing it) 
 
 1. Open the link above in Chrome on your phone.
 2. Tap the **three-dot menu** (top right) → **Add to Home screen** → **Install**.
