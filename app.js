@@ -39,6 +39,7 @@ const ICONS = {
   trash: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M6 7l1 13h10l1-13"/><path d="M10 11v6M14 11v6"/></svg>`,
   badge: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10" r="2.5"/><path d="M8 17c0-2 1.8-3 4-3s4 1 4 3"/></svg>`,
   wrench: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2z"/></svg>`,
+  gas: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 17.5a4 4 0 0 1-1-7.9 5 5 0 0 1 9.6-2A4.5 4.5 0 0 1 17 17.5H7z"/><path d="M8 21v-1M12 21.5v-1.5M16 21v-1"/></svg>`,
 };
 
 // ---------- SIGNATURE PAD ----------
@@ -251,7 +252,7 @@ function renderJHA(task) {
     task.hazards
       .map((h) => {
         const score = riskScore(h.likelihood, h.severity);
-        const band = riskBand(score);
+        const band = riskBand(score, h.severity);
         return `
       <div class="hazard-card">
         <div class="hazard-top">

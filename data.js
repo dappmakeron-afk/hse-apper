@@ -1007,6 +1007,79 @@ const TASK_LIBRARY = [
       "Remind the crew: numbness or tingling from vibrating tools gets reported, not worked through"
     ],
     ppe: ["Safety glasses / face shield for cutting or grinding", "Cut-resistant or general work gloves matched to the task", "Hearing protection for prolonged power tool use", "Anti-vibration gloves for extended grinder/breaker use", "Safety boots"],
+  },
+  {
+    id: "nitrogen-purging",
+    label: "Nitrogen / Inert Gas Purging & Blanketing",
+    sub: "Purging vessels/lines with nitrogen, product blanketing on ammonia, methanol, and urea systems",
+    icon: "gas",
+    permits: ["Nitrogen Purge / Inerting Permit", "Confined Space Entry Permit (required before any entry into a purged vessel)"],
+    hazards: [
+      {
+        hazard: "Oxygen-deficient atmosphere from nitrogen displacing breathable air",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Purge and inerting operations follow a written procedure, never improvised on the day",
+          "Barricade and post signage on any area where purging is in progress, warning of asphyxiation risk",
+          "Test the atmosphere with a calibrated oxygen meter before anyone enters an area that has been, or is being, purged"
+        ],
+        why: "Nitrogen is colorless, odorless, and undetectable by human senses — a worker can lose consciousness within one or two breaths of an oxygen-deficient atmosphere, with no warning symptoms beforehand. This is consistently one of the most common causes of fatality at ammonia, methanol, and urea plants specifically."
+      },
+      {
+        hazard: "Entry into a vessel believed to be purged, without independent atmosphere verification",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Never rely on a 'purge complete' label, logbook entry, or verbal handover alone — independently test the atmosphere yourself immediately before entry",
+          "Test at multiple points — top, middle, and bottom of the vessel — not just at the entry point",
+          "Re-test if entry is delayed at all after the original test, even by a short time"
+        ],
+        why: "This is where multi-fatality confined space incidents most often originate — a second entrant or a rescuer trusts a completed purge record instead of testing the atmosphere themselves, and finds out too late that conditions changed or the record was wrong."
+      },
+      {
+        hazard: "Uncontrolled release or pooling of inert gas in low-lying or enclosed areas",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Direct purge vents to a safe, open location — away from pits, trenches, stairwells, and other low-lying areas",
+          "Never vent purge gas into an occupied building or enclosed area",
+          "Monitor ambient oxygen levels in surrounding work areas during active purging, not just inside the vessel itself"
+        ],
+        why: "Nitrogen's density is close enough to air that it doesn't reliably rise and disperse the way people assume — it can settle and sit in a low spot for an extended period, turning a routine purge nearby into a hazard for people who were never part of the job."
+      },
+      {
+        hazard: "Failure to positively isolate the purge/blanket gas supply before vessel entry",
+        likelihood: "Unlikely",
+        severity: "Fatal",
+        controls: [
+          "Lock out and blank purge/blanket gas lines before any entry — a closed valve alone is not isolation, same standard as process LOTO",
+          "Confirm with the control room that automatic blanketing has been suspended for this specific vessel, not just closed locally",
+          "Verify isolation by attempting to introduce nitrogen after lockout and confirming zero flow — the same 'try' logic used in electrical LOTO"
+        ],
+        why: "An automated blanketing system that reactivates while someone is inside a vessel is one of the most dangerous single-point failures in this task — the isolation has to be as rigorous as any energy isolation, not treated as a lesser precaution because it's 'just gas.'"
+      },
+      {
+        hazard: "Miscommunication between purging/inerting operations and confined space entry teams",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "One person holds authority over both purge status and entry permit status — these cannot be managed by two separate teams unaware of each other",
+          "Purge status is displayed or logged at the vessel itself, not only in a control room system someone has to remember to check",
+          "Treat every shift handover or team change as a fresh verification point, not an assumption that the prior status still holds"
+        ],
+        why: "A gap between the people controlling the gas and the people entering the space is how a technically-correct purge procedure still ends in a fatality — the coordination failure is as dangerous as any single technical error on this list."
+      }
+    ],
+    toolboxTalk: [
+      "Confirm the vessel's purge/inerting status is verified independently, not taken from a log or verbal handover",
+      "Confirm atmosphere testing covers top, middle, and bottom of the vessel, not just the entry point",
+      "Confirm the purge/blanket gas supply is locked out and blanked, not just valve-closed",
+      "Confirm purge vents are directed away from pits, low areas, and occupied spaces",
+      "Confirm one person holds authority over both purge status and entry permit status",
+      "Remind the crew: nitrogen gives no warning — treat every inerted space as immediately dangerous until proven otherwise"
+    ],
+    ppe: ["Calibrated multi-gas monitor, personally worn — not just checked at the vessel mouth", "Full body harness with retrieval line where vessel geometry allows", "Standard confined space entry PPE per that task", "Communication device to a dedicated standby attendant"],
   }
 ];
 
@@ -1017,7 +1090,12 @@ function riskScore(likelihood, severity) {
   return (LIKELIHOOD_WEIGHT[likelihood] || 2) * (SEVERITY_WEIGHT[severity] || 2);
 }
 
-function riskBand(score) {
+function riskBand(score, severity) {
+  // Fatal-severity hazards floor at High regardless of computed score —
+  // a "Possible" likelihood on a fatality risk (score 8) must never read
+  // as merely "Medium". Standard practice in real risk matrices is
+  // severity-dominant escalation for catastrophic outcomes.
+  if (severity === "Fatal") return { label: "High", cls: "risk-high" };
   if (score >= 9) return { label: "High", cls: "risk-high" };
   if (score >= 4) return { label: "Medium", cls: "risk-med" };
   return { label: "Low", cls: "risk-low" };
