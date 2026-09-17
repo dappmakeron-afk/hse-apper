@@ -177,7 +177,7 @@ function showView(name) {
     if (b.dataset.view === name) b.setAttribute("aria-current", "page");
     else b.removeAttribute("aria-current");
   });
-  if (name === "records") { renderRecordsList(); renderIncidentsList(); }
+  if (name === "records") { injectBackupUI(); renderRecordsList(); renderIncidentsList(); }
   if (name === "reference") renderReferenceIfNeeded();
   window.scrollTo(0, 0);
 }
@@ -927,6 +927,153 @@ function renderIncidentsList() {
 }
 
 document.getElementById("incidentsSearch").addEventListener("input", renderIncidentsList);
+
+// ============================================================
+// BACKUP / RESTORE
+// Everything lives in localStorage on this one device only.
+// This lets an officer export both field records and incident
+// reports to a single JSON file (to email/save/AirDrop off the
+// phone) and import that file back in — on this device or a
+// replacement one. Import is additive/merge-only: it adds any
+// record whose id isn't already present and never overwrites or
+// deletes existing data, so a bad or partial file can't wipe a
+// device.
+// ============================================================
+const BACKUP_APP_ID = "fieldwise-hse-backup";
+const BACKUP_VERSION = 1;
+
+function buildBackupPayload() {
+  return {
+    app: BACKUP_APP_ID,
+    version: BACKUP_VERSION,
+    exportedAt: new Date().toISOString(),
+    records: loadRecords(),
+    incidents: loadIncidents(),
+  };
+}
+
+function timestampForFilename() {
+  return new Date().toISOString().slice(0, 19).replace(/[:T]/g, "-");
+}
+
+function downloadBackup() {
+  const payload = buildBackupPayload();
+  const json = JSON.stringify(payload, null, 2);
+  const blob = new Blob([json], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `fieldwise-backup-${timestampForFilename()}.json`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+// Adds any record/incident whose id isn't already on this device.
+// Never overwrites or removes anything that's already here.
+function mergeBackupData(payload) {
+  const incomingRecords = Array.isArray(payload && payload.records) ? payload.records : [];
+  const incomingIncidents = Array.isArray(payload && payload.incidents) ? payload.incidents : [];
+
+  const existingRecords = loadRecords();
+  const existingIncidents = loadIncidents();
+
+  const existingRecordIds = new Set(existingRecords.map((r) => r.id));
+  const existingIncidentIds = new Set(existingIncidents.map((r) => r.id));
+
+  const newRecords = incomingRecords.filter((r) => r && r.id && !existingRecordIds.has(r.id));
+  const newIncidents = incomingIncidents.filter((r) => r && r.id && !existingIncidentIds.has(r.id));
+
+  if (newRecords.length) saveRecords([...newRecords, ...existingRecords]);
+  if (newIncidents.length) saveIncidents([...newIncidents, ...existingIncidents]);
+
+  return {
+    addedRecords: newRecords.length,
+    addedIncidents: newIncidents.length,
+    skippedRecords: incomingRecords.length - newRecords.length,
+    skippedIncidents: incomingIncidents.length - newIncidents.length,
+  };
+}
+
+function setBackupStatus(msg, isError) {
+  const el = document.getElementById("backupStatus");
+  if (!el) return;
+  el.textContent = msg;
+  el.style.color = isError ? "#e35b5b" : "";
+}
+
+function injectBackupUI() {
+  const subTabs = document.getElementById("recordsSubTabs");
+  if (!subTabs || document.getElementById("backupCard")) return;
+
+  subTabs.insertAdjacentHTML(
+    "beforebegin",
+    `<div class="ref-card" id="backupCard" style="margin-bottom:16px;">
+      <p class="ref-card-title">Backup &amp; Restore</p>
+      <p class="ref-card-desc">Records only live on this device. Export a backup file regularly and keep a copy somewhere safe (email it to yourself, save to a drive) — a lost phone or factory reset clears anything not backed up, for good.</p>
+      <div class="record-card-actions" style="margin-top:10px;">
+        <button type="button" class="mini-btn" id="exportBackupBtn">Export backup</button>
+        <button type="button" class="mini-btn" id="importBackupBtn">Import backup</button>
+        <input type="file" id="importBackupInput" accept="application/json,.json" style="display:none;" />
+      </div>
+      <p class="ref-footnote" id="backupStatus" style="margin-top:8px;"></p>
+    </div>`
+  );
+
+  document.getElementById("exportBackupBtn").addEventListener("click", () => {
+    try {
+      downloadBackup();
+      setBackupStatus("Backup file downloaded.");
+    } catch (e) {
+      console.error(e);
+      setBackupStatus("Couldn't create the backup file.", true);
+    }
+  });
+
+  const importInput = document.getElementById("importBackupInput");
+  document.getElementById("importBackupBtn").addEventListener("click", () => importInput.click());
+
+  importInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      let payload;
+      try {
+        payload = JSON.parse(reader.result);
+      } catch (err) {
+        setBackupStatus("That file isn't valid JSON — couldn't read it.", true);
+        return;
+      }
+
+      if (payload.app !== BACKUP_APP_ID) {
+        const proceed = confirm(
+          "This file doesn't look like a Fieldwise backup. Try to import it anyway?"
+        );
+        if (!proceed) return;
+      }
+
+      try {
+        const result = mergeBackupData(payload);
+        renderRecordsList();
+        renderIncidentsList();
+        const skipped = result.skippedRecords + result.skippedIncidents;
+        setBackupStatus(
+          `Added ${result.addedRecords} field record(s) and ${result.addedIncidents} incident report(s).` +
+            (skipped ? ` Skipped ${skipped} already on this device.` : "")
+        );
+      } catch (err) {
+        console.error(err);
+        setBackupStatus("Import failed — device storage may be full.", true);
+      }
+    };
+    reader.onerror = () => setBackupStatus("Couldn't read that file.", true);
+    reader.readAsText(file);
+    e.target.value = "";
+  });
+}
 
 // ---------- OFFLINE BANNER ----------
 function updateOfflineBanner() {
