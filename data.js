@@ -992,7 +992,7 @@ const TASK_LIBRARY = [
         severity: "Moderate",
         controls: [
           "Limit continuous use of vibrating tools (grinders, breakers, impact wrenches) with scheduled breaks",
-          "Use anti-vibration gloves and ergonomically designed tools where available",
+          "Use impact-resistant/anti-vibration gloves and ergonomically designed tools where available",
           "Report tingling, numbness, or whitening in the fingers immediately — these are early HAVS symptoms, not something to work through"
         ],
         why: "HAVS is cumulative and often irreversible once symptoms appear — the exposure limit is a time-based control, not a one-off precaution."
@@ -1006,7 +1006,7 @@ const TASK_LIBRARY = [
       "Check that power tool cords and plugs are in good condition, especially near water",
       "Remind the crew: numbness or tingling from vibrating tools gets reported, not worked through"
     ],
-    ppe: ["Safety glasses / face shield for cutting or grinding", "Cut-resistant or general work gloves matched to the task", "Hearing protection for prolonged power tool use", "Anti-vibration gloves for extended grinder/breaker use", "Safety boots"],
+    ppe: ["Safety glasses / face shield for cutting or grinding", "Cut-resistant or general work gloves matched to the task", "Hearing protection for prolonged power tool use", "Impact-resistant gloves for pickaxe, sledgehammer, or other striking tools", "Anti-vibration/impact-resistant gloves for extended grinder/breaker use", "Safety boots"],
   },
   {
     id: "nitrogen-purging",
@@ -1178,6 +1178,12 @@ const PPE_LIBRARY = [
     whenToUse: "Any live electrical work or work near energized parts — never substitute general work gloves."
   },
   {
+    name: "Gloves — impact-resistant",
+    description: "Gloves with padded or reinforced panels (commonly TPR ridges) across the knuckles and back of the hand, built to absorb crushing/striking force and cut down on the vibration transmitted into the hand and wrist.",
+    whenToUse: "Manual striking tools (pickaxe, sledgehammer, mattock) and vibrating power tools (breakers, grinders, impact wrenches) used for extended periods. Cut-resistant and general work gloves don't provide this — impact absorption and vibration damping are specific, tested properties, same logic as cut-resistance.",
+    act: "OSH Act s.23 — the employer's general duty to provide suitable protective devices extends to matching the glove to the actual hazard, not just issuing 'a pair of gloves.'"
+  },
+  {
     name: "Safety boots (steel / composite toe)",
     description: "Reinforced-toe footwear protecting against impact and compression, often with puncture-resistant soles.",
     whenToUse: "Virtually all plant/site work — standard baseline PPE."
@@ -1297,6 +1303,20 @@ const TOOLS_LIBRARY = [
     classificationNote: "No ignition source under normal use — cold work. The hazard here is the air pressure itself, not heat or spark.",
     ppe: ["Safety glasses / face shield", "Ear protection", "Gloves"],
     hazardNote: "Never used to clean skin, hair, or clothing — compressed air can penetrate skin and cause a fatal air embolism at surprisingly low pressures. Also: hose/fitting failure, flying debris from cleaning surfaces."
+  },
+  {
+    name: "Nippers / wire cutters",
+    classification: "Cold Work",
+    classificationNote: "No spark or ignition source under normal use — cold work, though cutting wire under tension releases stored energy at the moment it parts.",
+    ppe: ["Safety glasses (cut ends can spring back toward the face)", "Cut-resistant gloves", "General work gloves acceptable for light-gauge wire only"],
+    hazardNote: "Pinch/crush point at the pivot, wire ends whipping or springing back when cut under tension, repetitive-strain hand fatigue on high-volume cutting."
+  },
+  {
+    name: "Pickaxe / mattock / sledgehammer (manual striking tools)",
+    classification: "Cold Work",
+    classificationNote: "No ignition source from the tool itself — cold work, though striking on rock or concrete can throw sparks near buried services or flammable atmospheres; check ground conditions and permit status before use.",
+    ppe: ["Impact-resistant gloves", "Safety glasses / face shield (flying chips and debris)", "Steel-toe boots", "Long sleeves/leg protection from flying debris"],
+    hazardNote: "Hand/wrist impact and fatigue from repeated striking, flying rock or debris, overstrike injury to feet/shins, strain injury from prolonged swinging. Impact-resistant gloves are a specific control here — general work gloves don't absorb striking force."
   },
 ];
 
