@@ -497,7 +497,7 @@ const TASK_LIBRARY = [
     label: "Civil / General Construction Work",
     sub: "Formwork, concrete placement, masonry, blockwork, general groundworks",
     icon: "brick",
-    permits: ["Hot Work Permit if cutting/grinding masonry with sparks present", "Excavation Permit if groundworks involve digging"],
+    permits: ["Hot Work Permit if cutting/grinding masonry with sparks present", "Excavation Permit if groundworks involve digging", "Confirm operator certification before any powder-actuated fastening tool is issued"],
     hazards: [
       {
         hazard: "Manual handling injuries from cement bags, blocks, rebar, formwork panels",
@@ -509,6 +509,28 @@ const TASK_LIBRARY = [
           "Rotate tasks across a shift to reduce cumulative strain on any one worker"
         ],
         why: "Musculoskeletal injury from repetitive manual handling is one of the most common — and most preventable — injury categories in general construction work."
+      },
+      {
+        hazard: "Impalement or puncture injury from exposed rebar ends",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Cap or bend over every exposed vertical rebar end before it's left unattended, not just before inspection",
+          "Barricade or clearly highlight rebar mats and dowels until capping is complete",
+          "No stepping over or through an uncapped rebar cage, even briefly"
+        ],
+        why: "Rebar impalement from a fall onto exposed ends is one of the most consistently cited serious construction hazards — capping is cheap, and skipping it turns an ordinary trip or fall into a catastrophic injury."
+      },
+      {
+        hazard: "Powder-actuated fastening tool misfire or projectile injury",
+        likelihood: "Unlikely",
+        severity: "Major",
+        controls: [
+          "Only a certified/trained operator uses the tool — verify certification before issuing cartridges",
+          "Confirm the base material is suitable for the fastener and won't shatter or allow pass-through",
+          "Treat a hangfire cartridge (one that fails to fire immediately) as still live — hold the tool against the work surface per the manufacturer's misfire procedure, and never point it toward anyone regardless"
+        ],
+        why: "A powder-actuated tool is effectively a low-power firearm — the strict controls exist because the failure mode is a projectile injury, not a bruise."
       },
       {
         hazard: "Chemical burns from wet cement/concrete contact with skin",
@@ -528,7 +550,8 @@ const TASK_LIBRARY = [
         controls: [
           "Formwork erected and inspected against its design/engineering before any pour",
           "Props and shoring checked for damage and correct load rating before use",
-          "Control pour rate and sequence per the formwork design — don't overload one section"
+          "Control pour rate and sequence per the formwork design — don't overload one section",
+          "If using a concrete vibrator, confirm GFCI/RCD protection on electric-driven units and keep the flexible drive shaft clear of loose clothing and other workers"
         ],
         why: "A formwork failure during a pour is one of the few civil-work incidents that can injure multiple people simultaneously — inspection before the pour is the point of no return."
       },
@@ -553,17 +576,30 @@ const TASK_LIBRARY = [
           "Keep pedestrian routes separated from vehicle/plant movement where possible"
         ],
         why: "Vehicle movement on an active civil site is a leading struck-by cause — a dedicated spotter is a cheap control against a severe outcome."
+      },
+      {
+        hazard: "Vibration and tip-over injury from plate compactors/rollers near excavation edges",
+        likelihood: "Possible",
+        severity: "Moderate",
+        controls: [
+          "Keep compaction equipment back from excavation and trench edges by a safe margin — vibration can destabilize the very edge it's working near",
+          "Rotate operators on prolonged compactor or vibrator use to limit hand-arm and whole-body vibration exposure",
+          "Refuel petrol-driven compaction equipment cold and away from ignition sources"
+        ],
+        why: "A plate compactor working right at a trench edge can trigger the same collapse it's meant to help prevent — the equipment and the hazard it's near need to be considered together, not separately."
       }
     ],
     toolboxTalk: [
       "Confirm today's manual handling loads and whether mechanical aids are available and being used",
+      "Confirm all exposed rebar ends are capped or bent over before anyone works near them",
+      "If a powder-actuated fastening tool is being used today, confirm the operator is certified",
       "Confirm formwork/shoring has been inspected before today's pour, if pouring",
       "Confirm wet-cutting or dust extraction is set up before any masonry cutting starts",
       "Confirm the banksman/spotter for any vehicle movement on site today",
       "Remind the crew: wash off wet concrete contact immediately, don't wait",
       "Walk the material laydown area — confirm stacking is stable and secure"
     ],
-    ppe: ["Hard hat", "Safety boots (steel toe)", "Waterproof gloves for concrete work", "Safety glasses", "Respiratory protection for dry cutting", "High-visibility vest"],
+    ppe: ["Hard hat", "Safety boots (steel toe)", "Waterproof gloves for concrete work", "Safety glasses", "Respiratory protection for dry cutting", "Hearing protection for cut-off saws, vibrators, or compactors", "High-visibility vest"],
   },
   {
     id: "electrical-work",
@@ -983,9 +1019,32 @@ const TASK_LIBRARY = [
         controls: [
           "Inspect cords, plugs, and switches before use — no exposed wiring, no missing ground pin",
           "Use double-insulated tools or a GFCI (ground fault circuit interrupter) in wet, damp, or outdoor locations",
-          "Never use electrical tools in standing water or rain unless specifically rated for it"
+          "Never use electrical tools in standing water or rain unless specifically rated for it",
+          "Verify isolation with a calibrated multimeter or non-contact voltage tester before working on any circuit believed de-energized — never assume it's dead"
         ],
         why: "Electricity gives no visible warning before it becomes dangerous — the inspection has to happen every time, not just when a tool looks obviously worn."
+      },
+      {
+        hazard: "Standard (non-rated) tools used in a classified/hazardous area",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Confirm non-sparking hand tools (brass, bronze, or beryllium-copper) are used for any work inside a Zone 1/Division 1 classified area",
+          "Confirm cordless or electric power tools are intrinsically safe or Ex-rated before bringing them into a classified area — a standard drill or grinder is not automatically excluded just because it isn't producing visible sparks",
+          "Treat area classification signage as a hard stop, not a suggestion — check before the tool goes in, not after"
+        ],
+        why: "This is the one hand-tool hazard on this list where a wrong choice doesn't just injure the person holding the tool — it can ignite a flammable atmosphere on an ammonia or methanol process unit."
+      },
+      {
+        hazard: "Incorrect bolt torque on process piping and flange joints",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Use a calibrated torque wrench matched to the joint's specified torque value — never estimate by feel on a process-critical joint",
+          "Confirm a hydraulic torque wrench's calibration before turnaround-scale bolting work, and follow the correct bolt-up sequence (typically star/criss-cross pattern in stages), not just tightening in order",
+          "Report a tool whose calibration sticker is missing or expired rather than using it anyway"
+        ],
+        why: "Under- or over-torqued flange bolting is a direct, well-documented cause of loss-of-containment incidents on ammonia and methanol lines — this isn't a general mechanical concern, it's process safety."
       },
       {
         hazard: "Compressed-air tool injury (blow guns, pneumatic tools)",
@@ -1016,9 +1075,96 @@ const TASK_LIBRARY = [
       "Confirm eye/face protection is worn for any cutting, grinding, or striking task",
       "If compressed air is in use, confirm it's never pointed at skin or clothing",
       "Check that power tool cords and plugs are in good condition, especially near water",
+      "Confirm isolation is verified with a calibrated meter before anyone touches a circuit believed de-energized",
+      "Confirm non-sparking tools and Ex-rated power tools are used for any work inside a classified/hazardous area today",
+      "Confirm any process piping or flange bolting uses a calibrated torque wrench, not tool feel",
       "Remind the crew: numbness or tingling from vibrating tools gets reported, not worked through"
     ],
-    ppe: ["Safety glasses / face shield for cutting or grinding", "Cut-resistant or general work gloves matched to the task", "Hearing protection for prolonged power tool use", "Impact-resistant gloves for pickaxe, sledgehammer, or other striking tools", "Anti-vibration/impact-resistant gloves for extended grinder/breaker use", "Safety boots"],
+    ppe: ["Safety glasses / face shield for cutting or grinding", "Cut-resistant or general work gloves matched to the task", "Hearing protection for prolonged power tool use", "Impact-resistant gloves for pickaxe, sledgehammer, or other striking tools", "Anti-vibration/impact-resistant gloves for extended grinder/breaker use", "Insulated/electrical-rated gloves for meter/multimeter use on live-suspect circuits", "Safety boots"],
+  },
+  {
+    id: "plumbing",
+    label: "Plumbing Work",
+    sub: "Potable/process water piping, drain lines, fixture installation and repair, pipe fitting",
+    icon: "droplet",
+    permits: ["Work Permit (general)", "Hot Work Permit if soldering/brazing with an open flame", "Confined Space Entry Permit if working inside a pit, sump, or vault", "Excavation Permit if repairing buried lines"],
+    hazards: [
+      {
+        hazard: "Exposure to sewage/wastewater and biological contamination during drain or sewer work",
+        likelihood: "Possible",
+        severity: "Moderate",
+        controls: [
+          "Treat any waste-line job as a biohazard exposure risk — cut-resistant or heavy rubber gloves plus eye protection as a minimum, not just general work gloves",
+          "Cover cuts or abrasions with a waterproof dressing before starting, and wash exposed skin immediately after any contact",
+          "No eating, drinking, or touching the face until hands are properly washed after waste-line work"
+        ],
+        why: "Sewage exposure carries a real infection risk that's easy to underweight next to the more dramatic mechanical hazards on the same job."
+      },
+      {
+        hazard: "Burns or fire from soldering/brazing (propane torch) on pipework",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Treat any torch work as hot work — permit, fire watch, and extinguisher within reach, even for a 'quick' joint",
+          "Clear or shield combustible material from the work area before lighting the torch, including inside wall or ceiling cavities where you can't see what's behind the pipe",
+          "Check for old lead-based paint or coatings on pipework before heating — fume hazard, not just fire risk"
+        ],
+        why: "A small torch flame on an ordinary pipe joint still starts fires the same way a cutting torch does — the informal feel of 'just soldering a joint' is exactly what leads a site to skip the hot work permit it would never skip for welding."
+      },
+      {
+        hazard: "High-pressure injection injury from jetting equipment or pressurized lines",
+        likelihood: "Unlikely",
+        severity: "Major",
+        controls: [
+          "Depressurize and drain any line before disconnecting fittings — confirm zero pressure, don't assume it from a closed valve alone",
+          "Never point a jetting nozzle or discharge point at any part of the body, even briefly",
+          "Treat any high-pressure injection injury as a medical emergency requiring immediate attention, even if it looks like a minor puncture"
+        ],
+        why: "A high-pressure water injection injury can look trivial on the skin while doing serious damage underneath — the wound doesn't look like what it actually is."
+      },
+      {
+        hazard: "Entanglement on powered drain augers/snakes",
+        likelihood: "Unlikely",
+        severity: "Moderate",
+        controls: [
+          "Keep loose clothing, gloves, and hair clear of the rotating cable at all times",
+          "Use the manufacturer's foot switch/clutch control rather than leaving the machine running continuously",
+          "Two-person operation on any powered auger — one feeding the cable, one on the control"
+        ],
+        why: "A rotating drain cable will grab a loose glove or sleeve the same way any rotating shaft does, and it's easy to treat this tool as low-risk because it looks like an ordinary hand tool."
+      },
+      {
+        hazard: "Cross-connection / backflow contamination between potable and non-potable water systems",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Never connect a potable water line directly to a non-potable source (irrigation, process water, chemical systems) without an approved backflow prevention device",
+          "Confirm backflow preventers are tested and tagged per schedule, not just installed once and forgotten",
+          "Flag any temporary hose connection between systems to a supervisor before making it, even for a short job"
+        ],
+        why: "This is one of the few plumbing hazards where the injured party isn't the plumber — a backflow event can contaminate a much wider water supply than the immediate work area, which is why it's treated as a process-safety issue, not just a trade practice."
+      },
+      {
+        hazard: "Working in confined pits, sumps, or vaults to access buried piping/valves",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Treat any below-grade pit, sump, or vault as a confined space until proven otherwise — gas-test before entry, don't assume open-air ventilation is enough",
+          "Follow the Confined Space Entry procedure in full (permit, attendant, retrieval) rather than treating a 'quick look' as an exception",
+          "Be alert for hydrogen sulphide or an oxygen-deficient atmosphere in sewage-adjacent pits specifically"
+        ],
+        why: "A plumbing pit doesn't look like the classic image of a confined space, which is exactly why it gets treated informally — the atmospheric risk doesn't care how the space looks from the surface."
+      }
+    ],
+    toolboxTalk: [
+      "Confirm today's job involves any waste/sewage line — if so, confirm the crew has the right gloves and hygiene plan",
+      "If soldering or brazing is planned, confirm the Hot Work Permit and fire watch are in place",
+      "Confirm any pressurized line is depressurized and drained before disconnecting fittings",
+      "If using a powered drain auger, confirm two-person operation and clothing clear of the rotating cable",
+      "Confirm no temporary connection is being made between potable and non-potable systems without an approved backflow device",
+      "If accessing a pit, sump, or vault today, confirm it's being treated as a confined space — gas test first"
+    ],
+    ppe: ["Safety glasses", "Cut-resistant or heavy-duty rubber gloves", "Heat-resistant gloves for soldering/brazing", "Waterproof apron/coveralls for drain and sewage work", "Safety boots", "Respiratory protection if using solvent-based pipe cement in an enclosed space", "Calibrated multi-gas monitor if entering a pit/sump/vault"],
   },
   {
     id: "nitrogen-purging",
@@ -1176,7 +1322,7 @@ const PPE_LIBRARY = [
   {
     name: "Gloves — general work",
     description: "Basic hand protection against abrasion, cuts, and dirt for everyday tasks. A common minimum for process-area entry is a nitrile-palm glove meeting at least Level 1 abrasion/cut/tear/puncture resistance (e.g. EN 388) without impairing dexterity.",
-    whenToUse: "General handling, housekeeping, light mechanical work, and routine movement through process areas where hands may contact handrails, ladders, or structural surfaces."
+    whenToUse: "General handling, housekeeping, light mechanical work, and routine movement through process areas where hands may contact handrails, ladders, or structural surfaces. Some sites mandate gloves at all times anywhere inside a live process area (including workshops, warehouses, and laydown yards), not just while actively performing a task — check whether your site's zone rules work the same way. Wash and dry hands before gloving, fit snugly to avoid snagging on moving equipment, inspect before each use and replace at the first sign of damage, and remove carefully from the wrist without touching the outer surface. Gloves don't replace hand hygiene — wash hands again after removal."
   },
   {
     name: "Gloves — cut-resistant",
@@ -1286,7 +1432,7 @@ const TOOLS_LIBRARY = [
   {
     name: "Electric hand drill",
     classification: "Cold Work",
-    classificationNote: "No ignition source under normal use — cold work.",
+    classificationNote: "No ignition source under normal use — cold work. Standard cordless/mains tools are not rated for use inside classified (Zone 1/Division 1) process areas — confirm intrinsically safe or Ex-rated equipment is used where required.",
     ppe: ["Safety glasses", "General work gloves", "Ear protection for prolonged use"],
     hazardNote: "Bit breakage/ejection, entanglement on loose clothing, drilling into hidden services."
   },
@@ -1338,6 +1484,160 @@ const TOOLS_LIBRARY = [
     classificationNote: "No ignition source from the tool itself — cold work, though striking on rock or concrete can throw sparks near buried services or flammable atmospheres; check ground conditions and permit status before use.",
     ppe: ["Impact-resistant gloves", "Safety glasses / face shield (flying chips and debris)", "Steel-toe boots", "Long sleeves/leg protection from flying debris"],
     hazardNote: "Hand/wrist impact and fatigue from repeated striking, flying rock or debris, overstrike injury to feet/shins, strain injury from prolonged swinging. Impact-resistant gloves are a specific control here — general work gloves don't absorb striking force."
+  },
+  {
+    name: "Pipe wrench / adjustable spanner",
+    classification: "Cold Work",
+    classificationNote: "No ignition source under normal use — cold work. Never used as a substitute for the correctly sized wrench, and never used as a hammer.",
+    ppe: ["Safety glasses", "General work gloves", "Impact-resistant gloves if a cheater bar is used to extend leverage"],
+    hazardNote: "Slip-off injury when the jaw is worn or overloaded, pinch points at the jaw, strain injury breaking a seized fitting without penetrating oil or proper technique."
+  },
+  {
+    name: "Socket set / ratchet",
+    classification: "Cold Work",
+    classificationNote: "No ignition source — cold work.",
+    ppe: ["Safety glasses", "General work gloves — removed for fine work needing dexterity"],
+    hazardNote: "Slipped socket or rounded fastener head, pinch points, strain injury breaking torque on a seized bolt."
+  },
+  {
+    name: "Torque wrench (calibrated, manual)",
+    classification: "Cold Work",
+    classificationNote: "No ignition source — cold work. Process-safety critical: under- or over-torqued flange bolting is a direct cause of loss-of-containment incidents on ammonia and methanol lines, not just a mechanical concern.",
+    ppe: ["Safety glasses", "General work gloves"],
+    hazardNote: "Slip/pinch injury to the hand, but the bigger risk is downstream — confirm the calibration sticker is current before using on any critical joint, since an out-of-calibration wrench can leave a flange under- or over-torqued without anyone knowing until it leaks."
+  },
+  {
+    name: "Hydraulic torque wrench (bolting tool)",
+    classification: "Cold Work",
+    classificationNote: "No ignition source from the tool itself — cold work, though the hydraulic pump unit should meet the area's hazardous-area rating if used inside a classified process area.",
+    ppe: ["Safety glasses / face shield", "Cut-resistant gloves", "Hearing protection near the hydraulic pump", "Steel-toe boots"],
+    hazardNote: "High-pressure hydraulic hose failure or fluid injection injury, reaction-arm pinch points, crush injury if the tool slips off the nut under load. Standard equipment for turnaround-scale flange bolting on ammonia/methanol/urea process lines."
+  },
+  {
+    name: "Bolt cutters",
+    classification: "Cold Work",
+    classificationNote: "No ignition source — cold work, though cutting material under spring tension releases stored energy at the moment of the cut.",
+    ppe: ["Safety glasses (cut ends can spring back)", "Cut-resistant gloves"],
+    hazardNote: "Pinch point at the pivot, stored-energy release on the cut piece, strain injury attempting material beyond the tool's rated capacity."
+  },
+  {
+    name: "Hand files, hacksaw, cold chisel & hammer",
+    classification: "Cold Work",
+    classificationNote: "No ignition source under normal use — cold work. A cold chisel striking hardened steel can occasionally throw a spark; avoid use near a confirmed flammable atmosphere.",
+    ppe: ["Safety glasses", "General work or cut-resistant gloves"],
+    hazardNote: "Blade/edge contact, a mushroomed chisel head shedding metal fragments when struck, hand injury from a glancing hammer blow."
+  },
+  {
+    name: "Multimeter / non-contact voltage tester",
+    classification: "Cold Work",
+    classificationNote: "No ignition source — cold work, though use inside a classified electrical area requires an intrinsically safe or Ex-rated meter, not a standard bench multimeter.",
+    ppe: ["Insulated/electrical-rated gloves matched to the voltage present", "Arc-rated clothing per the equipment's incident energy label where applicable"],
+    hazardNote: "The single most important use of this tool is proving zero energy during lockout/tagout before anyone touches equipment — test the meter on a known-live source before and after checking the isolated circuit, since a faulty meter reading 'dead' is worse than no meter at all."
+  },
+  {
+    name: "Non-sparking (spark-resistant) hand tools",
+    classification: "Cold Work",
+    classificationNote: "Purpose-built for use inside classified/hazardous (Zone 1 or Division 1) areas where a standard steel tool's spark risk is unacceptable — brass, bronze, or beryllium-copper construction. This is exactly the environment ammonia, methanol, and hydrocarbon process areas present.",
+    ppe: ["Standard task PPE for the work being done — the tool material is the control here, not extra PPE"],
+    hazardNote: "Softer than steel, so these wear and round off faster — a worn non-sparking tool that slips is a bigger hazard than the spark it was issued to prevent. Confirm the tool is genuinely rated (not just brass-plated steel) and check its condition before relying on it in a classified area."
+  },
+  {
+    name: "Chain hoist / come-along (manual lifting aid)",
+    classification: "Cold Work",
+    classificationNote: "No ignition source — cold work.",
+    ppe: ["Hard hat", "Safety boots", "Gloves"],
+    hazardNote: "Overloading beyond rated capacity, an improperly rigged anchor point failing, chain or cable snap-back under load, crush injury from a dropped load. Treat as lifting equipment under the Lifting Operations task, not a casual hand tool — inspect and rate it the same way."
+  },
+  {
+    name: "Rotary hammer drill (SDS) / core drill",
+    classification: "Cold Work",
+    classificationNote: "No spark/ignition source drilling concrete or masonry — cold work. Drilling into steel with a rotary hammer bit can occasionally spark; treat as hot work near a confirmed flammable atmosphere.",
+    ppe: ["Safety glasses", "Ear protection", "Dust mask/respirator for dry drilling", "Anti-vibration gloves for extended use"],
+    hazardNote: "Hand-arm vibration, silica dust from concrete drilling, drilling into hidden rebar or buried services, reaction torque if the bit binds."
+  },
+  {
+    name: "Portable multi-gas detector/monitor",
+    classification: "Cold Work",
+    classificationNote: "Not a hazard source itself, but treated as safety-critical equipment — calibration status and bump-test record must be checked before every use, never assumed.",
+    ppe: ["Standard task PPE — this is a detection tool, not something requiring its own PPE"],
+    hazardNote: "An uncalibrated or un-bump-tested monitor gives false confidence. Verify the calibration due date and perform a bump test before relying on a reading for confined space entry, hot work clearance, or excavation atmosphere testing."
+  },
+  {
+    name: "Pipe cutter / pipe threading machine",
+    classification: "Cold Work",
+    classificationNote: "No ignition source under normal use — cold work.",
+    ppe: ["Safety glasses", "Cut-resistant gloves — removed near a powered threading machine's rotating chuck, where entanglement outweighs cut risk", "Ear protection for powered threading machines"],
+    hazardNote: "Entanglement on a powered threading machine's rotating chuck (loose gloves or clothing are a serious risk here), pinch points, metal swarf."
+  },
+  {
+    name: "Powder-actuated fastening tool (stud gun)",
+    classification: "Cold Work",
+    classificationNote: "Uses a gunpowder-charge cartridge to drive a fastener — no open flame in normal use, but the explosive charge and projectile nature put it under its own strict controls, separate from general cold-work rules. Only used by someone with documented tool-specific training/certification, never general-issue.",
+    ppe: ["Safety glasses / face shield", "Ear protection (cartridge discharge is loud)", "Hard hat for overhead work"],
+    hazardNote: "Misfire or hangfire (a cartridge that fires late), fastener or fragment penetrating through the material and out the other side, ricochet, unintentional discharge if the safety tip isn't fully depressed against the work surface."
+  },
+  {
+    name: "Concrete/masonry cut-off saw (walk-behind, wet-cut)",
+    classification: "Hot Work",
+    classificationNote: "An abrasive blade cutting concrete throws sparks the same way a metal-cutting disc does, especially on contact with embedded rebar — treated as hot work near flammable atmospheres or materials.",
+    ppe: ["Face shield", "Ear protection (mandatory — extremely loud)", "Dust mask/respirator if not wet-cutting", "Gloves", "Safety boots"],
+    hazardNote: "Blade shatter or kickback, sparks, silica dust if cutting dry, hand-arm vibration, noise-induced hearing loss on prolonged use."
+  },
+  {
+    name: "Concrete vibrator (poker vibrator)",
+    classification: "Cold Work",
+    classificationNote: "No ignition source under normal use — cold work. Petrol-driven units should be refuelled cold and away from ignition sources, same as any small engine.",
+    ppe: ["Safety glasses", "General work gloves", "Ear protection for petrol-driven units", "Safety boots"],
+    hazardNote: "Hand-arm vibration on prolonged use, entanglement in the flexible drive shaft, electric shock on electric-driven units used around wet concrete — confirm GFCI/RCD protection is in place."
+  },
+  {
+    name: "Rebar cutter/bender (manual or hydraulic)",
+    classification: "Cold Work",
+    classificationNote: "No ignition source — cold work.",
+    ppe: ["Safety glasses", "Cut-resistant gloves", "Steel-toe boots"],
+    hazardNote: "Pinch/crush point at the cutting or bending head, stored-energy release as the cut piece whips back, strain injury on manual units used beyond their rated bar size."
+  },
+  {
+    name: "Plate compactor / vibratory roller",
+    classification: "Cold Work",
+    classificationNote: "No ignition source under normal use — cold work, though petrol-driven units should be refuelled cold and away from ignition sources.",
+    ppe: ["Ear protection", "Safety glasses", "Steel-toe boots", "Gloves"],
+    hazardNote: "Hand-arm and whole-body vibration, foot/toe crush risk from the compacting plate, engine exhaust in an enclosed or trench area, tip-over on sloped or uneven ground near an excavation edge."
+  },
+  {
+    name: "Pipe bender (manual or hydraulic)",
+    classification: "Cold Work",
+    classificationNote: "No ignition source — cold work.",
+    ppe: ["Safety glasses", "General work gloves", "Steel-toe boots"],
+    hazardNote: "Pinch/crush point at the bending head, spring-back energy stored in the pipe if it slips from the die, strain injury on manual units."
+  },
+  {
+    name: "Propane torch (soldering/brazing, plumbing)",
+    classification: "Hot Work",
+    classificationNote: "Open flame — always hot work, same fire-watch logic as oxy-fuel cutting, even though the flame is smaller.",
+    ppe: ["Safety glasses", "Heat-resistant gloves", "FR clothing if near flammables", "Fire watch/extinguisher within reach"],
+    hazardNote: "Burns, fire from an unattended flame or a hot pipe contacting combustible material, propane cylinder leak or flashback, fume inhalation from flux or old paint/coating on the pipe being heated."
+  },
+  {
+    name: "Plumber's snake / drain auger",
+    classification: "Cold Work",
+    classificationNote: "No ignition source — cold work.",
+    ppe: ["Cut-resistant or heavy-duty rubber gloves", "Safety glasses (splash-back from the drain)", "Disposable coveralls or apron for sewage-line work"],
+    hazardNote: "Entanglement of loose clothing or gloves in the rotating cable on powered augers, cable whip/kickback, exposure to sewage or biological contamination — treat any drain-clearing job on a waste line as a biohazard exposure risk, not just a mechanical one."
+  },
+  {
+    name: "Drain/sewer jetting equipment (high-pressure)",
+    classification: "Cold Work",
+    classificationNote: "No ignition source — cold work, though engine-driven jetting units should be refuelled cold and away from ignition sources.",
+    ppe: ["Face shield or safety glasses", "Waterproof gloves and apron", "Ear protection", "Biohazard-rated PPE for sewage lines, same reasoning as the drain auger"],
+    hazardNote: "High-pressure injection injury from the jetting nozzle or a hose failure — the same injury category as a pressure washer, but working inside a confined pipe run under higher pressure. Also slip hazard and biological exposure on waste lines."
+  },
+  {
+    name: "Megger / insulation resistance tester",
+    classification: "Cold Work",
+    classificationNote: "No ignition source — cold work, though it applies a high test voltage to the circuit under test and must only be used on equipment already confirmed isolated and de-energized.",
+    ppe: ["Insulated/electrical-rated gloves", "Safety glasses"],
+    hazardNote: "The tester itself generates several hundred to a few thousand volts to check insulation resistance — never used on live equipment, and anyone else working on the same circuit needs to be warned before testing starts, since the test voltage is dangerous to someone who assumes the circuit is simply 'off.'"
   },
 ];
 
