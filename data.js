@@ -281,18 +281,29 @@ const TASK_LIBRARY = [
     label: "Excavation",
     sub: "Trenching, digging, ground-breaking",
     icon: "shovel",
-    permits: ["Ground-Breaking / Excavation Permit", "Underground services clearance"],
+    permits: ["Ground-Breaking / Excavation Permit", "Underground services clearance", "Confined Space Entry Permit if atmospheric testing shows a hazard"],
     hazards: [
       {
         hazard: "Trench/excavation collapse burying workers",
         likelihood: "Unlikely",
         severity: "Fatal",
         controls: [
-          "Slope, bench, or shore excavations deeper than 1.2 m (site-specific threshold may be lower)",
+          "Slope, bench, or shore excavations 1.5 m (5 ft) deep or more — below that, a competent person judges whether a protective system is still needed based on soil and site conditions",
           "Keep spoil piles at least 0.6 m back from the edge",
           "Daily competent-person inspection, and after rain or ground disturbance"
         ],
-        why: "Soil can look stable and still fail suddenly — sloping/shoring removes reliance on judgement alone."
+        why: "Soil can look stable and still fail suddenly — sloping/shoring removes reliance on judgement alone. Depth threshold follows the widely-used OSHA 29 CFR 1926 Subpart P benchmark for when a protective system becomes mandatory rather than discretionary."
+      },
+      {
+        hazard: "Hazardous atmosphere accumulating in the excavation",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Gas-test any excavation over 1.2 m (4 ft) deep before anyone enters, and re-test if work is interrupted or conditions change",
+          "Treat trenches near process piping, buried utility corridors, or low-lying ground as higher risk for gas migration, not just confined spaces",
+          "If testing shows a hazard, stop and manage the excavation under Confined Space Entry procedure rather than as ordinary ground-breaking"
+        ],
+        why: "A trench isn't automatically a confined space, but it behaves like one the moment gas can migrate or settle in it — this is a genuine risk on a site with buried ammonia, methanol, or hydrocarbon lines nearby, and it's an easy control to skip because a trench doesn't look enclosed."
       },
       {
         hazard: "Striking underground services — electrical, gas, water",
@@ -317,12 +328,13 @@ const TASK_LIBRARY = [
     ],
     toolboxTalk: [
       "Confirm underground services clearance is in hand and marked up",
-      "Confirm sloping/shoring/benching method for this excavation's depth",
+      "Confirm sloping/shoring/benching method for this excavation's depth — mandatory at 1.5 m (5 ft) or more",
+      "Confirm the trench has been gas-tested if it's over 1.2 m (4 ft) deep, and re-tested after any break in work",
       "Confirm spoil pile placement and barricade layout",
       "Confirm access/egress points",
       "Confirm who is the competent person doing daily inspections"
     ],
-    ppe: ["Hard hat", "Safety boots", "High-visibility clothing", "Gloves"],
+    ppe: ["Hard hat", "Safety boots", "High-visibility clothing", "Gloves", "Gas monitor for excavations over 1.2 m (4 ft) deep", "Respiratory protection matched to test results if atmosphere is hazardous"],
   },
   {
     id: "scaffolding",
