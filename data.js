@@ -1116,13 +1116,17 @@ function riskBand(score, severity) {
 // ============================================================
 // PPE LIBRARY — reference guide, not task-specific.
 // "act" fields cite the OSH Act Ch. 88:08 provision that backs
-// the requirement, where one applies directly.
+// the requirement, where one applies directly. Some numeric
+// benchmarks (noise limits, boot ratings, respirator triggers)
+// are drawn from Proman Energy's published PPE Standard, a
+// local Trinidad & Tobago plant-industry standard, as a
+// concrete real-world reference point — not a legal citation.
 // ============================================================
 const PPE_LIBRARY = [
   {
     name: "Hard hat / safety helmet",
-    description: "Rigid shell helmet protecting the head from falling objects, impact, and limited electrical contact.",
-    whenToUse: "Any area with overhead work, moving machinery, or where required by site signage — standard baseline PPE on most plant sites.",
+    description: "Rigid shell helmet protecting the head from falling objects, impact, and limited electrical contact. Type I protects vertical/top impact only; Type II adds lateral/side impact. Class G gives limited protection to 2,200V, Class E to 20,000V — Type II Class E/G is the common plant-industry baseline.",
+    whenToUse: "Any area with overhead work, moving machinery, or where required by site signage — standard baseline PPE on most plant sites. Use a chin strap or lanyard when working at height, around excavations deep enough to enter, or over water. Replace immediately after any fall or impact from height, even without visible damage, and on a fixed schedule (5 years from manufacture is a common industry benchmark) regardless of condition.",
     act: "OSH Act s.23 — suitable protective devices required wherever there's risk of head injury, with instruction in their use."
   },
   {
@@ -1139,7 +1143,7 @@ const PPE_LIBRARY = [
   {
     name: "Face shield",
     description: "Full-face polycarbonate shield worn over safety glasses, protecting the whole face from flying debris, sparks, or chemical splash.",
-    whenToUse: "Grinding, chipping, battery work, and any task combining eye and facial exposure."
+    whenToUse: "Grinding, chipping, battery work, high-pressure fluid work, and any task combining eye and facial exposure. Always worn over safety glasses, never as a standalone substitute for primary eye protection."
   },
   {
     name: "Welding helmet (shaded / auto-darkening)",
@@ -1149,30 +1153,30 @@ const PPE_LIBRARY = [
   },
   {
     name: "Ear plugs",
-    description: "Disposable or reusable inserts reducing noise exposure, worn inside the ear canal.",
-    whenToUse: "Moderate sustained noise — compressors, pumps, general workshop background noise."
+    description: "Disposable or reusable inserts reducing noise exposure, worn inside the ear canal. Typical attenuation: foam plugs ~29-33 dB, reusable plugs ~20-28 dB when properly fitted.",
+    whenToUse: "Moderate sustained noise — compressors, pumps, general workshop background noise. Hearing protection becomes mandatory once exposure exceeds an 85 dBA 8-hour time-weighted average; double up (plugs + muffs) above about 100 dBA."
   },
   {
     name: "Ear muffs",
-    description: "Cupped over-ear protection, generally higher attenuation than plugs, and easier to visually confirm compliance.",
-    whenToUse: "High-noise tools — grinders, jackhammers, chop saws — or combined with plugs in very high-noise areas.",
+    description: "Cupped over-ear protection, typically ~20-30 dB attenuation, generally higher than plugs and easier to visually confirm compliance.",
+    whenToUse: "High-noise tools — grinders, jackhammers, chop saws — or combined with plugs in very high-noise areas (double protection recommended above ~100 dBA TWA).",
     act: "OSH Act s.34 — duty on the owner/occupier/employer to prevent hearing impairment and ensure protective equipment is worn at appropriate times."
   },
   {
     name: "Respirator — half-face (cartridge)",
     description: "Covers nose and mouth, filters dust, mist, or specific vapours depending on the cartridge fitted.",
-    whenToUse: "Painting, dry cutting, dust-generating work — cartridge type matched to the specific product's SDS, not assumed.",
+    whenToUse: "Painting, dry cutting, dust-generating work — cartridge type matched to the specific product's SDS, not assumed. Only NIOSH-approved respirators should be used; anyone wearing one beyond a basic dust mask needs a medical evaluation and a passed fit test (repeated at least annually, and whenever the mask model changes). Facial hair crossing the seal line invalidates the fit.",
     act: "OSH Act s.32 — respiratory protection of an approved standard shall be provided and maintained where necessary."
   },
   {
     name: "Respirator — full-face / supplied-air",
     description: "Covers the entire face or supplies breathing air from a separate source, used where cartridge filtration isn't sufficient.",
-    whenToUse: "Confined space with poor or unknown atmosphere, oxygen-deficient environments, high-hazard chemical exposure, abrasive blasting."
+    whenToUse: "Confined space with poor or unknown atmosphere, oxygen-deficient environments (below 19.5% oxygen), high-hazard chemical exposure, abrasive blasting. Self-contained breathing apparatus (SCBA) is the standard for IDLH (immediately dangerous to life/health) conditions — cartridge respirators are never a substitute in an oxygen-deficient or IDLH atmosphere."
   },
   {
     name: "Gloves — general work",
-    description: "Basic hand protection against abrasion, cuts, and dirt for everyday tasks.",
-    whenToUse: "General handling, housekeeping, light mechanical work."
+    description: "Basic hand protection against abrasion, cuts, and dirt for everyday tasks. A common minimum for process-area entry is a nitrile-palm glove meeting at least Level 1 abrasion/cut/tear/puncture resistance (e.g. EN 388) without impairing dexterity.",
+    whenToUse: "General handling, housekeeping, light mechanical work, and routine movement through process areas where hands may contact handrails, ladders, or structural surfaces."
   },
   {
     name: "Gloves — cut-resistant",
@@ -1197,8 +1201,8 @@ const PPE_LIBRARY = [
   },
   {
     name: "Safety boots (steel / composite toe)",
-    description: "Reinforced-toe footwear protecting against impact and compression, often with puncture-resistant soles.",
-    whenToUse: "Virtually all plant/site work — standard baseline PPE."
+    description: "Reinforced-toe footwear protecting against impact and compression, often with puncture-resistant soles. A common plant-industry benchmark: toe cap rated to withstand at least 200 joules impact, minimum 6-inch boot height for ankle support, slip-resistant outsole, and soles resistant to hydrocarbons and heat.",
+    whenToUse: "Virtually all plant/site work — standard baseline PPE. Inspect daily for cracked soles, worn treads, loose toe caps, or chemical degradation; damaged boots are replaced immediately, not at the end of shift."
   },
   {
     name: "High-visibility vest / clothing",
@@ -1212,8 +1216,13 @@ const PPE_LIBRARY = [
   },
   {
     name: "Flame-resistant (FR) coveralls",
-    description: "Fabric engineered to self-extinguish and resist ignition, worn as a barrier against flash fire and arc flash.",
-    whenToUse: "Hot work, electrical work with arc flash potential, and process areas with flash fire risk."
+    description: "Fabric engineered to self-extinguish and resist ignition, worn as a barrier against flash fire and arc flash. One-piece coveralls are generally preferred over a separate FR shirt/pants combination, since a two-piece set can gap at the waist during bending or climbing and lets flame or hot gas reach the skin. Non-FR clothing (rain gear, unrated vests, belts) worn over FR coveralls defeats the protection, so any outer layer must also be FR-rated.",
+    whenToUse: "Hot work, electrical work with arc flash potential, and process areas with flash fire risk. Collar worn closed, shirt tucked in if a two-piece set is ever used, and nothing flammable worn underneath or over top."
+  },
+  {
+    name: "Personal Flotation Device (PFD) — Type 1",
+    description: "Buoyant vest providing 150N-275N of buoyancy, built to keep the wearer's airway above water even if unconscious. Distinct from a general life jacket — rated for rough-sea and offshore conditions, and compatible with a harness.",
+    whenToUse: "Boarding or working on jetties, platforms, or vessels; any work over or near open water; unmanned installations without full handrail protection. Inspect before each use — a compressed, torn, or waterlogged PFD is removed from service immediately, not patched up."
   },
 ];
 
