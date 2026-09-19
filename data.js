@@ -724,6 +724,18 @@ const TASK_LIBRARY = [
           "Park only in designated bays, not wherever is convenient"
         ],
         why: "Reversing incidents are a high-frequency, lower-severity category individually — but a site with a lot of them is a reliable early warning sign for a more serious vehicle incident."
+      },
+      {
+        hazard: "Static electricity ignition during road tanker loading/unloading of flammable product",
+        likelihood: "Unlikely",
+        severity: "Fatal",
+        controls: [
+          "Bond the tanker to the fixed loading rack/earthing point before any hatch is opened or hose is connected, and keep it bonded until after the hose is disconnected and the hatch closed",
+          "Confirm the bonding clamp makes contact with bare metal, not paint, rust, or a coated surface — a clamp that looks connected but isn't makes contact resistance the same as no bonding at all",
+          "Verify the bonding/earthing point's continuity is tested on a schedule, not just assumed to work because it's installed",
+          "No loading or unloading during electrical storm activity in the area"
+        ],
+        why: "A road tanker is an ungrounded conductor the moment it rolls onto site — filling or draining a flammable liquid generates static charge as the product moves, and if that charge has nowhere to go, the discharge itself can be the ignition source in an otherwise well-controlled transfer."
       }
     ],
     toolboxTalk: [
@@ -732,7 +744,8 @@ const TASK_LIBRARY = [
       "Confirm the driver has had adequate rest before a long trip",
       "Confirm the pre-trip vehicle walk-around has been done",
       "Agree the no-phone-while-driving rule for this trip, out loud, before leaving",
-      "Confirm who to contact, and how, if the journey is delayed or the driver doesn't arrive as expected"
+      "Confirm who to contact, and how, if the journey is delayed or the driver doesn't arrive as expected",
+      "If loading or unloading a flammable product today, confirm the tanker is bonded to bare metal before any hatch opens, and stays bonded until the hose is off"
     ],
     ppe: ["Seatbelt worn by all occupants, 100% of the time", "High-visibility vest when exiting the vehicle on-site", "Appropriate footwear for site conditions on arrival"],
   },
@@ -832,10 +845,22 @@ const TASK_LIBRARY = [
         severity: "Major",
         controls: [
           "Confirm product SDS and any vapour/gas monitoring requirements before connecting hoses/arms",
-          "Static bonding/grounding between vessel and shore connections before transfer begins",
+          "Confirm static bonding/grounding between vessel and shore is connected and verified before transfer begins — see the dedicated static electricity hazard below for the full procedure",
           "Emergency shutdown procedure and location confirmed by all parties before starting transfer"
         ],
         why: "Loading/unloading combines chemical-transfer hazards with the added complexity of two separate organizations — vessel and shore — needing to agree on the same procedure in real time."
+      },
+      {
+        hazard: "Static electricity ignition during vessel-to-shore flammable product transfer",
+        likelihood: "Unlikely",
+        severity: "Fatal",
+        controls: [
+          "Connect the bonding cable between vessel and shore and verify continuity before any hose or arm is connected, and keep it connected until after the hose/arm is disconnected — bonding is the first thing on and the last thing off",
+          "Confirm the bonding clamp makes contact with bare, clean metal on both the vessel and shore side — paint, rust, or marine growth on the contact point defeats the bond even though it looks connected",
+          "Control the initial fill/loading rate (a slow start) since splash-filling and high-velocity flow generate more static charge than a controlled, submerged-fill start",
+          "No transfer operations during electrical storm activity in the area"
+        ],
+        why: "The transfer itself generates the static charge as product moves through the hose and into the tank — bonding doesn't prevent the charge from forming, it gives it a path to ground instead of a path through a spark gap into flammable vapour."
       },
       {
         hazard: "Slips on wet, algae-covered, or uneven jetty surfaces",
@@ -1639,6 +1664,55 @@ const TOOLS_LIBRARY = [
     ppe: ["Insulated/electrical-rated gloves", "Safety glasses"],
     hazardNote: "The tester itself generates several hundred to a few thousand volts to check insulation resistance — never used on live equipment, and anyone else working on the same circuit needs to be warned before testing starts, since the test voltage is dangerous to someone who assumes the circuit is simply 'off.'"
   },
+  {
+    name: "Crowbar / pry bar",
+    classification: "Cold Work",
+    classificationNote: "No ignition source — cold work.",
+    ppe: ["Safety glasses", "General work gloves", "Steel-toe boots"],
+    hazardNote: "Sudden release of tension when material breaks free (the bar can slip and swing back unexpectedly), pinch/crush point at the fulcrum, overreach strain on stuck material, flying debris or nails when stripping formwork."
+  },
+  {
+    name: "Shovel / hoe (manual digging and mixing tools)",
+    classification: "Cold Work",
+    classificationNote: "No ignition source — cold work.",
+    ppe: ["General work gloves", "Steel-toe boots", "Safety glasses when mixing dry materials"],
+    hazardNote: "Manual handling strain from repetitive digging or mixing, struck-by injury to a nearby worker when swinging in a group, blisters or cuts from a worn or damaged handle."
+  },
+  {
+    name: "Rubber mallet",
+    classification: "Cold Work",
+    classificationNote: "No ignition source — cold work.",
+    ppe: ["General work gloves", "Safety glasses for overhead or paving work"],
+    hazardNote: "Hand injury from a glancing or missed strike, material kickback when setting pavers or tiles under force."
+  },
+  {
+    name: "Carpentry hand tools — claw hammer & wood chisel",
+    classification: "Cold Work",
+    classificationNote: "No ignition source under normal use — cold work.",
+    ppe: ["Safety glasses (nails and wood fragments can fly when pulling or striking)", "General work gloves"],
+    hazardNote: "A flying nail when pulling with the claw end, a glancing hammer blow to the hand, chisel slip toward the supporting hand if not cutting away from the body."
+  },
+  {
+    name: "Masonry finishing tools — trowels & float",
+    classification: "Cold Work",
+    classificationNote: "No ignition source — cold work.",
+    ppe: ["Waterproof gloves", "Safety glasses (mortar/plaster splash)"],
+    hazardNote: "Skin contact with wet cement or mortar — caustic, same concern as general concrete work, so wash off promptly. Also minor cuts on trowel edges and repetitive strain on prolonged finishing work."
+  },
+  {
+    name: "Measuring and marking tools — spirit level, try square, plumb bob",
+    classification: "Cold Work",
+    classificationNote: "Minimal direct hazard from the tools themselves — included because a missed or inaccurate check is what leads to a later structural or alignment problem, not because the tool is dangerous.",
+    ppe: ["No specific PPE beyond standard task PPE for the area"],
+    hazardNote: "The main risk isn't the tool — it's a plumb bob line or measuring tape left strung across a walkway becoming a trip hazard. Coil and stow lines immediately after use."
+  },
+  {
+    name: "Static bonding/grounding cable and clamp",
+    classification: "Cold Work",
+    classificationNote: "Not a hazard source itself — it's a control device, but treated as safety-critical equipment for any flammable liquid transfer (road tanker, vessel, drum decanting).",
+    ppe: ["Standard task PPE for the transfer operation being performed"],
+    hazardNote: "A clamp that looks connected but is biting on paint, rust, or a coated surface instead of bare metal provides no actual path to ground — visually confirming a connection isn't the same as confirming continuity. Inspect the cable itself for damage before relying on it, and connect it before any hatch, valve, or hose fitting is opened, not after."
+  },
 ];
 
 // ============================================================
@@ -1722,17 +1796,17 @@ const CHEMICALS_LIBRARY = [
     name: "Ammonia (anhydrous)",
     hazardClass: "Toxic gas, corrosive, flammable within a narrow range",
     exposureSigns: "Sharp irritating odour even at very low concentration, eye/throat irritation, coughing, and at higher concentration chemical burns to eyes/skin/lungs and breathing difficulty.",
-    immediateResponse: "Move upwind and away immediately. Remove contaminated clothing. Flush skin/eyes with water for at least 15 minutes if contact occurred. Seek medical attention even for what seems like brief exposure — respiratory effects can develop after the fact.",
+    immediateResponse: "Move upwind and away immediately, removing contaminated clothing as you go. For eye contact: get to the nearest deluge shower/eyewash station and flush continuously for a minimum of 15 minutes — hold the eyelids open with fingers so water actually reaches under the lid, remove contact lenses if it can be done without delaying the flush, and don't stop early just because irritation seems to ease. For skin contact: flush the affected area at the deluge shower for the same 15-minute minimum. Do not rub eyes or skin — this drives the chemical in further. Seek medical attention even for what seems like brief exposure or inhalation only — respiratory effects can develop after the fact, sometimes hours later.",
     incompatible: "Strong acids, halogens, oxidizers — do not mix or store together.",
-    note: "One of the primary products handled on the Point Lisas estate. Its own strong odour is a warning most people notice well before a harmful concentration — never ignore it as 'just the smell of the plant.'"
+    note: "One of the primary products handled on the Point Lisas estate. Its own strong odour is a warning most people notice well before a harmful concentration — never ignore it as 'just the smell of the plant.' Know the nearest deluge shower/eyewash location before starting any task near ammonia — under s.43(2) of the OSH Act, the Chief Inspector can direct an occupier to provide these, and a 15-minute flush only works if you can reach one in seconds, not minutes."
   },
   {
     name: "Methanol",
     hazardClass: "Flammable liquid, toxic by ingestion/inhalation/skin absorption",
     exposureSigns: "Headache, dizziness, nausea; at higher exposure, visual disturbance is a distinctive warning sign specific to methanol and should be treated as a medical emergency, not just discomfort.",
-    immediateResponse: "Remove from exposure/fresh air immediately. Remove contaminated clothing, flush skin with water. Any visual disturbance following exposure needs urgent medical attention — this isn't a 'wait and see' symptom.",
+    immediateResponse: "Remove from exposure to fresh air immediately. Remove contaminated clothing and flush exposed skin at the nearest deluge shower for a minimum of 15 minutes; for eye contact, flush at an eyewash station for the same minimum, holding the eyelids open. Any visual disturbance, confusion, or breathing difficulty following exposure is a medical emergency — get the person to hospital immediately rather than waiting to see if it passes. Methanol is metabolised into a toxic compound that damages the eyes and nervous system, and the specific treatment for this has to be given by medical staff — the officer's job is fast recognition and fast transport, not treatment.",
     incompatible: "Strong oxidizers.",
-    note: "Also produced at Point Lisas. Vapour is flammable and heavier than air — can travel and pool in low areas, which matters for excavation or confined space work nearby."
+    note: "Also produced at Point Lisas. Vapour is flammable and heavier than air — can travel and pool in low areas, which matters for excavation or confined space work nearby. Methanol poisoning symptoms can be delayed by several hours after exposure, so 'the person seems fine now' isn't a reason to skip medical evaluation after a known significant exposure."
   },
   {
     name: "Natural gas / LNG",
@@ -2011,4 +2085,93 @@ const BARRICADE_PRACTICES = [
   "Post a sign at the entry point explaining the specific hazard — tape with no context just becomes background noise.",
   "Inspect barricades and tape daily and after any heavy rain or wind, especially on an outdoor plant site.",
   "Remove promptly once the hazard is gone. Old tape left up past its relevance is exactly how people learn to stop respecting it.",
+];
+
+// ============================================================
+// PERMIT-TO-WORK SYSTEM — REFERENCE
+// A Permit-to-Work (PTW) system itself is not an OSH Act term —
+// it's an internationally-recognized process safety management
+// practice (used across the oil, gas, and petrochemical
+// industry, including by companies operating at Point Lisas).
+// Where a card's content is grounded directly in the OSH Act
+// Chapter 88:08 rather than general industry practice, its
+// "section" field cites the relevant provision. Cards without a
+// section are general good-practice guidance, not legal text.
+// ============================================================
+const PTW_REFERENCE = [
+  {
+    title: "What a Permit-to-Work actually is",
+    text: "A formal, documented system that authorizes specific high-risk work, for a specific person or crew, at a specific location, for a defined time window, under stated conditions and precautions — not a generic form filled in from memory. Its purpose is to force a documented check that isolation, atmosphere testing, and precautions are actually in place before work starts, rather than relying on verbal agreement or the assumption that 'someone already checked.'"
+  },
+  {
+    title: "The legal backbone behind it",
+    section: "s.8(2)(b)",
+    text: "The OSH Act requires an occupier with 25+ employees to prepare a written emergency plan based on a risk assessment, and separately (s.25(2)(d), s.25(7)(a)) requires confined spaces to be tested and certified by a 'competent person' certified by the Chief Inspector before entry. A PTW system is how a site operationalizes these duties day to day — the permit is the paper trail proving the required check actually happened, by the person qualified to make it."
+  },
+  {
+    title: "The permit types you'll use across these 19 tasks",
+    text: "Hot Work Permit (welding, cutting, grinding with sparks, open flame), Confined Space Entry Permit (with atmospheric testing certificate), Ground-Breaking/Excavation Permit, Lifting Plan/Permit for critical or complex lifts, Electrical Isolation Certificate tied to Lockout/Tagout, Working at Height Permit where required by site policy, and Nitrogen/Inert Gas Purge Permit. Several tasks require more than one permit simultaneously — for example, hot work inside a vessel needs both a Hot Work Permit and a Confined Space Entry Permit, not one covering the other."
+  },
+  {
+    title: "Key roles in the system",
+    text: "Permit Issuer/Area Authority — the person with authority over that area who confirms conditions are safe and authorizes the work. Permit Holder/Performing Authority — the person actually doing or supervising the work, responsible for following the permit's conditions. Authorized Gas Tester/Competent Person — certified to test and certify atmosphere, matching the OSH Act's own definition of 'competent person' for confined space work. Standby/Attendant — dedicated to monitoring the work and raising the alarm, not doubling as another pair of hands on the task."
+  },
+  {
+    title: "Isolation certificates and lockout/tagout — related but separate",
+    text: "A work permit authorizes the work; an isolation certificate (tied to your Lockout/Tagout procedure) proves the specific equipment has actually been isolated, locked, and verified de-energized or depressurized. Treat these as two linked documents, not one — a permit referencing an isolation that was never actually verified is exactly the gap that leads to someone working on live equipment."
+  },
+  {
+    title: "The permit lifecycle",
+    text: "Issue (conditions checked and signed) → toolbox talk/briefing to the crew doing the work → work in progress, with the permit displayed at the job site → suspension if conditions change (shift change, weather, gas alarm, emergency) → close-out/handback once work is complete or the shift ends. A permit that's still 'open' after the crew has gone home is not a paperwork oversight — it means the next shift, or an emergency responder, has no accurate picture of what state that equipment or area is actually in."
+  },
+  {
+    title: "Common permit-to-work failures on real sites",
+    text: "Permit fatigue — renewing a permit as a formality without re-checking conditions that may have changed. Scope creep — starting extra work not actually covered by the permit as written, because it's 'basically the same job.' Poor shift handover — the incoming crew continuing work on a permit issued to a crew that's no longer on site. Skipped re-testing — treating a gas test from hours ago as still valid after a break in work, wind shift, or nearby process change. Every one of these is a documentation habit, not a technical failure — which is exactly why they're preventable."
+  },
+];
+
+// ============================================================
+// EMERGENCY RESPONSE / MUSTER — REFERENCE
+// Alarm tones, muster arrangements, and mutual aid activation
+// are set by each individual site's own emergency plan and vary
+// between estates and even between plants on the same estate —
+// this reference gives the general categories and the legal
+// backbone behind them, not your specific site's actual codes.
+// Confirm your own site's real alarm tones and muster point
+// assignments with your emergency plan; never assume based on
+// this guide alone.
+// ============================================================
+const EMERGENCY_RESPONSE_REFERENCE = [
+  {
+    title: "Understanding site alarms — general categories",
+    section: "s.27(6)–(7)",
+    text: "The OSH Act requires a warning system that is clearly audible throughout the building and distinct from any other signal in use on the premises — but it doesn't standardize what the tone means. As a general industry convention (confirm against your own site's actual codes): a continuous siren commonly signals evacuate-and-muster, typically for fire; an intermittent or warbling siren commonly signals a toxic gas release, which may mean shelter-in-place rather than evacuate depending on wind direction and your site's own plan; an all-clear is typically a steady tone or a verbal announcement. Learn your actual site's tones on day one — never assume a generic guide matches your plant's real signal."
+  },
+  {
+    title: "Muster points and wind direction",
+    text: "A muster point isn't automatically safe just because it's the designated one — if a gas release is coming from a direction that puts the usual muster point downwind, the correct response is to move to an upwind or crosswind alternate, not to muster in the path of the release out of habit. Know your site's primary and at least one alternate muster point, and build a basic sense of prevailing wind direction into your situational awareness, not just into the emergency plan document."
+  },
+  {
+    title: "Roles during an emergency",
+    text: "Fire Warden/Marshal — sweeps their assigned area, confirms evacuation, reports headcount status to the muster point coordinator. Muster point coordinator — takes headcount against the day's sign-in/visitor log and reports missing persons to the incident commander immediately, not after a full recount. The 'don't be a hero' rule applies here the same way it does in Confined Space Entry — someone without the training or equipment to attempt a rescue safely should not attempt it; get trained responders there instead."
+  },
+  {
+    title: "Evacuation drills and fire-fighting equipment",
+    section: "s.28, s.29",
+    text: "Where more than 20 persons work above the ground floor of a building, or explosive/highly flammable materials are stored or used, the occupier must ensure employees are familiar with the means of escape and keep a record of evacuation drill frequency for inspection. Separately, the occupier must maintain adequate fire-fighting equipment and keep a sufficient number of trained persons available during working hours, with records of training and drill frequency kept for inspection. As an HSE officer, maintaining these records is part of the job, not paperwork on top of it."
+  },
+  {
+    title: "First aid and medical response infrastructure required on site",
+    section: "s.43",
+    text: "Every factory must maintain fully equipped first aid boxes, under the control of persons trained in first aid and retested every three years. The Chief Inspector can direct an occupier to provide deluge showers, eye baths, and similar first aid devices where necessary — directly relevant to ammonia and methanol handling on this estate. Any factory or industrial estate with more than 250 employees must maintain a dedicated first-aid room and an ambulance with appropriate medical/nursing staff, unless specifically exempted by the Chief Inspector."
+  },
+  {
+    title: "Notifying the authorities — the legal reporting clocks",
+    section: "s.46, s.46A",
+    text: "Death or critical injury: the occupier must inform the Chief Inspector immediately by phone, fax, or e-mail, followed by written notice within 48 hours. An incident with the potential for critical injury — including fire, explosion, or release of a toxic substance, even without an actual injury — must also be reported within 48 hours; this applies directly to a significant ammonia or methanol release even if no one is hurt. A lost-time injury not amounting to critical injury has a 4-day written notice window. These are the actual legal clocks that start running the moment something happens — your app's own Incident/Near-Miss module should be treated as feeding into this reporting obligation, not replacing it."
+  },
+  {
+    title: "Estate mutual aid",
+    text: "Point Lisas operates interplant mutual aid arrangements for major emergencies, coordinated through the estate's industry association. The specific activation procedure, contact points, and what resources are shared varies by estate arrangement and isn't set out in the OSH Act itself — obtain your own site's current mutual aid activation procedure directly rather than assuming it matches a generic description. (Flagged as a roadmap item for this app — a fuller, site-specific mutual aid reference can be added once that procedure is confirmed.)"
+  },
 ];

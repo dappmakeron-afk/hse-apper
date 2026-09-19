@@ -527,6 +527,60 @@ function renderBarricadesReference() {
     </div>`;
 }
 
+function renderPtwReference() {
+  const panel = document.getElementById("refpanel-ptw");
+  if (!panel) return;
+  panel.innerHTML =
+    `<p class="section-label">Permit-to-Work is an industry practice, not an OSH Act term — cited sections show where the Act backs a specific requirement</p>` +
+    PTW_REFERENCE.map(
+      (ref) => `
+    <div class="ref-card">
+      <div class="ref-card-top">
+        <p class="ref-card-title">${ref.title}</p>
+        ${ref.section ? `<span class="act-badge">${ref.section}</span>` : ""}
+      </div>
+      <p class="ref-card-desc">${ref.text}</p>
+    </div>`
+    ).join("") +
+    `<p class="ref-footnote">Legal citations from the OSH Act Ch. 88:08 (unofficial consolidated text). Always check rgd.legalaffairs.gov.tt for the current authorised text before relying on this for a legal or disciplinary matter.</p>`;
+}
+
+function renderEmergencyReference() {
+  const panel = document.getElementById("refpanel-emergency");
+  if (!panel) return;
+  panel.innerHTML =
+    `<p class="section-label">Alarm tones and muster arrangements are set by your own site's emergency plan and vary by estate — confirm the real codes, this is general guidance only</p>` +
+    EMERGENCY_RESPONSE_REFERENCE.map(
+      (ref) => `
+    <div class="ref-card">
+      <div class="ref-card-top">
+        <p class="ref-card-title">${ref.title}</p>
+        ${ref.section ? `<span class="act-badge">${ref.section}</span>` : ""}
+      </div>
+      <p class="ref-card-desc">${ref.text}</p>
+    </div>`
+    ).join("") +
+    `<p class="ref-footnote">Legal citations from the OSH Act Ch. 88:08 (unofficial consolidated text). Always check rgd.legalaffairs.gov.tt for the current authorised text before relying on this for a legal or disciplinary matter.</p>`;
+}
+
+function injectExtraReferenceTabs() {
+  const refTabs = document.getElementById("refTabs");
+  const container = document.getElementById("view-reference");
+  if (!refTabs || !container || document.getElementById("refpanel-ptw")) return;
+
+  refTabs.insertAdjacentHTML(
+    "beforeend",
+    `<button class="tab" data-reftab="ptw">Permit-to-Work</button>
+     <button class="tab" data-reftab="emergency">Emergency Response</button>`
+  );
+
+  container.insertAdjacentHTML(
+    "beforeend",
+    `<div class="tabpanel" id="refpanel-ptw"></div>
+     <div class="tabpanel" id="refpanel-emergency"></div>`
+  );
+}
+
 document.getElementById("refTabs").addEventListener("click", (e) => {
   const btn = e.target.closest(".tab");
   if (!btn) return;
@@ -1096,6 +1150,7 @@ if ("serviceWorker" in navigator) {
 let referenceRendered = false;
 function renderReferenceIfNeeded() {
   if (referenceRendered) return;
+  injectExtraReferenceTabs();
   renderPPEReference();
   renderToolsReference();
   renderOshActReference();
@@ -1104,6 +1159,8 @@ function renderReferenceIfNeeded() {
   renderWeatherReference();
   renderIncidentReference();
   renderBarricadesReference();
+  renderPtwReference();
+  renderEmergencyReference();
   referenceRendered = true;
 }
 
