@@ -178,7 +178,7 @@ function showView(name) {
     if (b.dataset.view === name) b.setAttribute("aria-current", "page");
     else b.removeAttribute("aria-current");
   });
-  if (name === "records") { injectBackupUI(); renderRecordsList(); renderIncidentsList(); }
+  if (name === "records") { renderRecordsList(); renderIncidentsList(); }
   if (name === "reference") renderReferenceIfNeeded();
   window.scrollTo(0, 0);
 }
@@ -561,24 +561,6 @@ function renderEmergencyReference() {
     </div>`
     ).join("") +
     `<p class="ref-footnote">Legal citations from the OSH Act Ch. 88:08 (unofficial consolidated text). Always check rgd.legalaffairs.gov.tt for the current authorised text before relying on this for a legal or disciplinary matter.</p>`;
-}
-
-function injectExtraReferenceTabs() {
-  const refTabs = document.getElementById("refTabs");
-  const container = document.getElementById("view-reference");
-  if (!refTabs || !container || document.getElementById("refpanel-ptw")) return;
-
-  refTabs.insertAdjacentHTML(
-    "beforeend",
-    `<button class="tab" data-reftab="ptw">Permit-to-Work</button>
-     <button class="tab" data-reftab="emergency">Emergency Response</button>`
-  );
-
-  container.insertAdjacentHTML(
-    "beforeend",
-    `<div class="tabpanel" id="refpanel-ptw"></div>
-     <div class="tabpanel" id="refpanel-emergency"></div>`
-  );
 }
 
 document.getElementById("refTabs").addEventListener("click", (e) => {
@@ -1058,25 +1040,13 @@ function setBackupStatus(msg, isError) {
   el.style.color = isError ? "#e35b5b" : "";
 }
 
-function injectBackupUI() {
-  const subTabs = document.getElementById("recordsSubTabs");
-  if (!subTabs || document.getElementById("backupCard")) return;
+function initBackupUI() {
+  const exportBtn = document.getElementById("exportBackupBtn");
+  const importBtn = document.getElementById("importBackupBtn");
+  const importInput = document.getElementById("importBackupInput");
+  if (!exportBtn || !importBtn || !importInput) return;
 
-  subTabs.insertAdjacentHTML(
-    "beforebegin",
-    `<div class="ref-card" id="backupCard" style="margin-bottom:16px;">
-      <p class="ref-card-title">Backup &amp; Restore</p>
-      <p class="ref-card-desc">Records only live on this device. Export a backup file regularly and keep a copy somewhere safe (email it to yourself, save to a drive) — a lost phone or factory reset clears anything not backed up, for good.</p>
-      <div class="record-card-actions" style="margin-top:10px;">
-        <button type="button" class="mini-btn" id="exportBackupBtn">Export backup</button>
-        <button type="button" class="mini-btn" id="importBackupBtn">Import backup</button>
-        <input type="file" id="importBackupInput" accept="application/json,.json" style="display:none;" />
-      </div>
-      <p class="ref-footnote" id="backupStatus" style="margin-top:8px;"></p>
-    </div>`
-  );
-
-  document.getElementById("exportBackupBtn").addEventListener("click", () => {
+  exportBtn.addEventListener("click", () => {
     try {
       downloadBackup();
       setBackupStatus("Backup file downloaded.");
@@ -1086,8 +1056,7 @@ function injectBackupUI() {
     }
   });
 
-  const importInput = document.getElementById("importBackupInput");
-  document.getElementById("importBackupBtn").addEventListener("click", () => importInput.click());
+  importBtn.addEventListener("click", () => importInput.click());
 
   importInput.addEventListener("change", (e) => {
     const file = e.target.files[0];
@@ -1150,7 +1119,6 @@ if ("serviceWorker" in navigator) {
 let referenceRendered = false;
 function renderReferenceIfNeeded() {
   if (referenceRendered) return;
-  injectExtraReferenceTabs();
   renderPPEReference();
   renderToolsReference();
   renderOshActReference();
@@ -1165,4 +1133,5 @@ function renderReferenceIfNeeded() {
 }
 
 renderTaskGrid();
+initBackupUI();
 updateOfflineBanner();

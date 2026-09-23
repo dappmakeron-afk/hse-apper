@@ -107,6 +107,17 @@
         <button class="tab" data-recordstab="incidents">Incidents / Near-Miss</button>
       </div>
 
+      <div class="ref-card" id="backupCard">
+        <p class="ref-card-title">Backup &amp; Restore</p>
+        <p class="ref-card-desc">Records only live on this device. Export a backup file regularly and keep a copy somewhere safe (email it to yourself, save to a drive) — a lost phone or factory reset clears anything not backed up, for good.</p>
+        <div class="record-card-actions" style="margin-top:10px;">
+          <button type="button" class="mini-btn" id="exportBackupBtn">Export backup</button>
+          <button type="button" class="mini-btn" id="importBackupBtn">Import backup</button>
+          <input type="file" id="importBackupInput" accept="application/json,.json" style="display:none;" />
+        </div>
+        <p class="ref-footnote" id="backupStatus" style="margin-top:8px;"></p>
+      </div>
+
       <div class="tabpanel active" id="recordspanel-field">
         <input type="search" class="search-input" id="recordsSearch" placeholder="Search by task, site, or supervisor..." />
         <div id="recordsList" class="records-list"></div>
@@ -223,6 +234,8 @@
         <button class="tab" data-reftab="weather">Weather &amp; Heat</button>
         <button class="tab" data-reftab="incident">Incident Investigation</button>
         <button class="tab" data-reftab="barricades">Barricades &amp; Signage</button>
+        <button class="tab" data-reftab="ptw">Permit-to-Work</button>
+        <button class="tab" data-reftab="emergency">Emergency Response</button>
       </div>
 
       <div class="tabpanel active" id="refpanel-ppe"></div>
@@ -233,6 +246,8 @@
       <div class="tabpanel" id="refpanel-weather"></div>
       <div class="tabpanel" id="refpanel-incident"></div>
       <div class="tabpanel" id="refpanel-barricades"></div>
+      <div class="tabpanel" id="refpanel-ptw"></div>
+      <div class="tabpanel" id="refpanel-emergency"></div>
     </section>
 
   </main>
