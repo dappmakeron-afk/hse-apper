@@ -114,6 +114,30 @@ button { font-family: inherit; }
 .view.active { display: block; animation: fadeIn 0.18s ease; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
+/* ==========================================================
+   SITE FOOTER (copyright + guidance disclaimer)
+   ========================================================== */
+.site-footer {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 18px 16px 90px;
+  border-top: 1px solid var(--line);
+}
+.footer-copy {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-mute);
+  margin: 0 0 8px;
+}
+.footer-disclaimer {
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--text-faint);
+  margin: 0;
+}
+.footer-disclaimer b { color: var(--text-mute); }
+
 .hero { padding: 8px 2px 22px; }
 .hero-compact { padding-bottom: 14px; }
 
@@ -623,7 +647,7 @@ button { font-family: inherit; }
 
   body { background: #fff !important; color: #17191A !important; }
 
-  .topbar, .backlink, .tabs, .offline-banner,
+  .topbar, .backlink, .tabs, .offline-banner, .site-footer,
   .navbtn, .record-meta, .action-row, .save-hint,
   .task-grid, .hero { display: none !important; }
 
