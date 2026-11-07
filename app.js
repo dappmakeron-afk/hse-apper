@@ -527,6 +527,55 @@ function renderBarricadesReference() {
     </div>`;
 }
 
+function renderLiftingReference() {
+  const panel = document.getElementById("refpanel-lifting");
+  const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const now = new Date();
+  const monthsSince =
+    (now.getFullYear() - LIFTING_CYCLE_START.year) * 12 + (now.getMonth() - LIFTING_CYCLE_START.monthIndex);
+  const periodIdx = Math.floor(monthsSince / 6);
+  const n = LIFTING_COLOUR_SEQUENCE.length;
+
+  function periodInfo(idx) {
+    const startMonthAbs = LIFTING_CYCLE_START.monthIndex + idx * 6;
+    const start = new Date(LIFTING_CYCLE_START.year, startMonthAbs, 1);
+    const end = new Date(LIFTING_CYCLE_START.year, startMonthAbs + 6, 0);
+    const colour = LIFTING_COLOUR_SEQUENCE[((idx % n) + n) % n];
+    return {
+      colour,
+      label: MONTHS[start.getMonth()] + " " + start.getFullYear() + " \u2013 " + MONTHS[end.getMonth()] + " " + end.getFullYear()
+    };
+  }
+
+  function card(idx, badge) {
+    const p = periodInfo(idx);
+    return `
+    <div class="ref-card">
+      <div class="ref-card-top">
+        <div class="tape-row" style="margin:0;">
+          <span class="tape-swatch" style="background:${p.colour.hex};"></span>
+          <p class="ref-card-title" style="margin:0;">${p.colour.name}</p>
+        </div>
+        ${badge ? `<span class="act-badge">${badge}</span>` : ""}
+      </div>
+      <p class="ref-card-desc"><b>${p.colour.ral}</b> &middot; ${p.label}</p>
+    </div>`;
+  }
+
+  const upcoming = [1, 2, 3].map((i) => card(periodIdx + i, "")).join("");
+
+  panel.innerHTML =
+    `<p class="section-label">Lifting appliance &amp; sling colour code — T&amp;T energy sector (Energy Chamber Advisory #36/2026)</p>` +
+    card(periodIdx, "CURRENT PERIOD") +
+    `<p class="section-label" style="margin-top:22px;">Coming periods</p>` +
+    upcoming +
+    `<div class="ref-card">
+      <p class="ref-card-title">About this code</p>
+      <p class="ref-card-desc">The Energy Chamber of Trinidad &amp; Tobago advises all contractors, service companies and operators in the energy sector that, since 1 June 2020, the colour coding for certification of portable lifting appliances and accessories, including slings, follows RAL colour codes. The colour changes every six months and the four-colour pattern repeats on a two-year cycle.</p>
+      <div class="ref-card-act">${ICONS.info}<span>This is an industry advisory, not part of the OSH Act. It does not say here how the colour is applied (tag, band or paint) or the inspection interval — follow your site's lifting procedure and your certifying body. Phone screens do not show RAL colours accurately: check against the physical RAL chart or the Chamber's advisory, and confirm the current advisory with the Energy Chamber (energy.tt) before relying on this for acceptance or rejection of gear. The current period shown above is worked out from this device's date.</span></div>
+    </div>`;
+}
+
 function renderPtwReference() {
   const panel = document.getElementById("refpanel-ptw");
   if (!panel) return;
@@ -1129,6 +1178,7 @@ function renderReferenceIfNeeded() {
   renderBarricadesReference();
   renderPtwReference();
   renderEmergencyReference();
+  renderLiftingReference();
   referenceRendered = true;
 }
 

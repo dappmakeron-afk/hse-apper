@@ -1745,9 +1745,39 @@ const OSH_ACT_REFERENCE = [
     text: "Every employer must make a suitable and sufficient annual assessment of the risks to employees' safety and health, and to others who may be affected by the undertaking. The assessment must be reviewed if there's reason to suspect it's no longer valid or if circumstances change significantly. Employers with 25+ employees must keep a record of the findings."
   },
   {
-    section: "Sections 15–21 (Part III)",
+    section: "Sections 14–21 (Part III)",
     title: "Right to Refuse Unsafe Work",
-    text: "An employee may refuse to do particular work where they have sufficient reason to believe there is serious/imminent danger, a dangerous machine or plant, a dangerous physical condition of the workplace, or a contravention of the Act likely to endanger themselves or another employee. The refusal must be reported immediately to the employer and safety committee (or the Chief Inspector, where there's no committee). An inspector must investigate and decide within 24 hours of the refusal. The employee is deemed to be at work and paid throughout."
+    text: "An employee may refuse to do particular work where they have sufficient reason to believe there is serious and imminent danger, that a machine, plant or device they must use is likely to endanger them or another employee, that the physical condition of the workplace is likely to endanger them, or that a contravention of the Act or Regulations is likely to endanger someone (s.15). They must immediately report the refusal to the employer and a safety and health committee representative; the committee investigates at once, with the employee, a union or employee-selected representative, and the employer's representative present (s.16). Where there is no committee, the report goes to the employer and the Chief Inspector. An inspector must investigate within 24 hours and give a written decision within 24 hours (s.18). While the investigation is pending the employee stays in a safe place and is paid the usual rate (ss.19–21). Limits: s.14 excludes the Defence Force, Police, Fire and Prison Services and workers in hospitals, clinics, laboratories and similar facilities where the danger is inherent in the job or refusal would endanger another person's life."
+  },
+  {
+    section: "Section 20A",
+    title: "No Reprisal for Acting on Safety",
+    text: "No employer or person acting for an employer may dismiss, discipline, suspend, penalise, intimidate or coerce a worker (or threaten to) because the worker complied with the Act, sought its enforcement, followed the employer's own safety procedures, or gave evidence in an enforcement proceeding."
+  },
+  {
+    section: "Sections 25E–25F",
+    title: "Safety and Health Committees",
+    text: "Every employer must, in consultation with the employees' representatives, establish a safety and health committee at an industrial establishment with 25 or more employees, or at a smaller one if the Chief Inspector directs it (s.25E). The committee must keep the measures protecting safety and health under review; investigate any matter a committee member or employee considers unsafe or a health risk and that has been brought to the employer's attention; try to resolve it; and, if it cannot, ask the Chief Inspector to inspect the workplace (s.25F). The committee also has a role in work refusals under s.16. The Act itself does not set out committee membership, meeting frequency or minutes — confirm those against your site's own procedure and any prescribed requirements."
+  },
+  {
+    section: "Section 7",
+    title: "Duty to Contractors, Visitors and the Public",
+    text: "Every employer must conduct the undertaking so that, so far as is reasonably practicable, people who are not employees but may be affected (contractors, visitors, neighbours) are not exposed to risks to their safety or health. Self-employed persons carry the same duty toward themselves and others."
+  },
+  {
+    section: "Section 6(3)–(6A)",
+    title: "Hazardous Chemicals — Labels and Safety Data Sheets",
+    text: "Employers must ensure hazardous chemicals are labelled in a way employees can easily understand, hold an unexpired safety data sheet for each one, make labels and SDSs available in English (and other prescribed languages), mark the contents when chemicals are transferred to other containers, and give information on disposal of residues and empty containers. A hazardous chemical may not be used, handled or stored unless the identification, SDS and worker instruction and training requirements are met. The inventory and SDSs must be open to employees' examination and given to the safety committee representative (or an employee-selected representative). Nobody may remove or deface a hazardous chemical's identification."
+  },
+  {
+    section: "Section 25K",
+    title: "Health Surveillance",
+    text: "Every employer must provide employees with health surveillance appropriate to the risks identified in the annual risk assessment, and keep a record of it in accordance with section 75."
+  },
+  {
+    section: "Section 12",
+    title: "No Charging Employees for Safety Requirements",
+    text: "An employer may not charge employees for anything done or provided to meet a specific requirement of the Act. The exceptions are canteen items, things lost or damaged wilfully or through the employee's negligence, and protective clothing or devices where the employee is employed for one month or less (capped at half their value)."
   },
   {
     section: "Sections 6(2)(c) & 23",
@@ -2175,3 +2205,21 @@ const EMERGENCY_RESPONSE_REFERENCE = [
     text: "Point Lisas operates interplant mutual aid arrangements for major emergencies, coordinated through the estate's industry association. The specific activation procedure, contact points, and what resources are shared varies by estate arrangement and isn't set out in the OSH Act itself — obtain your own site's current mutual aid activation procedure directly rather than assuming it matches a generic description. (Flagged as a roadmap item for this app — a fuller, site-specific mutual aid reference can be added once that procedure is confirmed.)"
   },
 ];
+
+
+// ============================================================
+// LIFTING APPLIANCE COLOUR CODES — Energy Chamber of T&T advisory
+// (Advisory #36/2026, dated 1 July 2026). Industry guidance, not
+// legislation. Colour changes every six months and the four-colour
+// sequence repeats on a two-year cycle. Hex values are on-screen
+// approximations only — the advisory itself warns screens do not
+// show RAL colours accurately.
+// ============================================================
+const LIFTING_COLOUR_SEQUENCE = [
+  { name: "Purple Violet",  ral: "RAL 4007", hex: "#6B2D5C" },
+  { name: "Yellow Orange",  ral: "RAL 2000", hex: "#ED760E" },
+  { name: "Luminous Yellow", ral: "RAL 1026", hex: "#FFFF00" },
+  { name: "Pearl Green",    ral: "RAL 6035", hex: "#1B5E2F" },
+];
+// Cycle starts 1 July 2026 with index 0 and advances every 6 months.
+const LIFTING_CYCLE_START = { year: 2026, monthIndex: 6 }; // July (0-based month)
