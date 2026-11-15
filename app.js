@@ -41,6 +41,7 @@ const ICONS = {
   wrench: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2z"/></svg>`,
   gas: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 17.5a4 4 0 0 1-1-7.9 5 5 0 0 1 9.6-2A4.5 4.5 0 0 1 17 17.5H7z"/><path d="M8 21v-1M12 21.5v-1.5M16 21v-1"/></svg>`,
   droplet: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 2.5c2.2 3 6 8.7 6 12.3a6 6 0 0 1-12 0c0-3.6 3.8-9.3 6-12.3z"/></svg>`,
+  ceiling: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="4" width="18" height="10" rx="1"/><path d="M9 4v10M15 4v10M3 9h18"/><path d="M8 18v3M16 18v3"/></svg>`,
 };
 
 // ---------- SIGNATURE PAD ----------
@@ -409,6 +410,34 @@ function renderOshActReference() {
     `<p class="ref-footnote">Summarised from the unofficial consolidated Act (Ministry of the Attorney General and Legal Affairs, updated to 31 Dec 2016). Always check the current authorised text at rgd.legalaffairs.gov.tt before relying on this for a legal or disciplinary matter.</p>`;
 }
 
+function renderSdsAndPictograms() {
+  const sds = SDS_SECTIONS.map(
+    (s) => `
+    <div class="ref-card">
+      <div class="ref-card-top">
+        <p class="ref-card-title">${s.title}</p>
+        <span class="act-badge">Section ${s.n}</span>
+      </div>
+      <p class="ref-card-desc">${s.text}</p>
+    </div>`
+  ).join("");
+  const pics = GHS_PICTOGRAMS.map(
+    (p) => `
+    <div class="ref-card">
+      <p class="ref-card-title">${p.name}</p>
+      <p class="ref-card-desc">${p.covers}</p>
+    </div>`
+  ).join("");
+  return (
+    `<p class="section-label" style="margin-top:22px;">How to read a Safety Data Sheet — the 16 sections</p>` +
+    `<div class="ref-card"><ul class="control-list">${SDS_TIPS.map((t) => `<li>${t}</li>`).join("")}</ul></div>` +
+    sds +
+    `<p class="section-label" style="margin-top:22px;">Hazard pictograms on chemical labels</p>` +
+    `<div class="ref-card"><p class="ref-card-desc">A pictogram is a black symbol on a white background inside a red diamond border, and each one represents a specific type of hazard. The pictogram on the label comes from the chemical's hazard classification, and each pictogram appears only once on a label. Source: OSHA Quick Card 3491 (US wording; same symbol set as the UN GHS).</p></div>` +
+    pics
+  );
+}
+
 function renderChemicalsReference() {
   const panel = document.getElementById("refpanel-chemicals");
   panel.innerHTML =
@@ -424,6 +453,7 @@ function renderChemicalsReference() {
       <div class="ref-card-act">${ICONS.info}<span>${c.note}</span></div>
     </div>`
     ).join("") +
+    renderSdsAndPictograms() +
     `<p class="ref-footnote">Always defer to the specific product's Safety Data Sheet for exact figures, first-aid measures, and handling requirements — this is a quick-recognition reference, not a replacement for it.</p>`;
 }
 

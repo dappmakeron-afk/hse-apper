@@ -166,9 +166,35 @@ const TASK_LIBRARY = [
         severity: "Moderate",
         controls: [
           "Inspect ladder before use; tag out and remove damaged ladders",
-          "Maintain 3 points of contact; 4:1 angle rule; secure top and bottom"
+          "Maintain 3 points of contact; 4:1 angle rule; secure top and bottom",
+          "Extension ladders should extend at least 3 ft (about 1 m) above the landing, or be tied off at the top with a grab handle to mount and dismount",
+          "Stepladders fully open, and never stand on the top step or top rung; keep the top and bottom of every ladder clear and barricade any ladder in a doorway or traffic route"
         ],
         why: "Ladder falls are one of the most frequent, least severe-seeming, and most under-reported height incidents."
+      },
+      {
+        hazard: "Falling through a hole, floor opening, skylight or fragile surface",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Cover every hole with a cover strong enough for the load, secured against displacement and clearly marked — or guard all unprotected sides with guardrails",
+          "Where a hole is used for access (for example a ladderway), fit a gate or chain",
+          "Treat skylights, roof sheeting, ceiling boards and old asbestos-cement sheets as fragile — don't walk on them; use crawl boards, a platform, or fall arrest tied to a rated anchor",
+          "Never remove a cover or guardrail without approval, and put it back as soon as the work is done"
+        ],
+        why: "OSHA 3146 (29 CFR 1926.501(b)(4)) requires workers to be protected from falling through holes, including skylights, by covers, guardrails or personal fall arrest. It is a US benchmark — apply your site's standard where it is stricter."
+      },
+      {
+        hazard: "People not trained, or not retrained, on the fall protection they're actually using",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Everyone exposed to a fall hazard is trained by a competent person to recognise it and use the specific systems on this job (guardrails, harness and anchor, controlled access zone, covers)",
+          "Keep a written record of who was trained, when, and signed by the trainer or employer",
+          "Retrain when the workplace or equipment changes, or when someone is seen using the system wrongly",
+          "Inspect harnesses and lanyards before every use and remove damaged ones from service"
+        ],
+        why: "OSHA 3146 (29 CFR 1926.503) requires training, a written certification and retraining triggers; most fall-protection failures in practice are wrong use of the right equipment."
       }
     ],
     toolboxTalk: [
@@ -217,6 +243,19 @@ const TASK_LIBRARY = [
           "Formal handover/log if a shift changes mid-job"
         ],
         why: "Shift handover gaps are a recurring root cause in LOTO incident investigations."
+      },
+      {
+        hazard: "Lockout program gaps — wrong devices, untrained people, procedures never audited",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Use only lockout/tagout devices authorised for the equipment — durable, standardised and substantial — and make sure each one identifies its individual user",
+          "Tagout alone is only acceptable where it gives protection equivalent to lockout; new or overhauled equipment should be capable of being locked out",
+          "Confirm everyone is trained for their role: authorised people who apply locks, affected people who work nearby, and everyone else who must not touch isolated equipment",
+          "Inspect each energy control procedure at least annually, and cover the special cases: testing or repositioning with locks temporarily removed, outside contractors, group lockout and shift change",
+          "Only the person who applied a lock removes it; where that isn't possible (for example they've left site) a written procedure with checks before re-energising applies"
+        ],
+        why: "OSHA Fact Sheet 3529 (29 CFR 1910.147) lists these as the standard's critical requirements, and says lockout/tagout prevents an estimated 120 fatalities and 50,000 injuries a year in the US. It is a US benchmark — follow your site's isolation procedure."
       }
     ],
     toolboxTalk: [
@@ -373,6 +412,19 @@ const TASK_LIBRARY = [
           "Report any missing tag, damage, or modification before use, don't assume it's fine"
         ],
         why: "Modifications made by other trades between shifts are a common cause of otherwise-sound scaffolds becoming unsafe."
+      },
+      {
+        hazard: "Unsafe scaffold access, gaps in decking, and missing edge or falling-object protection",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Provide safe access at every level — when the platform is more than 2 ft (about 0.6 m) above or below the access point, use a proper ladder, stair tower or ramp; never climb the frame or cross-braces",
+          "Platforms fully planked, with gaps no wider than about 1 in (2.5 cm) between boards and between boards and uprights",
+          "Guardrails on all open sides and ends — US OSHA requires them above 10 ft, with the top rail roughly 0.9–1.1 m (38–45 in) above the platform, a midrail halfway, and toeboards at least 9 cm (3.5 in) high",
+          "Barricade the area below and keep people out of the drop zone wherever tools or materials could fall",
+          "Only trained people erect, move, alter or dismantle scaffolds, under a competent person; retrain when the scaffold type or site hazards change"
+        ],
+        why: "OSHA 3755 summarises the scaffold requirements (29 CFR 1926.451 and 1926.454). The height thresholds are US figures; your site may set a lower trigger."
       }
     ],
     toolboxTalk: [
@@ -626,7 +678,11 @@ const TASK_LIBRARY = [
         controls: [
           "Arc-rated PPE matched to the specific equipment's incident energy/arc flash label, not a generic assumption",
           "Maintain minimum approach distance for the system voltage",
-          "Use insulated, voltage-rated tools for any work near live parts"
+          "Use insulated, voltage-rated tools for any work near live parts",
+          "De-energised is not the same as an electrically safe working condition — that takes isolation, lock/tag and a proved-dead test; until then treat the equipment as live",
+          "Don't assume low voltage is safe — equipment at 240 V and below can still produce an arc",
+          "Know both sets of boundaries: the shock boundaries (limited/restricted approach) and the arc flash boundary, where incident energy is 1.2 cal/cm². The arc flash boundary can be the larger of the two, so use both and barricade accordingly",
+          "Flame-resistant is not the same as arc-rated — check the garment's arc rating against the equipment's incident energy, with nothing synthetic worn underneath"
         ],
         why: "Arc flash incident energy varies enormously between panels — the label on the specific piece of equipment is the only reliable source for what PPE is actually adequate."
       },
@@ -736,6 +792,19 @@ const TASK_LIBRARY = [
           "No loading or unloading during electrical storm activity in the area"
         ],
         why: "A road tanker is an ungrounded conductor the moment it rolls onto site — filling or draining a flammable liquid generates static charge as the product moves, and if that charge has nowhere to go, the discharge itself can be the ignition source in an otherwise well-controlled transfer."
+      },
+      {
+        hazard: "Forklift collision, tip-over or struck-by incidents during material handling",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Only trained, authorised operators on the type of truck being used; pre-use inspection each shift, and remove any truck found unsafe from service",
+          "Seatbelt on whenever fitted; never exceed the rated load; keep the load stable, balanced and low; never raise or lower it while travelling",
+          "Sound the horn at cross aisles and blind corners, watch for pedestrians, obey the speed limit, and keep clear of ramp and platform edges",
+          "Never use the forks to lift people or give rides — elevating a person needs a purpose-built, secured platform or man-basket",
+          "Check visibility and overhead and side clearance before raising, loading or travelling"
+        ],
+        why: "OSHA Quick Card 3949 lists collisions, falls, tip-overs and struck-by as the main forklift hazards and gives these as the core preventive measures; OSHA 3755 covers the platform requirement when elevating workers (29 CFR 1926.602(c))."
       }
     ],
     toolboxTalk: [
@@ -996,6 +1065,19 @@ const TASK_LIBRARY = [
           "Pair an unfamiliar contractor with an experienced escort for their first period on site"
         ],
         why: "A signed induction form proves attendance, not comprehension — the two aren't the same thing, and only one of them actually protects anyone."
+      },
+      {
+        hazard: "One contractor's work creating hazards for other crews on a shared site",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Before work starts, host and contractor exchange information: hazards present, hazards their work creates, controls in place, and how to report a concern or incident",
+          "Agree in the contract or permit who provides each part of the safety program — training, supervision, inspections, equipment — so no gap opens between employers",
+          "Harmonise PPE and site rules across employers; inconsistent rules make workers doubt the controls",
+          "Coordinate scheduling so incompatible work doesn't overlap (for example hot work below overhead work)",
+          "Share non-routine and emergency hazards and procedures up front, and again whenever conditions change"
+        ],
+        why: "OSHA 3885 describes host-employer and contractor coordination as its own core element. In T&T, s.7 of the OSH Act requires an employer to protect non-employees who may be affected by the undertaking."
       }
     ],
     toolboxTalk: [
@@ -1192,6 +1274,445 @@ const TASK_LIBRARY = [
     ppe: ["Safety glasses", "Cut-resistant or heavy-duty rubber gloves", "Heat-resistant gloves for soldering/brazing", "Waterproof apron/coveralls for drain and sewage work", "Safety boots", "Respiratory protection if using solvent-based pipe cement in an enclosed space", "Calibrated multi-gas monitor if entering a pit/sump/vault"],
   },
   {
+    id: "ceiling-grid",
+    label: "Ceiling — Suspended Grid & Tile",
+    sub: "Lay-in tiles on a hung metal grid — strip-out, void work, re-grid and re-tile",
+    icon: "ceiling",
+    permits: [
+      "Work Permit (general)",
+      "Working at Height Permit (if site policy requires)",
+      "Electrical isolation / LOTO for any circuits, lights or A/C units in the ceiling void",
+      "Hot Work Permit if cutting or welding hangers, angles or steel",
+      "Fire detection / sprinkler impairment approval if detectors or heads are covered, isolated or moved",
+      "Suspect-material (asbestos) clearance from HSE before any old ceiling material is disturbed",
+      "Confined Space Entry Permit only if your site classifies the roof void as a confined space"
+    ],
+    hazards: [
+      {
+        hazard: "Fall from height — stepladders, mobile towers and platforms while working overhead",
+        likelihood: "Likely",
+        severity: "Major",
+        controls: [
+          "Use a mobile scaffold tower, podium or MEWP for anything beyond a short, light task — a stepladder is not a work platform for hours of overhead work",
+          "Stepladders fully open on firm level ground, never the top step or top rung, no overreaching; a second person footing it where site rules require",
+          "Mobile towers: castors locked, platform fully decked with guardrails and toeboards, safe access inside the frame, erected and tagged by a competent scaffolder, never moved with people or materials on top",
+          "Check the floor before positioning a tower or lift, and confirm your site's fall protection trigger height (commonly about 1.8 m / 6 ft, the US OSHA construction benchmark)"
+        ],
+        why: "Falls from ladders and working platforms are the main fatal-injury route on ceiling work. OSHA 3755 and the ceiling-tile JHA (Ref. S-R-6) both stress inspected equipment, level ground and no standing on the top rung. The 6 ft trigger is a US benchmark, not T&T law — your site's standard governs."
+      },
+      {
+        hazard: "Falling through the ceiling, or off the structure above it",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Never step, kneel or lean on ceiling tiles, boards, panels or grid — treat the whole ceiling as fragile",
+          "Work above the ceiling only from a proper walkway or crawl boards laid across the structure, with a second person outside as standby and an agreed way to communicate",
+          "Where there is a fall-through risk or an unprotected edge in the void, use a harness tied off to a confirmed, rated anchor on the structure — never to ducts, pipes, conduit, cable tray or wiring",
+          "Light the void before entering, and guard or cover every opening you make — never leave one open and unattended"
+        ],
+        why: "A ceiling looks solid and isn't — falling through it is the classic way this job turns fatal. OSHA 3146 requires protection (covers, guardrails or fall arrest) against falling through holes, including skylights; the same logic applies to any fragile surface."
+      },
+      {
+        hazard: "Falling debris and sections of ceiling, and other people below",
+        likelihood: "Likely",
+        severity: "Major",
+        controls: [
+          "Before removing anything, pull one tile, board or panel back and survey the void for loose items, stored material, wet or sagging insulation and hanging services (JHA Ref. S-R-6)",
+          "Barricade and sign the floor below; nobody enters the drop zone while strip-out is under way, and occupants and other contractors are told what is happening, when and where",
+          "Remove sections in a planned sequence and support what you release; lower debris in bags, bins or a chute — never throw it from the platform; tether hand tools",
+          "Hard hats on everyone in the zone, including the person on the platform",
+          "Keep exits, escape routes and extinguisher access clear; at the end of each shift remove debris, cover openings, secure tools and leave barricades in place"
+        ],
+        why: "A ceiling void is an uninventoried storage space, and what is up there comes down with the ceiling. OSHA 3885 asks host employers and contractors to share hazards and coordinate before work starts, and s.7 of the T&T OSH Act requires employers to protect non-employees affected by their work."
+      },
+      {
+        hazard: "Asbestos or other legacy material, plus dust and insulation fibres",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Treat old ceiling tiles, any textured or sprayed coating, and any pipe or duct lagging or insulation in the void as suspect until it has been identified — if unsure, stop and have the HSE department check the area before work starts (JHA Ref. S-R-6); a building's age neither rules asbestos in nor out",
+          "Do not drill, cut, break, sand, scrape or dry-sweep suspect material; keep it wet, keep people out and report it. If asbestos is confirmed, the work goes to a trained, competent asbestos contractor under your site's asbestos procedure",
+          "Apply the same stop-and-assess rule to old paint that may contain lead and to water-damaged material with mould",
+          "Fit-tested respirator with particulate filters, sealed goggles, gloves, and coveralls or long sleeves with cuffs and collar closed",
+          "Clean up with a HEPA vacuum or wet wipe — no dry sweeping or compressed-air blow-down; wash hands and face before eating, drinking or smoking"
+        ],
+        why: "Asbestos fibres cause asbestosis, lung cancer and mesothelioma, and the illness shows up years later. OSHA 3755 flags it in older insulation and building materials (benchmark: 29 CFR 1926.1101). I have not confirmed a T&T asbestos-specific regulation, so none is cited — the OSH Act general duties and your site procedure apply."
+      },
+      {
+        hazard: "Hidden services above the ceiling — electrical, fire detection and sprinklers",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Assume every cable, light fitting, A/C unit and junction box in the void is live until isolated, locked out and proved dead with a tester you have checked on a known source; have an electrician trace and mark circuits first",
+          "Isolate light fittings before lowering them — switching off is not isolation; take care with screws, nails and cutting tools near concealed cable; power tools on an RCD/GFCI-protected supply",
+          "Confirm whether the building is in a classified (hazardous) area — if so, tools, lighting and ignition sources must be suitable for it",
+          "Smoke/heat detectors and sprinkler heads: get any isolation or covering approved with the control room/fire team first, cover only what was agreed, and have each one reinstated and tested before handing back",
+          "Never hang anything from sprinkler pipes, cable trays or process pipework; reinstate fire stopping at every penetration"
+        ],
+        why: "OSHA 3755 notes concealed conduit is an electrocution hazard that requires de-energising, grounding or insulation (29 CFR 1926.416(a)(1)); cables in a ceiling void are the same hazard. Disabling detection and not restoring it is a recurring root cause in fire incidents."
+      },
+      {
+        hazard: "Cuts, tool injuries and manual handling strain",
+        likelihood: "Likely",
+        severity: "Moderate",
+        controls: [
+          "Retractable-blade safety knives; cut on the floor or a bench, away from the body, free hand clear of the blade (JHA Ref. S-R-6); cut-resistant gloves for edges",
+          "Inspect tools before use, guards in place, eye protection for all overhead drilling and cutting; remove the battery or unplug before changing bits or blades; powder-actuated tools only by trained, authorised operators",
+          "Two-person lifts for full sheets and panels, lifters or a hoist for heavy ones; never carry anything up a ladder that stops you holding on — use a bucket and rope",
+          "Rotate people off overhead work and give short breaks — work above shoulder height is a recognised ergonomic risk (OSHA 3885)"
+        ],
+        why: "The ceiling-tile JHA lists razor cutting as a severe-laceration risk and tool inspection as routine. OSHA 3755 requires eye protection with power tools and replacement of damaged guards (29 CFR 1926.300(b)(1)), and says not to carry anything that could unbalance you on a ladder."
+      },
+      {
+        hazard: "Heat stress in the void, and bites, stings and droppings",
+        likelihood: "Likely",
+        severity: "Major",
+        controls: [
+          "Roof voids and un-air-conditioned buildings in Trinidad's climate can be far hotter than outside — plan void work for the cooler part of the day, limit time per entry, never send anyone in alone",
+          "WATER, REST, SHADE: water at hand, scheduled breaks outside the void, extra breaks for anyone new or back after a week away. Heat stroke (confusion, no sweating, hot dry skin, collapse) is an emergency — call for help and cool the person immediately",
+          "Look before you reach: wasp and hornet nests, bats, rats and snakes are common in roof voids — check with a torch before putting hands in any gap; treat droppings as a breathing hazard (no dry sweeping)",
+          "If you find a nest, stop and get pest control; anyone with a known severe sting allergy stays out of the void and carries their own medication; know the nearest first aider"
+        ],
+        why: "OSHA 3755 sets out water, rest and shade, acclimatisation, and heat stroke as a medical emergency; OSHA 3885 lists mould and animal materials among biological hazards to identify. A closed void adds radiant heat and poor airflow on top of Trinidad's ambient heat, and roof voids are routine habitat for wasps, bats and rodents."
+      },
+      {
+        hazard: "Grid, hangers and fittings collapsing as a section is released",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Lights, diffusers, A/C cassettes, speakers, detectors and sprinkler drops may sit in or hang from the grid — disconnect and support each before releasing the section around it",
+          "Check hangers and wires for corrosion and wet tiles for weight; water-damaged mineral-fibre tiles can come down in clumps",
+          "Start from a planned point and remove in sequence; never remove a hanger that is carrying a load you can't see",
+          "Fix the new grid to the structure with rated fixings — never to pipes, ducts, cable tray or sprinkler lines"
+        ],
+        why: "A suspended grid is only as strong as its weakest hanger, and old, corroded or overloaded hangers fail without warning. The sequence and support rules turn a collapse into a controlled removal."
+      },
+      {
+        hazard: "Overhead drilling, anchors, and cutting hangers, angle and track",
+        likelihood: "Likely",
+        severity: "Major",
+        controls: [
+          "Scan the slab or beam for rebar and services before drilling or fixing; slab dust can contain crystalline silica, so use extraction or wet methods and a respirator",
+          "Anchors rated for the load and installed to the manufacturer's instructions",
+          "Cutting steel hangers or angle with a grinder or torch is hot work — permit, fire watch (including above the ceiling after work stops) and combustibles covered",
+          "Eye protection and hearing protection for all overhead drilling; tether tools and keep sharp cut ends controlled"
+        ],
+        why: "Overhead drilling combines dust, sparks, falling offcuts and the chance of hitting a hidden cable. OSHA 3755 requires a fire watch of at least two hours after torch work on roofs — the same logic applies above a ceiling."
+      }
+    ],
+    toolboxTalk: [
+      "Confirm what this ceiling is made of and whether anyone has checked for asbestos — if not, nobody starts",
+      "Nobody steps on the ceiling, ever: agree the walkway, who is standby for every void entry, and who checked the ladder or tower",
+      "Drop zone barricaded, exits clear, electrical isolated and proved dead, and the plan for detectors and sprinklers agreed",
+      "Grid: every fitting disconnected and supported before its section is released; hangers checked; no hanging from pipes or sprinklers",
+      "Heat and pests: water point, time limit per void entry, look before you reach, and the signs of heat stroke",
+      "Emergency: how to rescue someone who falls through or collapses in the void, and the nearest first aider and medical facility"
+    ],
+    ppe: [
+      "Hard hat (chin strap when working at height)",
+      "Safety glasses — sealed goggles for overhead drilling, cutting and dust",
+      "Respirator with particulate filters (fit-tested) — never a substitute for stopping work on suspected asbestos",
+      "Cut-resistant gloves for grid, track, sheet edges and knives",
+      "Long-sleeve coveralls (disposable if working in insulation)",
+      "Safety boots with good grip",
+      "Hearing protection for drilling and cutting",
+      "Full-body harness where fall arrest is required for void work or high platforms"
+    ]
+  },
+  {
+    id: "ceiling-board",
+    label: "Ceiling — Gypsum / Board",
+    sub: "Plasterboard, gypsum or fibre-cement board on timber or steel framing — strip-out, re-fix, finish",
+    icon: "ceiling",
+    permits: [
+      "Work Permit (general)",
+      "Working at Height Permit (if site policy requires)",
+      "Electrical isolation / LOTO for any circuits, lights or A/C units in the ceiling void",
+      "Fire detection / sprinkler impairment approval if detectors or heads are covered, isolated or moved",
+      "Suspect-material (asbestos) clearance from HSE before any old ceiling material is disturbed",
+      "Confined Space Entry Permit only if your site classifies the roof void as a confined space"
+    ],
+    hazards: [
+      {
+        hazard: "Fall from height — stepladders, mobile towers and platforms while working overhead",
+        likelihood: "Likely",
+        severity: "Major",
+        controls: [
+          "Use a mobile scaffold tower, podium or MEWP for anything beyond a short, light task — a stepladder is not a work platform for hours of overhead work",
+          "Stepladders fully open on firm level ground, never the top step or top rung, no overreaching; a second person footing it where site rules require",
+          "Mobile towers: castors locked, platform fully decked with guardrails and toeboards, safe access inside the frame, erected and tagged by a competent scaffolder, never moved with people or materials on top",
+          "Check the floor before positioning a tower or lift, and confirm your site's fall protection trigger height (commonly about 1.8 m / 6 ft, the US OSHA construction benchmark)"
+        ],
+        why: "Falls from ladders and working platforms are the main fatal-injury route on ceiling work. OSHA 3755 and the ceiling-tile JHA (Ref. S-R-6) both stress inspected equipment, level ground and no standing on the top rung. The 6 ft trigger is a US benchmark, not T&T law — your site's standard governs."
+      },
+      {
+        hazard: "Falling through the ceiling, or off the structure above it",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Never step, kneel or lean on ceiling tiles, boards, panels or grid — treat the whole ceiling as fragile",
+          "Work above the ceiling only from a proper walkway or crawl boards laid across the structure, with a second person outside as standby and an agreed way to communicate",
+          "Where there is a fall-through risk or an unprotected edge in the void, use a harness tied off to a confirmed, rated anchor on the structure — never to ducts, pipes, conduit, cable tray or wiring",
+          "Light the void before entering, and guard or cover every opening you make — never leave one open and unattended"
+        ],
+        why: "A ceiling looks solid and isn't — falling through it is the classic way this job turns fatal. OSHA 3146 requires protection (covers, guardrails or fall arrest) against falling through holes, including skylights; the same logic applies to any fragile surface."
+      },
+      {
+        hazard: "Falling debris and sections of ceiling, and other people below",
+        likelihood: "Likely",
+        severity: "Major",
+        controls: [
+          "Before removing anything, pull one tile, board or panel back and survey the void for loose items, stored material, wet or sagging insulation and hanging services (JHA Ref. S-R-6)",
+          "Barricade and sign the floor below; nobody enters the drop zone while strip-out is under way, and occupants and other contractors are told what is happening, when and where",
+          "Remove sections in a planned sequence and support what you release; lower debris in bags, bins or a chute — never throw it from the platform; tether hand tools",
+          "Hard hats on everyone in the zone, including the person on the platform",
+          "Keep exits, escape routes and extinguisher access clear; at the end of each shift remove debris, cover openings, secure tools and leave barricades in place"
+        ],
+        why: "A ceiling void is an uninventoried storage space, and what is up there comes down with the ceiling. OSHA 3885 asks host employers and contractors to share hazards and coordinate before work starts, and s.7 of the T&T OSH Act requires employers to protect non-employees affected by their work."
+      },
+      {
+        hazard: "Asbestos or other legacy material, plus dust and insulation fibres",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Treat old boards and flat sheets, textured or sprayed coatings, joint compounds, and any pipe or duct lagging in the void as suspect until it has been identified — if unsure, stop and have the HSE department check the area before work starts (JHA Ref. S-R-6); a building's age neither rules asbestos in nor out",
+          "Do not drill, cut, break, sand, scrape or dry-sweep suspect material; keep it wet, keep people out and report it. If asbestos is confirmed, the work goes to a trained, competent asbestos contractor under your site's asbestos procedure",
+          "Apply the same stop-and-assess rule to old paint that may contain lead and to water-damaged material with mould",
+          "Fit-tested respirator with particulate filters, sealed goggles, gloves, and coveralls or long sleeves with cuffs and collar closed",
+          "Cut boards at floor level or outdoors, and sand with dust extraction or wet-sand; keep dust out of occupied areas and agree with the fire team how detectors are protected from it. Fibre-cement boards can produce silica-containing dust, so treat cutting as a breathing hazard"
+        ],
+        why: "Asbestos fibres cause asbestosis, lung cancer and mesothelioma, and the illness shows up years later. OSHA 3755 flags it in older insulation and building materials (benchmark: 29 CFR 1926.1101). I have not confirmed a T&T asbestos-specific regulation, so none is cited — the OSH Act general duties and your site procedure apply."
+      },
+      {
+        hazard: "Hidden services above the ceiling — electrical, fire detection and sprinklers",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Assume every cable, light fitting, A/C unit and junction box in the void is live until isolated, locked out and proved dead with a tester you have checked on a known source; have an electrician trace and mark circuits first",
+          "Isolate light fittings before lowering them — switching off is not isolation; take care with screws, nails and cutting tools near concealed cable; power tools on an RCD/GFCI-protected supply",
+          "Confirm whether the building is in a classified (hazardous) area — if so, tools, lighting and ignition sources must be suitable for it",
+          "Smoke/heat detectors and sprinkler heads: get any isolation or covering approved with the control room/fire team first, cover only what was agreed, and have each one reinstated and tested before handing back",
+          "Never hang anything from sprinkler pipes, cable trays or process pipework; reinstate fire stopping at every penetration"
+        ],
+        why: "OSHA 3755 notes concealed conduit is an electrocution hazard that requires de-energising, grounding or insulation (29 CFR 1926.416(a)(1)); cables in a ceiling void are the same hazard. Disabling detection and not restoring it is a recurring root cause in fire incidents."
+      },
+      {
+        hazard: "Cuts, tool injuries and manual handling strain",
+        likelihood: "Likely",
+        severity: "Moderate",
+        controls: [
+          "Retractable-blade safety knives; cut on the floor or a bench, away from the body, free hand clear of the blade (JHA Ref. S-R-6); cut-resistant gloves for edges",
+          "Inspect tools before use, guards in place, eye protection for all overhead drilling and cutting; remove the battery or unplug before changing bits; screw-gun bits and depth set to the board, not the framing behind it",
+          "Two-person lifts for full sheets and panels, lifters or a hoist for heavy ones; never carry anything up a ladder that stops you holding on — use a bucket and rope",
+          "Rotate people off overhead work and give short breaks — work above shoulder height is a recognised ergonomic risk (OSHA 3885)"
+        ],
+        why: "The ceiling-tile JHA lists razor cutting as a severe-laceration risk and tool inspection as routine. OSHA 3755 requires eye protection with power tools and replacement of damaged guards (29 CFR 1926.300(b)(1)), and says not to carry anything that could unbalance you on a ladder."
+      },
+      {
+        hazard: "Heat stress in the void, and bites, stings and droppings",
+        likelihood: "Likely",
+        severity: "Major",
+        controls: [
+          "Roof voids and un-air-conditioned buildings in Trinidad's climate can be far hotter than outside — plan void work for the cooler part of the day, limit time per entry, never send anyone in alone",
+          "WATER, REST, SHADE: water at hand, scheduled breaks outside the void, extra breaks for anyone new or back after a week away. Heat stroke (confusion, no sweating, hot dry skin, collapse) is an emergency — call for help and cool the person immediately",
+          "Look before you reach: wasp and hornet nests, bats, rats and snakes are common in roof voids — check with a torch before putting hands in any gap; treat droppings as a breathing hazard (no dry sweeping)",
+          "If you find a nest, stop and get pest control; anyone with a known severe sting allergy stays out of the void and carries their own medication; know the nearest first aider"
+        ],
+        why: "OSHA 3755 sets out water, rest and shade, acclimatisation, and heat stroke as a medical emergency; OSHA 3885 lists mould and animal materials among biological hazards to identify. A closed void adds radiant heat and poor airflow on top of Trinidad's ambient heat, and roof voids are routine habitat for wasps, bats and rodents."
+      },
+      {
+        hazard: "Heavy boards dropped or mis-fixed while being lifted overhead",
+        likelihood: "Likely",
+        severity: "Major",
+        controls: [
+          "A full sheet is a minimum two-person lift — use a board lifter or panel jack rather than holding it overhead by hand",
+          "Fix from a stable tower or platform, not a stepladder, and keep each board supported until enough screws are in",
+          "Check that the joists, battens or furring are sound and spaced to take the board before loading them",
+          "Keep the area below clear while boards are being raised and fixed"
+        ],
+        why: "Boards are awkward as well as heavy, and a lifter dropping one from head height injures the people on and below the platform. Mechanical support and a stable work platform remove most of the risk."
+      },
+      {
+        hazard: "Wet, sagging or mouldy boards coming down in one piece during strip-out",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Stay out from under bulges, stains and sagging areas, and find and stop the leak source first",
+          "Support the board before taking out its fixings, and work from the edges rather than the middle of a sagging area",
+          "Wet gypsum is very heavy and breaks up unpredictably — plan to take it down in small sections and bag it as you go",
+          "Mouldy board needs respiratory protection and gloves, and a stop-and-assess if it may also contain asbestos"
+        ],
+        why: "Water-damaged board loses strength and can release its full weight at once. The pull-back survey in the common controls tells you where to expect it."
+      }
+    ],
+    toolboxTalk: [
+      "Confirm what this ceiling is made of and whether anyone has checked for asbestos — if not, nobody starts",
+      "Nobody steps on the ceiling, ever: agree the walkway, who is standby for every void entry, and who checked the ladder or tower",
+      "Drop zone barricaded, exits clear, electrical isolated and proved dead, and the plan for detectors and sprinklers agreed",
+      "Board: two-person lifts or a board lifter, stable platform, and no standing under sagging or stained areas",
+      "Heat and pests: water point, time limit per void entry, look before you reach, and the signs of heat stroke",
+      "Emergency: how to rescue someone who falls through or collapses in the void, and the nearest first aider and medical facility"
+    ],
+    ppe: [
+      "Hard hat (chin strap when working at height)",
+      "Safety glasses — sealed goggles for overhead drilling, cutting and dust",
+      "Respirator with particulate filters (fit-tested) — never a substitute for stopping work on suspected asbestos",
+      "Cut-resistant gloves for grid, track, sheet edges and knives",
+      "Long-sleeve coveralls (disposable if working in insulation)",
+      "Safety boots with good grip",
+      "Hearing protection for drilling and cutting",
+      "Full-body harness where fall arrest is required for void work or high platforms"
+    ]
+  },
+  {
+    id: "ceiling-panel",
+    label: "Ceiling — PVC, Timber & Panel",
+    sub: "PVC strip panels, timber, plywood and tongue-and-groove ceilings — strip-out and re-fix",
+    icon: "ceiling",
+    permits: [
+      "Work Permit (general)",
+      "Working at Height Permit (if site policy requires)",
+      "Electrical isolation / LOTO for any circuits, lights or A/C units in the ceiling void",
+      "Hot Work Permit only if unavoidable — keep PVC and adhesives clear of any hot work",
+      "Fire detection / sprinkler impairment approval if detectors or heads are covered, isolated or moved",
+      "Suspect-material (asbestos) clearance from HSE before any old ceiling material is disturbed",
+      "Confined Space Entry Permit only if your site classifies the roof void as a confined space"
+    ],
+    hazards: [
+      {
+        hazard: "Fall from height — stepladders, mobile towers and platforms while working overhead",
+        likelihood: "Likely",
+        severity: "Major",
+        controls: [
+          "Use a mobile scaffold tower, podium or MEWP for anything beyond a short, light task — a stepladder is not a work platform for hours of overhead work",
+          "Stepladders fully open on firm level ground, never the top step or top rung, no overreaching; a second person footing it where site rules require",
+          "Mobile towers: castors locked, platform fully decked with guardrails and toeboards, safe access inside the frame, erected and tagged by a competent scaffolder, never moved with people or materials on top",
+          "Check the floor before positioning a tower or lift, and confirm your site's fall protection trigger height (commonly about 1.8 m / 6 ft, the US OSHA construction benchmark)"
+        ],
+        why: "Falls from ladders and working platforms are the main fatal-injury route on ceiling work. OSHA 3755 and the ceiling-tile JHA (Ref. S-R-6) both stress inspected equipment, level ground and no standing on the top rung. The 6 ft trigger is a US benchmark, not T&T law — your site's standard governs."
+      },
+      {
+        hazard: "Falling through the ceiling, or off the structure above it",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Never step, kneel or lean on ceiling tiles, boards, panels or grid — treat the whole ceiling as fragile",
+          "Work above the ceiling only from a proper walkway or crawl boards laid across the structure, with a second person outside as standby and an agreed way to communicate",
+          "Where there is a fall-through risk or an unprotected edge in the void, use a harness tied off to a confirmed, rated anchor on the structure — never to ducts, pipes, conduit, cable tray or wiring",
+          "Light the void before entering, and guard or cover every opening you make — never leave one open and unattended"
+        ],
+        why: "A ceiling looks solid and isn't — falling through it is the classic way this job turns fatal. OSHA 3146 requires protection (covers, guardrails or fall arrest) against falling through holes, including skylights; the same logic applies to any fragile surface."
+      },
+      {
+        hazard: "Falling debris and sections of ceiling, and other people below",
+        likelihood: "Likely",
+        severity: "Major",
+        controls: [
+          "Before removing anything, pull one tile, board or panel back and survey the void for loose items, stored material, wet or sagging insulation and hanging services (JHA Ref. S-R-6)",
+          "Barricade and sign the floor below; nobody enters the drop zone while strip-out is under way, and occupants and other contractors are told what is happening, when and where",
+          "Remove sections in a planned sequence and support what you release; lower debris in bags, bins or a chute — never throw it from the platform; tether hand tools",
+          "Hard hats on everyone in the zone, including the person on the platform",
+          "Keep exits, escape routes and extinguisher access clear; at the end of each shift remove debris, cover openings, secure tools and leave barricades in place"
+        ],
+        why: "A ceiling void is an uninventoried storage space, and what is up there comes down with the ceiling. OSHA 3885 asks host employers and contractors to share hazards and coordinate before work starts, and s.7 of the T&T OSH Act requires employers to protect non-employees affected by their work."
+      },
+      {
+        hazard: "Asbestos or other legacy material, plus dust and insulation fibres",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Treat old backing boards, sheets above or behind the panels, and any lagging or insulation in the void as suspect until it has been identified — if unsure, stop and have the HSE department check the area before work starts (JHA Ref. S-R-6); a building's age neither rules asbestos in nor out",
+          "Do not drill, cut, break, sand, scrape or dry-sweep suspect material; keep it wet, keep people out and report it. If asbestos is confirmed, the work goes to a trained, competent asbestos contractor under your site's asbestos procedure",
+          "Apply the same stop-and-assess rule to old paint that may contain lead and to water-damaged material with mould",
+          "Fit-tested respirator with particulate filters, sealed goggles, gloves, and coveralls or long sleeves with cuffs and collar closed",
+          "Clean up with a HEPA vacuum or wet wipe — no dry sweeping; sawdust from treated timber is a breathing and skin hazard, so use extraction and keep it out of occupied areas"
+        ],
+        why: "Asbestos fibres cause asbestosis, lung cancer and mesothelioma, and the illness shows up years later. OSHA 3755 flags it in older insulation and building materials (benchmark: 29 CFR 1926.1101). I have not confirmed a T&T asbestos-specific regulation, so none is cited — the OSH Act general duties and your site procedure apply."
+      },
+      {
+        hazard: "Hidden services above the ceiling — electrical, fire detection and sprinklers",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Assume every cable, light fitting, A/C unit and junction box in the void is live until isolated, locked out and proved dead with a tester you have checked on a known source; have an electrician trace and mark circuits first",
+          "Isolate light fittings before lowering them — switching off is not isolation; take care with screws, nails and cutting tools near concealed cable; power tools on an RCD/GFCI-protected supply",
+          "Confirm whether the building is in a classified (hazardous) area — if so, tools, lighting and ignition sources must be suitable for it",
+          "Smoke/heat detectors and sprinkler heads: get any isolation or covering approved with the control room/fire team first, cover only what was agreed, and have each one reinstated and tested before handing back",
+          "Never hang anything from sprinkler pipes, cable trays or process pipework; reinstate fire stopping at every penetration"
+        ],
+        why: "OSHA 3755 notes concealed conduit is an electrocution hazard that requires de-energising, grounding or insulation (29 CFR 1926.416(a)(1)); cables in a ceiling void are the same hazard. Disabling detection and not restoring it is a recurring root cause in fire incidents."
+      },
+      {
+        hazard: "Cuts, tool injuries and manual handling strain",
+        likelihood: "Likely",
+        severity: "Moderate",
+        controls: [
+          "Retractable-blade safety knives; cut on the floor or a bench, away from the body, free hand clear of the blade (JHA Ref. S-R-6); cut-resistant gloves for edges",
+          "Inspect tools before use, guards in place, eye protection for all overhead drilling and cutting; nail and staple guns: contact-trip safety, never carried with a finger on the trigger or while connected to air, and disconnected from the air supply before clearing a jam",
+          "Two-person lifts for full sheets and panels, lifters or a hoist for heavy ones; never carry anything up a ladder that stops you holding on — use a bucket and rope",
+          "Rotate people off overhead work and give short breaks — work above shoulder height is a recognised ergonomic risk (OSHA 3885)"
+        ],
+        why: "The ceiling-tile JHA lists razor cutting as a severe-laceration risk and tool inspection as routine. OSHA 3755 requires eye protection with power tools and replacement of damaged guards (29 CFR 1926.300(b)(1)), and says not to carry anything that could unbalance you on a ladder."
+      },
+      {
+        hazard: "Heat stress in the void, and bites, stings and droppings",
+        likelihood: "Likely",
+        severity: "Major",
+        controls: [
+          "Roof voids and un-air-conditioned buildings in Trinidad's climate can be far hotter than outside — plan void work for the cooler part of the day, limit time per entry, never send anyone in alone",
+          "WATER, REST, SHADE: water at hand, scheduled breaks outside the void, extra breaks for anyone new or back after a week away. Heat stroke (confusion, no sweating, hot dry skin, collapse) is an emergency — call for help and cool the person immediately",
+          "Look before you reach: wasp and hornet nests, bats, rats and snakes are common in roof voids — check with a torch before putting hands in any gap; treat droppings as a breathing hazard (no dry sweeping)",
+          "If you find a nest, stop and get pest control; anyone with a known severe sting allergy stays out of the void and carries their own medication; know the nearest first aider"
+        ],
+        why: "OSHA 3755 sets out water, rest and shade, acclimatisation, and heat stroke as a medical emergency; OSHA 3885 lists mould and animal materials among biological hazards to identify. A closed void adds radiant heat and poor airflow on top of Trinidad's ambient heat, and roof voids are routine habitat for wasps, bats and rodents."
+      },
+      {
+        hazard: "Rotten, termite-damaged or weakened timber and old fixings",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Tap and probe timber framing and boards before trusting them — hollow sound, soft spots, frass or mud tubes mean it is damaged",
+          "Assume rotted or termite-damaged timber cannot carry a person or a new load; replace damaged members before fixing new panels to them",
+          "Support the ceiling before removing old nails or screws — a panel can drop as the last fixing comes out",
+          "Don't use damaged framing as an anchor or a walkway in the void"
+        ],
+        why: "Timber ceilings in a humid climate with termites hide their condition from the room side. Testing before loading, and supporting before releasing, are the controls that prevent the surprise."
+      },
+      {
+        hazard: "Flammable adhesives, solvents and treatments, and PVC or timber burning",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "No open flames, smoking or sparks where solvent-based adhesives, sealants or finishes are used; ventilate the area well",
+          "Read the product's SDS (see the Chemicals tab guide) and use the glove material and respirator it specifies; keep only the quantity you need in the work area",
+          "Burning PVC gives off toxic smoke, including hydrogen chloride — keep it away from hot work and ignition sources, and keep an extinguisher at hand",
+          "Store adhesives and solvents properly and away from heat, and take empties out at the end of the shift"
+        ],
+        why: "OSHA 3755 notes that solvent-based adhesives are usually highly flammable and says open flames and smoking must not be allowed while they are used. In a closed room or void, vapour and smoke build up fast."
+      }
+    ],
+    toolboxTalk: [
+      "Confirm what this ceiling is made of and whether anyone has checked for asbestos — if not, nobody starts",
+      "Nobody steps on the ceiling, ever: agree the walkway, who is standby for every void entry, and who checked the ladder or tower",
+      "Drop zone barricaded, exits clear, electrical isolated and proved dead, and the plan for detectors and sprinklers agreed",
+      "Panel: tap-test timber before loading it, support before removing fixings, and no ignition sources near adhesives or PVC",
+      "Heat and pests: water point, time limit per void entry, look before you reach, and the signs of heat stroke",
+      "Emergency: how to rescue someone who falls through or collapses in the void, and the nearest first aider and medical facility"
+    ],
+    ppe: [
+      "Hard hat (chin strap when working at height)",
+      "Safety glasses — sealed goggles for overhead drilling, cutting and dust",
+      "Respirator with particulate filters (fit-tested) — never a substitute for stopping work on suspected asbestos",
+      "Cut-resistant gloves for grid, track, sheet edges and knives",
+      "Long-sleeve coveralls (disposable if working in insulation)",
+      "Safety boots with good grip",
+      "Hearing protection for drilling and cutting",
+      "Full-body harness where fall arrest is required for void work or high platforms",
+      "Chemical-resistant gloves matched to the adhesive's SDS",
+      "Hearing protection and eye protection for nail and staple guns"
+    ]
+  },
+  {
     id: "nitrogen-purging",
     label: "Nitrogen / Inert Gas Purging & Blanketing",
     sub: "Purging vessels/lines with nitrogen, product blanketing on ammonia, methanol, and urea systems",
@@ -1386,8 +1907,13 @@ const PPE_LIBRARY = [
     whenToUse: "Any work at height where guardrails aren't practical, per site fall protection procedure."
   },
   {
+    name: "Arc-rated (AR) clothing & arc flash PPE",
+    description: "Clothing, face and hand protection tested and rated for arc flash, with a minimum arc rating in cal/cm². Flame-resistant (FR) cloth is not automatically arc-rated, and rubber insulating gloves alone are shock protection, not arc flash protection. NFPA 70E (2021) groups AR PPE into four categories by minimum arc rating: Category 1 = 4 cal/cm², Category 2 = 8, Category 3 = 25, Category 4 = 40 (CSA Z462 in Canada adds a Category 5 at 75). The categories add protection step by step — hard hat, safety glasses, hearing protection, leather footwear, and AR gloves or rubber insulating gloves with leather protectors — and move from a single layer and face shield at Category 1 to a full flash suit with hood at Categories 3 and 4.",
+    whenToUse: "Any energised work, switching or racking where an arc flash is possible. Select it from the equipment's arc flash label or study, not a generic assumption. Most burn injuries come from clothing igniting, so check what is worn underneath — melting synthetics make burns worse, and molten metal can pass through seams and closures. NFPA 70E is a consensus standard: US OSHA has never incorporated it by reference and it is not T&T law — follow your site's electrical safety standard. Source: OSHA 4472 (2024)."
+  },
+  {
     name: "Flame-resistant (FR) coveralls",
-    description: "Fabric engineered to self-extinguish and resist ignition, worn as a barrier against flash fire and arc flash. One-piece coveralls are generally preferred over a separate FR shirt/pants combination, since a two-piece set can gap at the waist during bending or climbing and lets flame or hot gas reach the skin. Non-FR clothing (rain gear, unrated vests, belts) worn over FR coveralls defeats the protection, so any outer layer must also be FR-rated.",
+    description: "Fabric engineered to self-extinguish and resist ignition, worn as a barrier against flash fire. FR is not the same as arc-rated — for arc flash the garment must carry an arc rating (see the Arc-rated PPE entry). One-piece coveralls are generally preferred over a separate FR shirt/pants combination, since a two-piece set can gap at the waist during bending or climbing and lets flame or hot gas reach the skin. Non-FR clothing (rain gear, unrated vests, belts) worn over FR coveralls defeats the protection, so any outer layer must also be FR-rated.",
     whenToUse: "Hot work, electrical work with arc flash potential, and process areas with flash fire risk. Collar worn closed, shirt tucked in if a two-piece set is ever used, and nothing flammable worn underneath or over top."
   },
   {
@@ -2001,6 +2527,10 @@ const INCIDENT_INVESTIGATION = {
       description: "Start from the immediate cause and keep asking why, one layer at a time, until you reach something systemic — a missing procedure, a training gap, a maintenance schedule, a resourcing decision. Five is a guideline, not a hard rule: stop when you hit a genuinely systemic cause, even if that's the third why or the seventh."
     },
     {
+      title: "Don't stop at human error — and investigate near-misses too",
+      description: "If the finding is 'the worker made an error', keep asking: did they have the right tools and enough time, were they trained, were they supervised? If equipment failed, ask why it failed, whether it was maintained properly, and whether it was past its service life. Include near-misses in the investigation process — they show where hazards aren't being controlled — and put both a management and a worker representative on the team. Source: OSHA 3885."
+    },
+    {
       title: "Look for contributing factors, not just one root cause",
       description: "Most real incidents have more than one contributing factor. Resist collapsing the investigation into a single cause just because you found one plausible chain — ask what else had to be true for this to happen."
     },
@@ -2223,3 +2753,48 @@ const LIFTING_COLOUR_SEQUENCE = [
 ];
 // Cycle starts 1 July 2026 with index 0 and advances every 6 months.
 const LIFTING_CYCLE_START = { year: 2026, monthIndex: 6 }; // July (0-based month)
+
+
+// ============================================================
+// SDS 16-SECTION GUIDE and HAZARD PICTOGRAMS — from OSHA 3514 (SDS
+// brief), OSHA Quick Cards 3493 and 3491. US HCS wording; the SDS
+// format and pictogram set follow the UN GHS. Always read the actual
+// supplier label and SDS for the product in your hand.
+// ============================================================
+const SDS_SECTIONS = [
+  { n: 1,  title: "Identification", text: "Product name as on the label, supplier name, address and phone, an emergency phone number, recommended and restricted uses." },
+  { n: 2,  title: "Hazard(s) identification", text: "The hazard classification, signal word, hazard statements, pictograms and precautionary statements — the quick read of how dangerous the product is." },
+  { n: 3,  title: "Composition / ingredients", text: "Ingredient names and CAS numbers, including hazardous impurities and stabilisers. Trade-secret ingredients may be withheld with a statement saying so." },
+  { n: 4,  title: "First-aid measures", text: "What an untrained responder should do for inhalation, skin, eye and swallowing exposure, the most important acute and delayed symptoms, and when to get medical care." },
+  { n: 5,  title: "Fire-fighting measures", text: "Suitable and unsuitable extinguishing media, hazards that develop in a fire (such as toxic combustion products), and firefighter protection." },
+  { n: 6,  title: "Accidental release measures", text: "Personal precautions and PPE, emergency procedures, containment and cleanup methods, sometimes split into small and large spills." },
+  { n: 7,  title: "Handling and storage", text: "Safe handling precautions, hygiene rules, storage conditions and incompatible materials." },
+  { n: 8,  title: "Exposure controls / personal protection", text: "Occupational exposure limits (such as OSHA PELs and ACGIH TLVs), engineering controls like local exhaust ventilation, and PPE — including the glove material and respirator type to use." },
+  { n: 9,  title: "Physical and chemical properties", text: "Appearance, odour, pH, flash point, flammability limits, vapour pressure and density, auto-ignition temperature and similar data." },
+  { n: 10, title: "Stability and reactivity", text: "Whether the product is stable, what conditions to avoid (heat, static discharge, shock), which materials it reacts with, and hazardous decomposition products." },
+  { n: 11, title: "Toxicological information", text: "Routes of exposure, immediate and delayed effects, symptoms from mild to severe, toxicity figures such as LD50, and whether it is a listed or suspected carcinogen." },
+  { n: 12, title: "Ecological information", text: "Effects on aquatic and land life, persistence and bioaccumulation. Not enforced by OSHA, but useful for spill response and EMA reporting." },
+  { n: 13, title: "Disposal considerations", text: "Suitable disposal containers and methods, and any special precautions for landfill or incineration." },
+  { n: 14, title: "Transport information", text: "UN number, proper shipping name, hazard class and packing group, and any special precautions for moving it." },
+  { n: 15, title: "Regulatory information", text: "Safety, health and environmental regulations that apply to the product and aren't covered elsewhere on the sheet." },
+  { n: 16, title: "Other information", text: "The date the SDS was prepared or last revised, and often what changed. Check it — an old sheet may be out of date." }
+];
+
+const SDS_TIPS = [
+  "Sections 1–8 are the fast-read for an emergency: Section 2 for the hazard, 4 for first aid, 5 for fire, 6 for spills, 8 for PPE.",
+  "Employers should keep SDSs readily accessible to workers without leaving their work area, with a back-up for a power outage or emergency, whether in a binder or on a computer.",
+  "If you don't have an SDS for a product, ask the supplier or manufacturer for one before using it.",
+  "Section 8's glove material and respirator type are specific — nitrile, PVC and other materials resist different chemicals, so don't assume your general work gloves are suitable."
+];
+
+const GHS_PICTOGRAMS = [
+  { name: "Health hazard", covers: "Carcinogen, mutagenicity, reproductive toxicity, respiratory sensitiser, target organ toxicity, aspiration toxicity" },
+  { name: "Flame", covers: "Flammables, pyrophorics, self-heating, emits flammable gas, self-reactives, organic peroxides, desensitised explosives" },
+  { name: "Exclamation mark", covers: "Skin and eye irritant, skin sensitiser, acute toxicity (harmful), narcotic effects, respiratory tract irritant" },
+  { name: "Gas cylinder", covers: "Gases under pressure, chemicals under pressure" },
+  { name: "Corrosion", covers: "Skin corrosion/burns, eye damage, corrosive to metals" },
+  { name: "Exploding bomb", covers: "Explosives, self-reactives, organic peroxides" },
+  { name: "Flame over circle", covers: "Oxidisers" },
+  { name: "Environment", covers: "Aquatic toxicity (non-mandatory in the US; often shown on products sold in T&T)" },
+  { name: "Skull and crossbones", covers: "Acute toxicity — fatal or toxic" }
+];
