@@ -42,6 +42,8 @@ const ICONS = {
   gas: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 17.5a4 4 0 0 1-1-7.9 5 5 0 0 1 9.6-2A4.5 4.5 0 0 1 17 17.5H7z"/><path d="M8 21v-1M12 21.5v-1.5M16 21v-1"/></svg>`,
   droplet: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 2.5c2.2 3 6 8.7 6 12.3a6 6 0 0 1-12 0c0-3.6 3.8-9.3 6-12.3z"/></svg>`,
   ceiling: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="4" width="18" height="10" rx="1"/><path d="M9 4v10M15 4v10M3 9h18"/><path d="M8 18v3M16 18v3"/></svg>`,
+  lift: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><rect x="5" y="3" width="14" height="3" rx="1"/><path d="M7 6l10 6M17 6L7 12M7 12l10 6M17 12L7 18"/><rect x="4" y="19" width="16" height="2" rx="1"/></svg>`,
+  flask: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M7.5 14h9"/></svg>`,
 };
 
 // ---------- SIGNATURE PAD ----------
@@ -241,6 +243,7 @@ function openTask(id) {
   // reset record fields
   document.getElementById("fieldSite").value = "";
   document.getElementById("fieldSupervisor").value = "";
+  if (document.getElementById("fieldPermit")) document.getElementById("fieldPermit").value = "";
   document.getElementById("fieldDate").value = new Date().toISOString().slice(0, 10);
   document.getElementById("saveHint").textContent = "";
 
@@ -307,8 +310,117 @@ function renderPPE(task) {
       </li>`
       )
       .join("") +
-    `</ul>`;
+    `</ul>` +
+    renderSiteMatrixCard(task) +
+    renderPermitCard(task);
   wireChecklist("ppeList", "ppe");
+}
+
+function renderPermitCard(task) {
+  if (typeof TASK_PERMIT_MAP === "undefined") return "";
+  const m = TASK_PERMIT_MAP[task.id];
+  if (!m) return "";
+  const chips = (arr) =>
+    arr && arr.length ? `<div class="cswp-row">${arr.map((x) => `<span class="permit-chip">${x}</span>`).join("")}</div>` : "";
+  const consider = (arr) =>
+    arr && arr.length
+      ? `<ul class="cswp-consider">${arr
+          .map((x) => {
+            const i = x.indexOf(" — ");
+            return i > -1 ? `<li><b>${x.slice(0, i)}</b> — ${x.slice(i + 3)}</li>` : `<li><b>${x}</b></li>`;
+          })
+          .join("")}</ul>`
+      : "";
+  const typeChips = chips((m.t || []).concat(m.to ? ["Other: " + m.to] : []));
+  const none = `<p class="cswp-none">No box for this one.</p>`;
+
+  return (
+    `<p class="section-label" style="margin-top:22px;">Safe Work Permit — suggested boxes (CSWP-style)</p>` +
+    `<div class="ref-card cswp-card">` +
+    `<p class="cswp-legend">A starting point worked out from this task's hazards, for whoever fills in or checks the permit. Solid tags usually apply; the list under each heading is "consider if". The issuer and competent person decide what is ticked.</p>` +
+    `<p class="ref-card-title">Section 2 — Task type</p>` +
+    (typeChips || none) +
+    (m.tc && m.tc.length ? `<p class="cswp-sub">Also consider</p>${consider(m.tc)}` : "") +
+    `<p class="ref-card-title">Section 6 — Safety precautions / PPE</p>` +
+    (m.p && m.p.length ? chips(m.p) : none) +
+    (m.pc && m.pc.length ? `<p class="cswp-sub">Consider if</p>${consider(m.pc)}` : "") +
+    `<p class="ref-card-title">Section 7 — Specific hazards</p>` +
+    (m.h && m.h.length ? chips(m.h) : `<p class="cswp-none">No printed hazard box is a clear match.</p>`) +
+    (m.hc && m.hc.length ? `<p class="cswp-sub">Consider if</p>${consider(m.hc)}` : "") +
+    (m.o ? `<p class="cswp-other"><b>Other Hazards — State:</b> ${m.o}</p>` : "") +
+    (m.n ? `<div class="ref-card-act">${ICONS.info}<span>${m.n}</span></div>` : "") +
+    `<p class="cswp-foot">Leaving a Section 7 box blank is not an all-clear — the permit's own wording says a hazard that isn't identified there still exists. Section 5 (separate PTW/LOA needed?) and the details in Section 11 are decided with the permit issuer.</p>` +
+    `</div>`
+  );
+}
+
+function matrixChips(ppe) {
+  return `<div class="cswp-row">${ppe.map((x) => `<span class="permit-chip">${x}</span>`).join("")}</div>`;
+}
+
+function renderSiteMatrixCard(task) {
+  if (typeof SITE_PPE_MATRIX === "undefined" || typeof SITE_MATRIX_LINKS === "undefined") return "";
+  const names = SITE_MATRIX_LINKS[task.id];
+  if (!names || !names.length) return "";
+  const rows = [];
+  SITE_PPE_MATRIX.groups.forEach((g) =>
+    g.rows.forEach((r) => {
+      if (names.includes(r.task)) rows.push({ group: g.name, row: r });
+    })
+  );
+  if (!rows.length) return "";
+  return (
+    `<p class="section-label" style="margin-top:22px;">Example site PPE matrix — for this kind of job</p>` +
+    `<div class="ref-card cswp-card">` +
+    `<p class="cswp-legend">One power-generation plant's wall matrix, for comparison with your checklist above. Your host site's own matrix and permit govern — add anything it requires that isn't on your checklist.</p>` +
+    rows
+      .map(
+        (x) =>
+          `<p class="ref-card-title">${x.row.task}</p><p class="cswp-sub">${x.group}</p>${matrixChips(x.row.ppe)}`
+      )
+      .join("") +
+    `</div>`
+  );
+}
+
+function renderSiteMatrixReference() {
+  if (typeof SITE_PPE_MATRIX === "undefined") return "";
+  const M = SITE_PPE_MATRIX;
+  const allRows = M.groups.reduce((acc, g) => acc.concat(g.rows), []);
+  const onEvery = M.columns.filter((c) => allRows.every((r) => r.ppe.includes(c)));
+  const onNone = M.columns.filter((c) => !allRows.some((r) => r.ppe.includes(c)));
+  const noEar = allRows.filter((r) => !r.ppe.includes("Ear muffs / plugs")).map((r) => r.task);
+  const list = (arr) => arr.join(", ");
+  const groups = M.groups
+    .map(
+      (g) =>
+        `<p class="cswp-sub" style="margin-top:14px;">${g.name}</p>` +
+        g.rows
+          .map(
+            (r) => `
+    <div class="ref-card">
+      <p class="ref-card-title">${r.task}</p>
+      ${matrixChips(r.ppe)}
+    </div>`
+          )
+          .join("")
+    )
+    .join("");
+  return (
+    `<p class="section-label" style="margin-top:26px;">Example site PPE matrix — task by task, from a power-generation plant's wall board. One site's standard: your host site's own matrix and permit govern</p>` +
+    groups +
+    `<div class="ref-card">
+      <p class="ref-card-title">Reading across this matrix</p>
+      <ul class="cswp-consider">
+        <li><b>On every row:</b> ${list(onEvery)}. Treat these as that site's baseline.</li>
+        <li><b>Hearing protection</b> is marked on every row except: ${list(noEar) || "none"}.</li>
+        <li><b>Marked on no row:</b> ${list(onNone) || "none"}. Escape sets are carried or kept at points rather than assigned to a task.</li>
+        <li><b>Not on the board</b> but in the Fieldwise PPE Guide: insulated and arc-rated electrical gloves, cut- and impact-resistant gloves, welding helmets and flotation devices. Fieldwise task cards still pick these up where the hazard calls for them.</li>
+        <li><b>Arc flash:</b> the full arc flash suit with hood is marked only for removing HV switchgear. For other live work, select arc-rated clothing from the equipment's arc flash label or study rather than assuming a category.</li>
+        <li><b>Confined space:</b> no respirator is marked — respiratory protection there depends on gas testing and the atmosphere, as set by the permit and the Confined Space task.</li>
+      </ul>
+    </div>`
+  );
 }
 
 function wireChecklist(listId, group) {
@@ -342,6 +454,7 @@ document.getElementById("exportPdfBtn").addEventListener("click", () => {
 
   const site = document.getElementById("fieldSite").value.trim() || "—";
   const supervisor = document.getElementById("fieldSupervisor").value.trim() || "—";
+  const permitNo = (document.getElementById("fieldPermit") ? document.getElementById("fieldPermit").value.trim() : "") || "—";
   const date = document.getElementById("fieldDate").value || new Date().toISOString().slice(0, 10);
   const generated = new Date().toLocaleString();
 
@@ -351,6 +464,7 @@ document.getElementById("exportPdfBtn").addEventListener("click", () => {
     <div class="ph-meta">
       <span>Site: <b>${site}</b></span>
       <span>Supervisor: <b>${supervisor}</b></span>
+      <span>Permit / WO: <b>${permitNo}</b></span>
       <span>Date: <b>${date}</b></span>
       <span>Generated: <b>${generated}</b></span>
     </div>
@@ -370,9 +484,10 @@ function renderPPEReference() {
       <p class="ref-card-title">${item.name}</p>
       <p class="ref-card-desc">${item.description}</p>
       <p class="ref-card-when"><b>When to use:</b> ${item.whenToUse}</p>
+      ${typeof PPE_PERMIT_BOX !== "undefined" && PPE_PERMIT_BOX[item.name] ? `<p class="ref-card-when"><b>On a safe work permit:</b> ${PPE_PERMIT_BOX[item.name]}</p>` : ""}
       ${item.act ? `<div class="ref-card-act">${ICONS.info}<span>${item.act}</span></div>` : ""}
     </div>`
-  ).join("");
+  ).join("") + renderSiteMatrixReference();
 }
 
 function renderToolsReference() {
@@ -621,6 +736,19 @@ function renderPtwReference() {
       <p class="ref-card-desc">${ref.text}</p>
     </div>`
     ).join("") +
+    (typeof CSWP_REFERENCE !== "undefined"
+      ? `<p class="section-label" style="margin-top:22px;">Reading a Contractors' Safe Work Permit (CSWP-style form) — section by section, and where Fieldwise fits. Forms differ between sites: use this as a guide and read your own permit's printed wording</p>` +
+        CSWP_REFERENCE.map(
+          (ref) => `
+    <div class="ref-card">
+      <div class="ref-card-top">
+        <p class="ref-card-title">${ref.title}</p>
+        ${ref.section ? `<span class="act-badge">${ref.section}</span>` : ""}
+      </div>
+      <p class="ref-card-desc">${ref.text}</p>
+    </div>`
+        ).join("")
+      : "") +
     `<p class="ref-footnote">Legal citations from the OSH Act Ch. 88:08 (unofficial consolidated text). Always check rgd.legalaffairs.gov.tt for the current authorised text before relying on this for a legal or disciplinary matter.</p>`;
 }
 
@@ -664,6 +792,7 @@ document.getElementById("saveRecordBtn").addEventListener("click", () => {
     taskLabel: task.label,
     site: document.getElementById("fieldSite").value.trim(),
     supervisor: document.getElementById("fieldSupervisor").value.trim(),
+    permitNo: document.getElementById("fieldPermit") ? document.getElementById("fieldPermit").value.trim() : "",
     date: document.getElementById("fieldDate").value || new Date().toISOString().slice(0, 10),
     savedAt: new Date().toISOString(),
     toolboxChecked: Object.values(state.checks.toolbox).filter(Boolean).length,
@@ -709,7 +838,7 @@ function renderRecordsList() {
   const query = (document.getElementById("recordsSearch").value || "").trim().toLowerCase();
   const records = query
     ? all.filter((r) =>
-        [r.taskLabel, r.site, r.supervisor].some((f) => (f || "").toLowerCase().includes(query))
+        [r.taskLabel, r.site, r.supervisor, r.permitNo].some((f) => (f || "").toLowerCase().includes(query))
       )
     : all;
 
@@ -735,7 +864,7 @@ function renderRecordsList() {
         <span class="record-card-date">${r.date}</span>
       </div>
       <div class="record-card-meta">
-        ${r.site ? r.site + " · " : ""}${r.supervisor ? r.supervisor + " · " : ""}
+        ${r.site ? r.site + " · " : ""}${r.supervisor ? r.supervisor + " · " : ""}${r.permitNo ? "Permit/WO " + r.permitNo + " · " : ""}
         ${r.hazardCount} hazards · Toolbox ${r.toolboxChecked}/${r.toolboxTotal} · PPE ${r.ppeChecked}/${r.ppeTotal}${
         r.crewSigned && r.crewSigned.length ? ` · ${r.crewSigned.length} crew signed` : ""
       }

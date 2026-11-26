@@ -1029,3 +1029,19 @@ button { font-family: inherit; }
     margin-top: 3px;
   }
 }
+
+
+/* ---------- Safe Work Permit (CSWP-style) card ---------- */
+.cswp-card .ref-card-title { margin-top: 14px; }
+.cswp-card .ref-card-title:first-of-type { margin-top: 6px; }
+.cswp-legend { font-size: 12px; color: var(--text-faint); margin: 0 0 4px; line-height: 1.5; }
+.cswp-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 4px; }
+.cswp-sub { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-faint); margin: 10px 0 2px; }
+.cswp-consider { margin: 4px 0 4px 18px; padding: 0; font-size: 13px; line-height: 1.5; }
+.cswp-consider li { margin: 2px 0; }
+.cswp-none { font-size: 13px; color: var(--text-faint); margin: 6px 0 2px; }
+.cswp-other { font-size: 13px; line-height: 1.5; margin: 10px 0 4px; }
+.cswp-foot { font-size: 12px; color: var(--text-faint); margin: 12px 0 0; line-height: 1.5; }
+@media print {
+  .cswp-legend, .cswp-sub, .cswp-none, .cswp-foot { color: #444 !important; }
+}

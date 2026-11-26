@@ -62,7 +62,11 @@ const TASK_LIBRARY = [
       "Walk the 11 m radius and confirm it's clear of flammables/combustibles",
       "Confirm the stop-work signal if conditions change"
     ],
-    ppe: ["Welding helmet/goggles (correct shade)", "Flame-resistant coveralls", "Welding gloves", "Safety boots", "Hearing protection (grinding)"],
+    ppe: ["Welding helmet/goggles (correct shade)", "Flame-resistant coveralls", "Welding gloves", "Safety boots", "Hearing protection (grinding)",
+      "Hard hat",
+      "Safety glasses (worn under the welding helmet)",
+      "Respirator suited to welding or cutting fume (fit-tested), where ventilation can't control the fume",
+      "Welder's spats where sparks or slag can fall into footwear"],
   },
   {
     id: "confined-space",
@@ -121,7 +125,9 @@ const TASK_LIBRARY = [
       "Walk through the rescue plan — who calls it, how, and to whom",
       "Confirm the communication method and check-in interval"
     ],
-    ppe: ["Gas detector (personal/area)", "Full-body harness with retrieval line", "Appropriate respiratory protection", "Non-sparking tools if flammable atmosphere possible"],
+    ppe: ["Gas detector (personal/area)", "Full-body harness with retrieval line", "Appropriate respiratory protection", "Non-sparking tools if flammable atmosphere possible",
+      "Hard hat, safety glasses, safety boots and work gloves",
+      "Flame-resistant clothing (site standard)"],
   },
   {
     id: "work-at-height",
@@ -204,7 +210,9 @@ const TASK_LIBRARY = [
       "Check harness/lanyard for damage as a group before anyone climbs",
       "Confirm the rescue plan if someone falls and is suspended in a harness"
     ],
-    ppe: ["Full-body harness", "Shock-absorbing lanyard rated to task", "Hard hat with chin strap", "Non-slip safety footwear"],
+    ppe: ["Full-body harness", "Shock-absorbing lanyard rated to task", "Hard hat with chin strap", "Non-slip safety footwear",
+      "Safety glasses",
+      "Safety gloves"],
   },
   {
     id: "loto",
@@ -313,7 +321,9 @@ const TASK_LIBRARY = [
       "Confirm ground conditions/outrigger support under the crane",
       "Confirm the abort/stop signal everyone will recognise"
     ],
-    ppe: ["Hard hat", "Safety boots", "High-visibility clothing", "Gloves (rigging)"],
+    ppe: ["Hard hat", "Safety boots", "High-visibility clothing", "Gloves (rigging)",
+      "Safety glasses",
+      "Hearing protection in noisy plant areas"],
   },
   {
     id: "excavation",
@@ -480,7 +490,10 @@ const TASK_LIBRARY = [
       "Spot-check PPE compliance across the area",
       "Confirm housekeeping standards for material laydown areas"
     ],
-    ppe: ["Hard hat", "Safety boots", "High-visibility clothing", "Safety glasses"],
+    ppe: ["Hard hat", "Safety boots", "High-visibility clothing", "Safety glasses",
+      "Hearing protection in noisy areas",
+      "Safety gloves",
+      "Flame-resistant clothing (site standard in process areas)"],
   },
   {
     id: "painting",
@@ -707,6 +720,19 @@ const TASK_LIBRARY = [
           "Treat a circuit as live until stored energy is actually confirmed discharged, not just switched off"
         ],
         why: "Backup and standby supplies are a classic cause of an apparently isolated circuit re-energizing without warning — auto-transfer doesn't announce itself."
+      },
+      {
+        hazard: "HV switchgear removal, racking and switchyard inspection — authorised persons only",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Only authorised, competent persons do HV switching, racking or cubicle work, strictly to the site's switching and HV rules — this is not general electrical work",
+          "Wear the arc-rated suit with hood that the arc flash assessment calls for, on top of the basic PPE, and check its arc rating against the equipment's incident energy",
+          "Stay outside the arc flash and approach boundaries unless authorised and protected; barricade and sign the area and keep everyone else out",
+          "Use remote operation or racking where the equipment has it, follow the isolation, earthing and prove-dead sequence, and never defeat interlocks or shutters",
+          "Infrared (thermography) inspection of energised equipment: keep to the approved approach distances, open cubicles only where the procedure allows, and keep the camera and any loose items clear of live parts"
+        ],
+        why: "OSHA 4472 explains why the arc flash boundary can be wider than the shock boundaries. The example site PPE matrix in the PPE Guide marks an arc flash suit with hood for removing HV switchgear, and FR clothing, hard hat, glasses and hearing protection for switchyard inspection."
       }
     ],
     toolboxTalk: [
@@ -717,7 +743,10 @@ const TASK_LIBRARY = [
       "Confirm no backup power, UPS, or generator could re-energize this circuit",
       "Confirm what happens if someone contacts live equipment — how to safely break contact, who calls for help"
     ],
-    ppe: ["Insulated/arc-rated gloves matched to system voltage", "Arc-rated flash suit or coveralls per incident energy", "Face shield / arc-rated hood", "Insulated hand tools", "Voltage-rated tester (proven before and after use)"],
+    ppe: ["Insulated/arc-rated gloves matched to system voltage", "Arc-rated flash suit or coveralls per incident energy", "Face shield / arc-rated hood", "Insulated hand tools", "Voltage-rated tester (proven before and after use)",
+      "Hard hat, safety glasses and safety boots",
+      "Hearing protection in noisy plant rooms",
+      "Flame-resistant clothing as the baseline, with arc-rated clothing where the arc flash assessment requires it"],
   },
   {
     id: "vehicle-operations",
@@ -1187,7 +1216,9 @@ const TASK_LIBRARY = [
       "Confirm any process piping or flange bolting uses a calibrated torque wrench, not tool feel",
       "Remind the crew: numbness or tingling from vibrating tools gets reported, not worked through"
     ],
-    ppe: ["Safety glasses / face shield for cutting or grinding", "Cut-resistant or general work gloves matched to the task", "Hearing protection for prolonged power tool use", "Impact-resistant gloves for pickaxe, sledgehammer, or other striking tools", "Anti-vibration/impact-resistant gloves for extended grinder/breaker use", "Insulated/electrical-rated gloves for meter/multimeter use on live-suspect circuits", "Safety boots"],
+    ppe: ["Safety glasses / face shield for cutting or grinding", "Cut-resistant or general work gloves matched to the task", "Hearing protection for prolonged power tool use", "Impact-resistant gloves for pickaxe, sledgehammer, or other striking tools", "Anti-vibration/impact-resistant gloves for extended grinder/breaker use", "Insulated/electrical-rated gloves for meter/multimeter use on live-suspect circuits", "Safety boots",
+      "Hard hat in plant and overhead-hazard areas",
+      "Respirator suited to the dust from grinding, cutting or sanding (fit-tested)"],
   },
   {
     id: "plumbing",
@@ -1406,7 +1437,7 @@ const TASK_LIBRARY = [
       "Drop zone barricaded, exits clear, electrical isolated and proved dead, and the plan for detectors and sprinklers agreed",
       "Grid: every fitting disconnected and supported before its section is released; hangers checked; no hanging from pipes or sprinklers",
       "Heat and pests: water point, time limit per void entry, look before you reach, and the signs of heat stroke",
-      "Emergency: how to rescue someone who falls through or collapses in the void, and the nearest first aider and medical facility"
+      "Emergency: how to rescue someone who falls through or collapses in the void, the nearest first aider and medical facility, and the emergency contact written on the permit (Section 8)"
     ],
     ppe: [
       "Hard hat (chin strap when working at height)",
@@ -1551,7 +1582,7 @@ const TASK_LIBRARY = [
       "Drop zone barricaded, exits clear, electrical isolated and proved dead, and the plan for detectors and sprinklers agreed",
       "Board: two-person lifts or a board lifter, stable platform, and no standing under sagging or stained areas",
       "Heat and pests: water point, time limit per void entry, look before you reach, and the signs of heat stroke",
-      "Emergency: how to rescue someone who falls through or collapses in the void, and the nearest first aider and medical facility"
+      "Emergency: how to rescue someone who falls through or collapses in the void, the nearest first aider and medical facility, and the emergency contact written on the permit (Section 8)"
     ],
     ppe: [
       "Hard hat (chin strap when working at height)",
@@ -1697,7 +1728,7 @@ const TASK_LIBRARY = [
       "Drop zone barricaded, exits clear, electrical isolated and proved dead, and the plan for detectors and sprinklers agreed",
       "Panel: tap-test timber before loading it, support before removing fixings, and no ignition sources near adhesives or PVC",
       "Heat and pests: water point, time limit per void entry, look before you reach, and the signs of heat stroke",
-      "Emergency: how to rescue someone who falls through or collapses in the void, and the nearest first aider and medical facility"
+      "Emergency: how to rescue someone who falls through or collapses in the void, the nearest first aider and medical facility, and the emergency contact written on the permit (Section 8)"
     ],
     ppe: [
       "Hard hat (chin strap when working at height)",
@@ -1710,6 +1741,315 @@ const TASK_LIBRARY = [
       "Full-body harness where fall arrest is required for void work or high platforms",
       "Chemical-resistant gloves matched to the adhesive's SDS",
       "Hearing protection and eye protection for nail and staple guns"
+    ]
+  },
+  {
+    id: "chemical-handling",
+    label: "Chemical Handling & Transfer",
+    sub: "Receiving, decanting, transferring and using hazardous chemicals — ammonia, methanol, acids, caustics, solvents",
+    icon: "flask",
+    permits: [
+      "Work Permit (general)",
+      "Line-break / equipment-opening permit if opening chemical lines, pumps or vessels",
+      "Isolation / LOTO for chemical lines and pumps",
+      "Confined Space Entry Permit if cleaning tanks, sumps or pits",
+      "Hot Work Permit if hot work is needed near flammable chemicals"
+    ],
+    hazards: [
+      {
+        hazard: "Skin and eye contact — splashes from corrosives, solvents and process chemicals",
+        likelihood: "Likely",
+        severity: "Major",
+        controls: [
+          "Read the label and SDS before you start — Section 2 (hazards), 4 (first aid) and 8 (PPE) — and know the product by name, not by its container or colour",
+          "Wear what SDS Section 8 specifies: chemical-resistant gloves of the right material, goggles with a face shield for splash, a chemical apron over flame-resistant clothing, and suitable boots",
+          "Know where the nearest eyewash and safety shower are, and check the path is clear and the unit works, before the job starts",
+          "Transfer with closed methods — pumps, drum pumps, funnels, secondary containment — instead of pouring from open containers",
+          "If exposed: flush with water immediately (at least 15 minutes for eyes and skin unless the SDS says otherwise), remove contaminated clothing and get medical help — see the Chemicals tab"
+        ],
+        why: "SDS Section 8 names the PPE and glove material for each chemical, and the Chemicals tab covers first aid for ammonia and methanol. The example site PPE matrix in the PPE Guide pairs chemical work with goggles, face shield, chemical gloves and an apron over FR clothing."
+      },
+      {
+        hazard: "Toxic gas or vapour release — inhalation",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Work with the wind or ventilation at your back and an escape route behind you; know the muster point and wind direction before opening anything",
+          "Use local exhaust ventilation or a closed system where the SDS calls for it, and a gas detector where the site requires one",
+          "Respirator matched to the chemical and fit-tested — filter respirators do not work in oxygen-deficient air",
+          "Know where the escape set is kept and have practised putting it on; on an alarm or a sudden smell, stop, close only what is safe to close and withdraw",
+          "Don't enter a pit, sump or low-lying area where heavy vapour can collect — that is a confined space entry"
+        ],
+        why: "OSHA 3885 notes that gases and vapours may be invisible, often have no odour and may not cause an immediately noticeable effect, so 'I can't smell it' is not a safety check."
+      },
+      {
+        hazard: "Fire or explosion — flammable chemicals, static and ignition sources",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Bond and earth containers and equipment when transferring flammable liquids; no ignition sources — phones, tools and vehicles included — unless approved for the area",
+          "Keep only the quantity needed in the work area, in approved, labelled containers, away from heat",
+          "Methanol burns with a flame that is hard to see in daylight — don't rely on seeing it, and keep an extinguisher and the emergency number to hand",
+          "Hot work near flammable chemicals needs its own permit, gas test and fire watch"
+        ],
+        why: "SDS Section 7 gives handling precautions and incompatibilities and Section 5 the suitable extinguishing media. Static discharge during transfer is a common hidden ignition source."
+      },
+      {
+        hazard: "Incompatible chemicals mixed or stored together",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Check SDS Sections 7 and 10 for incompatibilities before storing or mixing — acids with bases, oxidisers with flammables or organics, and so on",
+          "Never mix chemicals to test them or to clean something, and never return unused product to its original container",
+          "Label every secondary container with the name and hazard — no unlabelled bottles or buckets",
+          "Keep a spill kit that suits the chemical, and store incompatible products apart with their own containment"
+        ],
+        why: "SDS Sections 7 and 10 list incompatible materials, and the Chemicals tab shows the incompatibles for each chemical covered."
+      },
+      {
+        hazard: "Spills and releases to drain or ground",
+        likelihood: "Likely",
+        severity: "Moderate",
+        controls: [
+          "Stop the source if it is safe to, raise the alarm, keep people away and contain with the right spill kit — never wash product to a drain",
+          "Clean up only if you are trained and have the PPE the SDS names; otherwise withdraw and call the response team",
+          "Report every release, however small — environmental notification duties may apply (see the Environmental (EMA) tab)",
+          "Dispose of spill residue as chemical waste (see the Waste Handling task)"
+        ],
+        why: "SDS Section 6 gives containment and clean-up methods; the EMA tab lists reporting duties for releases."
+      },
+      {
+        hazard: "Opening lines, pumps and vessels that still hold product or pressure",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Isolate, depressurise, drain and flush to the site procedure, lock out the isolation and prove it before breaking any joint — with a line-break permit if your site uses one",
+          "Plan where residual product will go: drip tray or hose to a safe point, with PPE for splash",
+          "Loosen flanges away from your body and open slowly — expect trapped product and pressure at low points and dead legs",
+          "If you cannot prove it is isolated and empty, stop and ask"
+        ],
+        why: "Trapped product and pressure behind a closed valve is the usual way a routine joint break becomes a chemical exposure. See the Lockout / Tagout task for proving isolation."
+      }
+    ],
+    toolboxTalk: [
+      "Name the chemical and read SDS Sections 2, 4 and 8 — everyone knows the hazards and the PPE before starting",
+      "Check PPE against the SDS, and check the eyewash and safety shower work and the path to them is clear",
+      "Where is the wind, the muster point and the escape route — and where is the escape set kept",
+      "Ignition sources, bonding, and only the quantity needed in the work area",
+      "What we do on a spill or release, and who we call",
+      "If anyone is splashed: flush for at least 15 minutes, remove contaminated clothing, get help — nobody carries on"
+    ],
+    ppe: [
+      "Chemical goggles with a face shield for splash risk",
+      "Chemical-resistant gloves matched to the SDS",
+      "Chemical apron over flame-resistant clothing",
+      "Flame-resistant clothing (site standard)",
+      "Safety boots suited to the chemical",
+      "Hard hat",
+      "Respirator matched to the chemical (fit-tested), or as the gas detector requires",
+      "Hearing protection in noisy plant areas",
+      "Escape set carried or at hand where a toxic release is possible"
+    ]
+  },
+  {
+    id: "man-lift",
+    label: "Man-Lift / MEWP Operation",
+    sub: "Scissor lifts, boom lifts and other mobile elevating work platforms",
+    icon: "lift",
+    permits: [
+      "Work Permit (general)",
+      "Working at Height Permit (if site policy requires)",
+      "Lifting equipment inspection / examination certificate in date",
+      "Electrical isolation if working near live conductors"
+    ],
+    hazards: [
+      {
+        hazard: "Tip-over — soft or sloping ground, wind, overload, driving while elevated",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Check the ground before positioning: firm, level and clear of holes, drains, trenches and cables, and within the machine's slope limit; deploy outriggers or stabilisers if it has them",
+          "Never exceed the rated capacity or the number of people on the platform — count tools and materials in the load",
+          "Stop work when wind or weather passes the manufacturer's limits; drive elevated only if the manual allows it, and only at the speed it allows",
+          "Never use the lift as a crane, tie it off to a structure, or add planks or boxes to gain height"
+        ],
+        why: "The manufacturer's load, slope and wind limits are the controlling document. Tip-over is one of the most serious failure modes for platforms, and the usual causes are the ground, wind, overload and travelling while elevated."
+      },
+      {
+        hazard: "Fall or ejection from the platform",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Keep the gate or chain closed, and stand on the platform floor — never on the rails, boxes or a ladder",
+          "Wear a full body harness with a short lanyard clipped to the platform's anchor point where the manufacturer, your site or the risk assessment requires it — commonly for boom-type machines",
+          "Clip to the platform anchor only, never to nearby structure — a lanyard tied to structure can pull you out if the machine moves",
+          "Don't step across onto structure unless the procedure allows it, and never leave the platform raised and unattended"
+        ],
+        why: "A jolt, a strike from a load or a machine movement can throw an operator over the rail. Anchoring to the machine, not the structure, keeps the harness working with the platform."
+      },
+      {
+        hazard: "Crush or entrapment between the platform and structure, pipework or overhead items",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Look up and around before raising: beams, pipe racks, cable trays, roof edges and other equipment",
+          "Keep your body inside the guard rails and your hands off the rails near structure",
+          "Use a ground person or spotter in tight spaces, and make sure nobody else can reach the controls",
+          "Know where the ground controls are and how emergency lowering works before you go up"
+        ],
+        why: "An operator pinned against structure may be unable to reach the controls. A ground person who can lower the platform is the rescue."
+      },
+      {
+        hazard: "Contact with overhead electrical lines and live equipment",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Treat every overhead conductor and open panel as live; keep the machine and everything on it outside the minimum approach distance your site sets",
+          "Have the circuit isolated or the area barricaded if the work must be closer",
+          "Treat the platform and anything metal on it as conductive — no metal ladders or long tools passed near conductors",
+          "Allow for sway and for the machine settling when judging clearance"
+        ],
+        why: "A man-lift puts a metal structure in the air next to conductors. Approach distances come from your site's electrical rules — see the Electrical Work task."
+      },
+      {
+        hazard: "Untrained operator or uninspected machine",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Only trained, authorised operators who are familiar with this make and model and whose certification is current",
+          "Pre-use inspection every shift — tyres or tracks, hydraulic leaks, guard rails and gate, controls, emergency lowering, alarms and horn — and remove it from service if anything fails",
+          "Check the examination or inspection certificate is in date and the capacity plate is legible",
+          "Never override safety devices, and never leave the key in the machine when it is unattended"
+        ],
+        why: "Inspection and operator competence are standard requirements for lifting equipment. The permit's 'Lifting Equipt. Inspected' box may apply to a man-lift — confirm with the permit issuer."
+      },
+      {
+        hazard: "Falling objects and vehicle traffic at the base of the lift",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Barricade and sign the base area and keep people out of the drop zone",
+          "Tether hand tools; never throw items up or down — use a rope and bucket",
+          "Keep vehicles and forklifts away from the base; a ground person watches the traffic if the lift is near a roadway",
+          "Lower the platform and secure the machine when work stops"
+        ],
+        why: "The same drop-zone principle as other overhead work: whatever is on the platform can fall on whoever is underneath."
+      }
+    ],
+    toolboxTalk: [
+      "Ground, slope, wind and overhead — checked before we position the machine",
+      "Who is the operator, is the inspection done and is the certificate in date",
+      "Harness: clipped to the platform anchor only, and the lanyard length",
+      "Overhead lines and structure: approach distances, and who is the spotter",
+      "Emergency lowering: who is on the ground and where are the controls",
+      "Base barricaded, tools tethered, traffic controlled"
+    ],
+    ppe: [
+      "Full body harness with a short lanyard to the platform anchor (where required)",
+      "Hard hat (chin strap)",
+      "Safety glasses",
+      "Safety gloves",
+      "Safety boots with good grip",
+      "Hearing protection in noisy plant areas",
+      "Flame-resistant clothing (site standard)"
+    ]
+  },
+  {
+    id: "compressed-air",
+    label: "Compressed / Pressurised Air Use",
+    sub: "Air hoses, pneumatic tools, blow-down and compressed air cleaning",
+    icon: "cylinder",
+    permits: [
+      "Work Permit (general)",
+      "Isolation / LOTO if working on air lines, receivers or compressors"
+    ],
+    hazards: [
+      {
+        hazard: "Air injection injury — air or debris forced into the skin or body",
+        likelihood: "Possible",
+        severity: "Fatal",
+        controls: [
+          "Never point an air line or air tool at anyone, and never use compressed air to clean skin or clothing or to blow dust off yourself",
+          "Compressed air can enter the body through a tiny break in the skin — get medical attention even if the wound looks minor",
+          "Use nozzles and tools with trigger guards or dead-man controls, and keep your hand off the trigger until the tool is on the work",
+          "No horseplay with air lines — it is a common way people are badly hurt"
+        ],
+        why: "Air forced into the bloodstream or tissue can cause serious injury or death, and the entry wound may look trivial. The fix is never aiming air at a person."
+      },
+      {
+        hazard: "Hose whip and coupling failure",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Use hoses and fittings rated for the pressure, and check hoses for damage, kinks and worn couplings before use",
+          "Fit whip checks or restraints on couplings, especially on larger hoses and at tool connections",
+          "Depressurise before disconnecting, and never disconnect a live line by hand",
+          "Keep hoses off the floor where vehicles and feet will damage them, and out of walkways"
+        ],
+        why: "A coupling that separates under pressure can whip the free end with enough force to injure or kill. A restraint holds it when the coupling lets go."
+      },
+      {
+        hazard: "Flying particles and debris — blow-down and air cleaning",
+        likelihood: "Likely",
+        severity: "Major",
+        controls: [
+          "Wear goggles with a face shield for blow-down and cleaning, plus hearing protection and gloves",
+          "Keep the cleaning pressure low — the US benchmark is under 30 psi (about 2 bar) with effective chip guarding — and use a brush or vacuum where you can",
+          "Keep other people clear, and barricade the area if debris could reach them",
+          "Never blow down in the direction of other workers, open electrical equipment or a process area"
+        ],
+        why: "OSHA 29 CFR 1910.242(b) limits compressed air used for cleaning to under 30 psi with chip guarding and PPE. That is a US benchmark — use your site's own limit if it is stricter."
+      },
+      {
+        hazard: "Noise from air exhaust and pneumatic tools",
+        likelihood: "Likely",
+        severity: "Moderate",
+        controls: [
+          "Hearing protection for blow-down, air tools and venting, and a silencer or diffuser on exhausts where fitted",
+          "Limit time on loud tools and rotate tasks",
+          "Warn people nearby before a loud blow-down or vent"
+        ],
+        why: "Air exhaust and impact tools can be loud enough to need hearing protection even for short jobs, and the damage builds up unnoticed."
+      },
+      {
+        hazard: "Stored pressure when working on air lines, tools, receivers and compressors",
+        likelihood: "Possible",
+        severity: "Major",
+        controls: [
+          "Isolate, lock out, bleed down and prove zero pressure before opening or disconnecting any air line, tool or fitting",
+          "Treat automatic-start compressors as live until locked out",
+          "Never modify an air receiver or bypass its relief valve, and drain condensate as the site procedure says",
+          "Disconnect pneumatic tools from the supply before changing bits or clearing jams"
+        ],
+        why: "Stored pressure stays behind a closed valve or in a receiver after the compressor stops. See the Lockout / Tagout task for proving isolation."
+      },
+      {
+        hazard: "Plant air used for breathing, or air confused with another gas",
+        likelihood: "Unlikely",
+        severity: "Fatal",
+        controls: [
+          "Use only certified breathing-air supply for supplied-air respirators — never ordinary plant or instrument air",
+          "Confirm the line is air before connecting: check labels and colour coding, and never connect to an unidentified line",
+          "Never use a compressed gas line to 'freshen' a confined space or your clothing without approval",
+          "Know which lines carry nitrogen or other inert gases in your area — they can look like air lines"
+        ],
+        why: "Plant air is not breathing air, and a nitrogen line connected where an air line was expected can kill without warning. See the Nitrogen / Inert Gas task."
+      }
+    ],
+    toolboxTalk: [
+      "Never point air at anyone — and never at skin or clothing; what do we do if someone is hit",
+      "Hoses and couplings checked, whip checks fitted, pressure and fittings rated",
+      "Blow-down: goggles and face shield, low pressure, others kept clear",
+      "Hearing protection and silencers; warn people nearby",
+      "Isolate and bleed down to zero before opening anything"
+    ],
+    ppe: [
+      "Goggles with a face shield for blow-down or cleaning",
+      "Hearing protection",
+      "Hard hat",
+      "Safety gloves",
+      "Safety boots",
+      "Flame-resistant clothing (site standard)"
     ]
   },
   {
@@ -1915,6 +2255,26 @@ const PPE_LIBRARY = [
     name: "Flame-resistant (FR) coveralls",
     description: "Fabric engineered to self-extinguish and resist ignition, worn as a barrier against flash fire. FR is not the same as arc-rated — for arc flash the garment must carry an arc rating (see the Arc-rated PPE entry). One-piece coveralls are generally preferred over a separate FR shirt/pants combination, since a two-piece set can gap at the waist during bending or climbing and lets flame or hot gas reach the skin. Non-FR clothing (rain gear, unrated vests, belts) worn over FR coveralls defeats the protection, so any outer layer must also be FR-rated.",
     whenToUse: "Hot work, electrical work with arc flash potential, and process areas with flash fire risk. Collar worn closed, shirt tucked in if a two-piece set is ever used, and nothing flammable worn underneath or over top."
+  },
+  {
+    name: "Gloves — welding (heat / spark-resistant)",
+    description: "Heavy gloves, usually leather with long cuffs, that protect the hands and wrists from sparks, spatter, hot metal and radiant heat during welding and cutting. They give no electrical or chemical protection, and wet or oily leather conducts heat badly.",
+    whenToUse: "Welding, cutting and brazing, and handling hot work pieces. Use a different glove for grinding or rigging. Replace them when the leather is burnt through or stiff, and keep them dry."
+  },
+  {
+    name: "Chemical apron",
+    description: "A chemical-resistant apron worn over work or flame-resistant clothing to keep splashes off the chest, abdomen and thighs. The material has to match the chemical — the SDS (Section 8) names suitable materials — and no single apron suits every chemical.",
+    whenToUse: "Decanting, transferring, sampling and cleaning with corrosives, solvents or other splash-hazard chemicals, usually with chemical gloves, goggles and a face shield. Take it off carefully so the outside doesn't touch skin, and wash or discard it after contamination."
+  },
+  {
+    name: "Welder's spats (foot and ankle covers)",
+    description: "Covers worn over safety boots and the lower trouser leg that stop sparks, slag and molten metal from dropping into footwear or burning through laces. They add to safety boots — they don't replace them.",
+    whenToUse: "Welding and cutting where sparks and slag fall to the floor around your feet, especially overhead or vertical work. Check the fasteners and wear them over the trouser cuff so nothing can run inside."
+  },
+  {
+    name: "Escape set (emergency escape respirator / hood)",
+    description: "A compact emergency respirator or hood for escaping from an atmosphere that becomes hazardous. It is for getting out, not for working in a bad atmosphere. Filter types protect only against the gases they are rated for and give no protection in oxygen-deficient air; self-contained types supply their own air for a limited time.",
+    whenToUse: "Carried or kept at hand where a toxic release is possible, for example near ammonia. Know where yours is kept, check the seal and expiry date, and practise putting it on — you won't have time to read the instructions during a release."
   },
   {
     name: "Personal Flotation Device (PFD) — Type 1",
@@ -2669,7 +3029,7 @@ const PTW_REFERENCE = [
     text: "The OSH Act requires an occupier with 25+ employees to prepare a written emergency plan based on a risk assessment, and separately (s.25(2)(d), s.25(7)(a)) requires confined spaces to be tested and certified by a 'competent person' certified by the Chief Inspector before entry. A PTW system is how a site operationalizes these duties day to day — the permit is the paper trail proving the required check actually happened, by the person qualified to make it."
   },
   {
-    title: "The permit types you'll use across these 19 tasks",
+    title: "The permit types you'll use across the task cards",
     text: "Hot Work Permit (welding, cutting, grinding with sparks, open flame), Confined Space Entry Permit (with atmospheric testing certificate), Ground-Breaking/Excavation Permit, Lifting Plan/Permit for critical or complex lifts, Electrical Isolation Certificate tied to Lockout/Tagout, Working at Height Permit where required by site policy, and Nitrogen/Inert Gas Purge Permit. Several tasks require more than one permit simultaneously — for example, hot work inside a vessel needs both a Hot Work Permit and a Confined Space Entry Permit, not one covering the other."
   },
   {
@@ -2798,3 +3158,405 @@ const GHS_PICTOGRAMS = [
   { name: "Environment", covers: "Aquatic toxicity (non-mandatory in the US; often shown on products sold in T&T)" },
   { name: "Skull and crossbones", covers: "Acute toxicity — fatal or toxic" }
 ];
+
+
+// ============================================================
+// SAFE WORK PERMIT (CSWP-style) MAPPING
+// Based on the printed layout of a Contractors' Safe Work Permit used
+// at a Point Lisas power-generation plant. Only the printed form
+// structure is used (task types, precaution/PPE boxes, specific-hazard
+// boxes, sections). This is a SUGGESTED starting point for the person
+// filling in or checking the permit — the permit issuer and the
+// competent person decide what is ticked, and other sites' forms
+// differ. Box wording is kept exactly as printed.
+// ============================================================
+const SWP_TASK_TYPES = ["Hot Work", "Cold Work", "Live Work", "Height", "Excavation", "Confined Space", "Other"];
+
+const SWP_PRECAUTIONS = [
+  "Drained/Purged", "Depressurized & Vented", "Washed", "Isolated", "Area Barricaded",
+  "Lifting Equipt. Inspected", "Fire Extinguisher", "Water Hose-Fire/Chemicals", "Additional Illumination",
+  "Air Mover/Ventilator", "Hot Work Requirements", "Blinded/Screened (Welding)", "Ventilated",
+  "Electrical Tools Grounded", "Eye Protection", "Head Protection", "Hearing Protection",
+  "Protective Clothing", "Safety Shoe/Boots", "Breathing Equipment", "Full body Harness/Lifeline",
+  "Excavation Approved", "Ladder/Scaffold Inspected", "Hazard Warning signs posted"
+];
+
+const SWP_HAZARDS = [
+  "Flammable Atmosphere", "Toxic Gas Atmosphere", "Underground/Overhead Hazards",
+  "Radioactive Sources", "Energized Electrical Equipment/Conductors"
+];
+
+// Which printed permit PPE box each PPE library item belongs under.
+const PPE_PERMIT_BOX = {
+  "Hard hat / safety helmet": "Head Protection",
+  "Safety glasses / spectacles": "Eye Protection",
+  "Goggles": "Eye Protection",
+  "Face shield": "Eye Protection",
+  "Welding helmet (shaded / auto-darkening)": "Eye Protection",
+  "Ear plugs": "Hearing Protection",
+  "Ear muffs": "Hearing Protection",
+  "Respirator — half-face (cartridge)": "Breathing Equipment",
+  "Respirator — full-face / supplied-air": "Breathing Equipment",
+  "Gloves — general work": "Protective Clothing",
+  "Gloves — cut-resistant": "Protective Clothing",
+  "Gloves — chemical-resistant": "Protective Clothing",
+  "Gloves — insulated / electrical-rated": "Protective Clothing",
+  "Gloves — impact-resistant": "Protective Clothing",
+  "Safety boots (steel / composite toe)": "Safety Shoe/Boots",
+  "High-visibility vest / clothing": "Protective Clothing",
+  "Full body harness (fall arrest)": "Full body Harness/Lifeline",
+  "Arc-rated (AR) clothing & arc flash PPE": "Protective Clothing",
+  "Flame-resistant (FR) coveralls": "Protective Clothing",
+  "Gloves — welding (heat / spark-resistant)": "Protective Clothing",
+  "Chemical apron": "Protective Clothing",
+  "Welder's spats (foot and ankle covers)": "Protective Clothing (worn over safety boots)",
+  "Escape set (emergency escape respirator / hood)": "Breathing Equipment",
+  "Personal Flotation Device (PFD) — Type 1": "No printed box — write it in Other Instructions (Section 11)"
+};
+
+// Per task card: t = task-type boxes, tc = task types to consider, to = text for
+// the "Other" task type, p = precaution/PPE boxes that usually apply, pc = boxes to
+// consider when the stated condition is true, h = specific-hazard boxes, hc = hazard
+// boxes to consider, o = text for "Other Hazards — State", n = a note.
+const _SWP_BASIC = ["Head Protection", "Eye Protection", "Safety Shoe/Boots", "Protective Clothing"];
+
+const _SWP_CEILING = {
+  t: ["Height", "Cold Work"],
+  p: ["Area Barricaded", "Ladder/Scaffold Inspected", "Isolated", "Breathing Equipment", "Full body Harness/Lifeline",
+      "Hearing Protection", "Electrical Tools Grounded", "Hazard Warning signs posted", ..._SWP_BASIC],
+  pc: ["Lifting Equipt. Inspected — MEWP, hoist or board lifter in use",
+       "Additional Illumination — lighting for the ceiling void",
+       "Air Mover/Ventilator — hot or dusty enclosed voids",
+       "Ventilated — dust-generating work in a closed room"],
+  h: ["Energized Electrical Equipment/Conductors", "Underground/Overhead Hazards"],
+  hc: [],
+  o: "Possible asbestos or other legacy material, hidden services above the ceiling, falling through the ceiling, falling debris, heat and pests in the void",
+  n: "Fire detector and sprinkler isolation, and the HSE suspect-material (asbestos) clearance, have no printed box — write them in Other Instructions (Section 11) and have them approved before work starts."
+};
+
+const TASK_PERMIT_MAP = {
+  "hot-work": {
+    t: ["Hot Work"],
+    p: ["Area Barricaded", "Fire Extinguisher", "Water Hose-Fire/Chemicals", "Hot Work Requirements", "Blinded/Screened (Welding)",
+        "Electrical Tools Grounded", "Hearing Protection", "Hazard Warning signs posted", ..._SWP_BASIC],
+    pc: ["Ventilated — welding or cutting fume can build up", "Breathing Equipment — fume exposure can't be controlled by ventilation",
+         "Isolated — the work is on or near process lines or other energy sources", "Additional Illumination — dark areas or night work"],
+    h: ["Flammable Atmosphere"],
+    hc: ["Energized Electrical Equipment/Conductors — welding leads and nearby panels"],
+    o: "Sparks and molten metal, fire spreading to combustibles, welding fume, burns",
+    n: "The gas testing and fire watch belong under Hot Work Requirements — see the Hot Work task."
+  },
+  "confined-space": {
+    t: ["Confined Space"],
+    p: ["Isolated", "Ventilated", "Air Mover/Ventilator", "Additional Illumination", "Area Barricaded", "Electrical Tools Grounded",
+        "Breathing Equipment", "Full body Harness/Lifeline", "Hazard Warning signs posted", ..._SWP_BASIC],
+    pc: ["Drained/Purged — the space has held product", "Depressurized & Vented — connected to pressurised systems", "Washed — residues remain",
+         "Blinded/Screened (Welding) — connecting lines must be blanked, or welding is done inside",
+         "Hot Work Requirements — hot work is done inside", "Hearing Protection — noisy ventilation or tools"],
+    h: ["Flammable Atmosphere", "Toxic Gas Atmosphere"],
+    hc: ["Energized Electrical Equipment/Conductors — agitators, pumps and lighting inside"],
+    o: "Oxygen deficiency or enrichment, engulfment, heat, difficult rescue",
+    n: "Entry normally also needs its own confined-space entry certificate and gas test record, and often a PTW/LOA for isolation — answer Section 5 accordingly."
+  },
+  "work-at-height": {
+    t: ["Height"],
+    p: ["Area Barricaded", "Ladder/Scaffold Inspected", "Full body Harness/Lifeline", "Hazard Warning signs posted", ..._SWP_BASIC],
+    pc: ["Lifting Equipt. Inspected — tools or materials are hoisted", "Additional Illumination — poor light", "Hearing Protection — noisy surroundings"],
+    h: ["Underground/Overhead Hazards"],
+    hc: ["Energized Electrical Equipment/Conductors — near overhead lines or open panels"],
+    o: "Falls from height, falling objects, weather, fragile surfaces"
+  },
+  "loto": {
+    t: ["Other"], to: "Isolation (lock-out / tag-out)",
+    p: ["Isolated", "Depressurized & Vented", "Hazard Warning signs posted", "Area Barricaded", ..._SWP_BASIC],
+    pc: ["Drained/Purged — the equipment holds product", "Washed — residues remain", "Blinded/Screened (Welding) — lines must be blanked"],
+    h: ["Energized Electrical Equipment/Conductors"],
+    hc: ["Flammable Atmosphere — stored product could escape on opening", "Toxic Gas Atmosphere — stored product could escape on opening"],
+    o: "Stored energy — pressure, spring, gravity, thermal, residual electrical",
+    n: "Isolating plant equipment normally runs through the host's own isolation and PTW/LOA system — check Section 5, and don't treat the safe work permit as the isolation."
+  },
+  "lifting": {
+    t: ["Other"], to: "Lifting operation",
+    p: ["Lifting Equipt. Inspected", "Area Barricaded", "Hazard Warning signs posted", ..._SWP_BASIC],
+    pc: ["Additional Illumination — night or poor light", "Hearing Protection — noisy crane or surroundings"],
+    h: ["Underground/Overhead Hazards"],
+    hc: ["Energized Electrical Equipment/Conductors — overhead power lines near the lift path"],
+    o: "Suspended loads, rigging or crane failure, ground bearing capacity, people under the load"
+  },
+  "excavation": {
+    t: ["Excavation"],
+    p: ["Excavation Approved", "Area Barricaded", "Hazard Warning signs posted", "Ladder/Scaffold Inspected", ..._SWP_BASIC],
+    pc: ["Additional Illumination — night or poor light", "Ventilated — gas or fumes in a deep trench", "Breathing Equipment — gas is detected",
+         "Hearing Protection — breakers or nearby plant"],
+    h: ["Underground/Overhead Hazards"],
+    hc: ["Flammable Atmosphere — near hydrocarbon or gas lines, or in low-lying ground", "Toxic Gas Atmosphere — near ammonia or other toxic lines",
+         "Energized Electrical Equipment/Conductors — buried cable"],
+    o: "Cave-in, buried services, water ingress, vehicles near the edge",
+    n: "'Excavation Approved' means the dig has been approved against drawings and a service scan — see the Excavation task."
+  },
+  "scaffolding": {
+    t: ["Height"],
+    p: ["Ladder/Scaffold Inspected", "Area Barricaded", "Hazard Warning signs posted", "Full body Harness/Lifeline", ..._SWP_BASIC],
+    pc: ["Lifting Equipt. Inspected — materials are hoisted", "Additional Illumination — poor light"],
+    h: ["Underground/Overhead Hazards"],
+    hc: ["Energized Electrical Equipment/Conductors — scaffold near live lines or panels"],
+    o: "Scaffold collapse, falling materials, dismantling hazards"
+  },
+  "housekeeping": {
+    t: [],
+    p: [..._SWP_BASIC],
+    pc: ["Area Barricaded — clearing creates a hazard for others", "Hearing Protection — noisy areas"],
+    h: [],
+    o: "",
+    n: "A general housekeeping walk-around isn't normally a permit job on its own. If the clean-up involves height, chemicals or waste removal, use the matching task card."
+  },
+  "painting": {
+    t: ["Cold Work"], tc: ["Height — painting at height"],
+    p: ["Ventilated", "Breathing Equipment", "Area Barricaded", "Hazard Warning signs posted", "Fire Extinguisher", ..._SWP_BASIC],
+    pc: ["Air Mover/Ventilator — enclosed or poorly ventilated areas", "Ladder/Scaffold Inspected — access equipment is used",
+         "Full body Harness/Lifeline — working at height", "Hearing Protection — abrasive blasting or power tools",
+         "Hot Work Requirements — hot work happens nearby"],
+    h: ["Flammable Atmosphere"],
+    hc: ["Toxic Gas Atmosphere — solvent vapour in enclosed areas"],
+    o: "Solvent vapour, overspray, dust from surface preparation, old paint that may contain lead"
+  },
+  "civil-work": {
+    t: ["Cold Work"], tc: ["Excavation — digging", "Height — working at height", "Hot Work — cutting or welding rebar or steel"],
+    p: ["Area Barricaded", "Hazard Warning signs posted", "Electrical Tools Grounded", "Hearing Protection", ..._SWP_BASIC],
+    pc: ["Excavation Approved — digging", "Ladder/Scaffold Inspected — access equipment is used", "Full body Harness/Lifeline — working at height",
+         "Lifting Equipt. Inspected — cranes or hoists are used", "Breathing Equipment — cutting concrete or masonry (silica dust)",
+         "Fire Extinguisher — hot work is carried out"],
+    h: [],
+    hc: ["Underground/Overhead Hazards — buried services and overhead lines", "Energized Electrical Equipment/Conductors — hidden cable in walls and slabs"],
+    o: "Plant traffic, concrete and silica dust, noise, rebar and formwork"
+  },
+  "electrical-work": {
+    t: ["Cold Work"], tc: ["Live Work — only if the equipment cannot be isolated, and the energised work has been justified and approved"],
+    p: ["Isolated", "Electrical Tools Grounded", "Area Barricaded", "Hazard Warning signs posted", ..._SWP_BASIC],
+    pc: ["Additional Illumination — dark rooms or panels", "Hearing Protection — noisy plant rooms",
+         "Full body Harness/Lifeline — working at height", "Fire Extinguisher — hot work or battery and charging areas"],
+    h: ["Energized Electrical Equipment/Conductors"],
+    hc: ["Flammable Atmosphere — classified areas, where tools and equipment must suit the zone"],
+    o: "Arc flash and arc blast, stored energy, back-feed from other sources",
+    n: "Isolation of plant electrical equipment normally follows the host's isolation and PTW/LOA system and lock/tag procedure — check Section 5. For arc flash PPE there's no printed box: write the required arc rating in Other Instructions (Section 11)."
+  },
+  "vehicle-operations": {
+    t: ["Other"], to: "Vehicle movement / journey",
+    p: ["Hazard Warning signs posted", "Area Barricaded", "Head Protection", "Safety Shoe/Boots", "Protective Clothing"],
+    pc: ["Lifting Equipt. Inspected — forklift, crane or loader operations", "Additional Illumination — night work"],
+    h: ["Underground/Overhead Hazards"],
+    hc: [],
+    o: "Pedestrian–vehicle interaction, reversing, speed limits, ignition and static hazards near classified areas",
+    n: "Vehicle access into process areas usually needs separate permission under the host's own rules."
+  },
+  "lone-working": {
+    t: ["Other"], to: "Lone working",
+    p: [..._SWP_BASIC],
+    pc: [],
+    h: [],
+    o: "No immediate help, undetected injury or medical event",
+    n: "The permit records that Operations have been informed (Section 10) — make sure someone knows where you are and when you will check in. Many sites restrict lone work on permit jobs."
+  },
+  "marine-jetty": {
+    t: ["Other"], to: "Marine / jetty operations",
+    p: ["Area Barricaded", "Hazard Warning signs posted", "Additional Illumination", ..._SWP_BASIC],
+    pc: ["Lifting Equipt. Inspected — cranes, hoists and mooring gear", "Full body Harness/Lifeline — working over an edge or at height",
+         "Fire Extinguisher — product transfer or hot work", "Water Hose-Fire/Chemicals — product transfer"],
+    h: [],
+    hc: ["Flammable Atmosphere — hydrocarbon or methanol transfer", "Toxic Gas Atmosphere — ammonia transfer or vapour"],
+    o: "Drowning, mooring loads, product transfer, slips on wet surfaces",
+    n: "A flotation device (PFD) has no printed box — write it in Other Instructions (Section 11)."
+  },
+  "waste-handling": {
+    t: ["Cold Work"],
+    p: ["Hazard Warning signs posted", ..._SWP_BASIC],
+    pc: ["Area Barricaded — the waste area needs to be kept clear", "Breathing Equipment — dust, fumes or vapour",
+         "Ventilated — enclosed waste storage", "Washed — contaminated containers or equipment"],
+    h: [],
+    hc: ["Toxic Gas Atmosphere — mixed or incompatible chemical waste", "Flammable Atmosphere — solvent or fuel waste"],
+    o: "Cuts and puncture wounds, chemical contact, incompatible wastes, manual handling"
+  },
+  "contractor-induction": {
+    t: [], p: ["Head Protection", "Safety Shoe/Boots", "Protective Clothing"], pc: [], h: [], hc: [], o: "",
+    n: "This task is Section 9 (Contractor orientation) and Section 10 (Operations informed) of the permit — it isn't a work type. Complete the orientation before the permit is signed, and record who gave it and when."
+  },
+  "hand-power-tools": {
+    t: ["Cold Work"], tc: ["Hot Work — the tool makes sparks or heat (grinding, cutting); check the Tools tab classification"],
+    p: ["Electrical Tools Grounded", "Hearing Protection", "Area Barricaded", ..._SWP_BASIC],
+    pc: ["Breathing Equipment — dust from cutting or sanding", "Fire Extinguisher — sparks are produced",
+         "Hot Work Requirements — sparks are produced", "Ventilated — enclosed areas"],
+    h: [],
+    hc: ["Flammable Atmosphere — classified areas, where only suitable (for example non-sparking) tools may be used",
+         "Energized Electrical Equipment/Conductors — drilling or cutting into hidden cable"],
+    o: "Flying debris, kickback, noise and vibration"
+  },
+  "plumbing": {
+    t: ["Cold Work"], tc: ["Hot Work — brazing, soldering or welding pipe"],
+    p: ["Isolated", "Depressurized & Vented", "Area Barricaded", ..._SWP_BASIC],
+    pc: ["Drained/Purged — lines that held fluid", "Washed — lines that held chemicals", "Hot Work Requirements — brazing, soldering or welding",
+         "Excavation Approved — buried pipework", "Ladder/Scaffold Inspected — pipework at height", "Ventilated — enclosed or poorly ventilated areas",
+         "Breathing Equipment — solvent-based pipe cement or primer in enclosed areas"],
+    h: [],
+    hc: ["Toxic Gas Atmosphere — sewer and drain gases", "Flammable Atmosphere — fuel gas or solvent cement vapours"],
+    o: "Stored pressure and hot water, sewer gas, cuts and manual handling"
+  },
+  "ceiling-grid": {
+    ..._SWP_CEILING,
+    tc: ["Hot Work — only if cutting hangers, angle or steel with a grinder or torch"],
+    pc: [..._SWP_CEILING.pc, "Hot Work Requirements — only if cutting hangers or steel", "Fire Extinguisher — hot work is carried out"]
+  },
+  "ceiling-board": { ..._SWP_CEILING },
+  "ceiling-panel": {
+    ..._SWP_CEILING,
+    tc: ["Hot Work — only if unavoidable; keep PVC and adhesives clear"],
+    pc: [..._SWP_CEILING.pc, "Fire Extinguisher — adhesives, solvents or hot work in use"],
+    hc: ["Flammable Atmosphere — solvent-based adhesives in a closed room or void"]
+  },
+  "chemical-handling": {
+    t: ["Cold Work"],
+    p: ["Area Barricaded", "Water Hose-Fire/Chemicals", "Hazard Warning signs posted", ..._SWP_BASIC],
+    pc: ["Breathing Equipment — respirator or gas detector required, or an escape set kept at hand", "Hearing Protection — noisy plant areas",
+         "Ventilated — enclosed or poorly ventilated areas", "Isolated — opening chemical lines, pumps or vessels",
+         "Drained/Purged — opening lines or vessels that held product", "Depressurized & Vented — opening pressurised lines",
+         "Washed — equipment that held chemicals", "Fire Extinguisher — flammable chemicals",
+         "Hot Work Requirements — hot work near flammable chemicals", "Additional Illumination — dark areas"],
+    h: ["Toxic Gas Atmosphere"],
+    hc: ["Flammable Atmosphere — flammable or volatile chemicals"],
+    o: "Skin and eye burns, inhalation, fire, incompatible mixing, releases to drain",
+    n: "Opening chemical lines or vessels normally runs through the host's isolation and PTW/LOA system — check Section 5. An escape set: tick Breathing Equipment and note in Other Instructions (Section 11) where escape sets are kept."
+  },
+  "man-lift": {
+    t: ["Height"],
+    p: ["Area Barricaded", "Full body Harness/Lifeline", "Hazard Warning signs posted", ..._SWP_BASIC],
+    pc: ["Lifting Equipt. Inspected — many sites treat a man-lift as lifting equipment; confirm with the issuer",
+         "Additional Illumination — poor light", "Hearing Protection — noisy plant areas"],
+    h: ["Underground/Overhead Hazards"],
+    hc: ["Energized Electrical Equipment/Conductors — overhead lines and nearby live equipment"],
+    o: "Tip-over, ejection from the platform, crushing against structure"
+  },
+  "compressed-air": {
+    t: ["Cold Work"],
+    p: ["Hearing Protection", "Hazard Warning signs posted", ..._SWP_BASIC],
+    pc: ["Isolated — working on air lines, receivers or compressors", "Depressurized & Vented — before disconnecting or opening any air line",
+         "Area Barricaded — blow-down or cleaning where debris could reach others"],
+    h: [],
+    hc: [],
+    o: "Air injection injury, hose whip, flying debris, noise, stored pressure"
+  },
+  "nitrogen-purging": {
+    t: ["Other"], to: "Purging / inerting",
+    p: ["Isolated", "Drained/Purged", "Depressurized & Vented", "Area Barricaded", "Hazard Warning signs posted", "Hearing Protection", ..._SWP_BASIC],
+    pc: ["Ventilated — areas where nitrogen can collect", "Breathing Equipment — entry into or near a nitrogen-rich atmosphere is unavoidable",
+         "Additional Illumination — dark areas", "Blinded/Screened (Welding) — lines must be blanked",
+         "Full body Harness/Lifeline — retrieval line where vessel geometry requires it"],
+    h: [],
+    hc: ["Flammable Atmosphere — the system being purged"],
+    o: "Oxygen-deficient atmosphere (nitrogen asphyxiation) — invisible and odourless, with no warning",
+    n: "Process purging and inerting normally run under the host's own PTW/LOA system — check Section 5. Nitrogen is an asphyxiant, not a toxic gas, so describe it under Other Hazards rather than ticking Toxic Gas."
+  }
+};
+
+// Section-by-section guide to a CSWP-style permit, shown in the Permit-to-Work reference tab.
+const CSWP_REFERENCE = [
+  {
+    title: "Who, what, where and how many (permit header and Sections 1–4)",
+    section: "Sections 1–4",
+    text: "The permit names the location, permit number and service contract number, the contractor it is issued to, the task type, the reference numbers (certificate, job safety briefing and work order), the number of people on the job, and the area, equipment and description of the work. Describe the work in plain words and name the equipment or area exactly. The head-count should match who is actually working — use the Crew Sign-Off tab to see who has signed on."
+  },
+  {
+    title: "Task type boxes (Section 2)",
+    section: "Section 2",
+    text: "The printed task types are Hot Work, Cold Work, Live Work, Height, Excavation, Confined Space and Other. Each Fieldwise task card suggests which to tick in its PPE & Permits tab. More than one can apply (a roof job is Height and Cold Work; cutting steel on a scaffold is Hot Work and Height). Use the Tools tab to check whether a tool makes the job Hot Work."
+  },
+  {
+    title: "Is a separate Permit to Work / LOA needed? (Section 5)",
+    section: "Section 5",
+    text: "The permit asks whether a Permit to Work or LOA is required, and for its number and date. The safe work permit covers the work activity; isolating plant equipment, entering vessels and similar jobs normally run through the host's own PTW/LOA system — a separate document and a separate set of rules. Confirm with the permit issuer how your host splits the two, and don't treat one as covering the other."
+  },
+  {
+    title: "Safety precautions and PPE boxes (Section 6)",
+    section: "Section 6",
+    text: "Section 6 is a list of boxes covering isolation and process precautions (Drained/Purged, Depressurized & Vented, Washed, Isolated, Blinded/Screened), site precautions (Area Barricaded, Lifting Equipt. Inspected, Fire Extinguisher, Water Hose, Additional Illumination, Air Mover/Ventilator, Hot Work Requirements, Ventilated, Electrical Tools Grounded, Excavation Approved, Ladder/Scaffold Inspected, Hazard Warning signs posted) and the seven PPE boxes. The seven PPE boxes are broad — Eye, Head, Hearing, Protective Clothing, Safety Shoe/Boots, Breathing Equipment and Full body Harness/Lifeline — so gloves, coveralls, hi-vis and arc-rated clothing all go under Protective Clothing. Write the specific item (glove type, arc rating, respirator filter) in Other Instructions."
+  },
+  {
+    title: "Specific hazards (Section 7) — a blank box is not an all-clear",
+    section: "Section 7",
+    text: "The printed hazard boxes are Flammable Atmosphere, Toxic Gas Atmosphere, Underground/Overhead Hazards, Radioactive Sources, Energized Electrical Equipment/Conductors, and Other Hazards — State. Whatever the JHA found goes here. The permit says in its own wording that failing to identify a hazard in Section 7 doesn't mean it doesn't exist, and doesn't relieve the person receiving the permit of the duty to stay alert for it. Use the hazards in your task card's JHA tab as the checklist."
+  },
+  {
+    title: "Emergency contact, orientation and operations informed (Sections 8–10)",
+    section: "Sections 8–10",
+    text: "The permit carries the emergency contact name and number (Section 8), who gave the contractor orientation and when (Section 9), and whether Operations has been informed (Section 10). Read the Section 8 contact out in the toolbox talk so every crew member knows who to call. The Contractor Induction task card is the orientation behind Section 9 — it should happen before the permit is signed."
+  },
+  {
+    title: "Other Instructions (Section 11) — where the specifics go",
+    section: "Section 11",
+    text: "Anything no printed box covers goes in Other Instructions: fire detector or sprinkler isolation, asbestos (suspect-material) clearance, arc flash rating, flotation devices, access restrictions, special limits. If your task card's notes say a control has 'no printed box', this is where it is written."
+  },
+  {
+    title: "Competent person and authorised person declarations (Sections 12–13)",
+    section: "Sections 12–13",
+    text: "A competent person declares they inspected the work area, identified the hazards and that the precautions listed have been taken (name, signature, time and date). An authorised person then declares they are authorised to issue the permit, that the hazards and precautions noted have been taken, and that the area or equipment has been made safe as far as reasonably practicable. The JHA in Fieldwise is the working record behind that inspection — it does not replace the signatures on the permit."
+  },
+  {
+    title: "Revalidation and the Job Safety Briefing",
+    section: "Revalidation",
+    text: "The permit has a revalidation table (date, time, inspected by, signature, revalidated by, signature) and notes that a Job Safety Briefing must be done by the contractor before the permit is revalidated. The Toolbox Talk and Crew Sign-Off tabs are the briefing and its attendance record — run them before each revalidation, not just on day one, and save a field record each time. How often the permit must be revalidated is set by the host's own rules."
+  },
+  {
+    title: "Receipt — accepting the permit (Section 15)",
+    section: "Section 15",
+    text: "The person accepting the permit signs a receipt confirming they accept responsibility for the work described on it and will comply with the requirements. Read the printed wording on your own copy before signing, and don't carry out work on any equipment other than what the permit names."
+  }
+];
+
+
+// ============================================================
+// SITE PPE MATRIX (example)
+// Transcribed from the wall board of a Point Lisas power-generation
+// plant ("Wear the gear"): PPE columns against task rows. This is ONE
+// site's standard — the host site's own matrix and permit always govern.
+// Row names are kept as printed. The "Escape sets" column has no row
+// marked on the board photographed.
+// ============================================================
+const SITE_PPE_MATRIX = {
+  columns: ["Safety boots", "Safety glasses", "Safety goggles", "Face shield", "Ear muffs / plugs", "Respirator", "Hard hat",
+            "Safety gloves", "Welding gloves", "Chemical gloves", "FR clothing", "Chemical apron", "Welder's spats",
+            "Full body harness", "Escape sets", "Arc flash suit with hood"],
+  groups: [
+    { name: "Electrical & Instrumentation Tasks", rows: [
+      { task: "Working at height", ppe: ["Safety boots", "Safety glasses", "Ear muffs / plugs", "Hard hat", "Safety gloves", "FR clothing", "Full body harness"] },
+      { task: "Working around live electrical equipment", ppe: ["Safety boots", "Safety glasses", "Ear muffs / plugs", "Hard hat", "Safety gloves", "FR clothing"] },
+      { task: "Working with chemicals", ppe: ["Safety boots", "Safety goggles", "Face shield", "Ear muffs / plugs", "Respirator", "Hard hat", "Safety gloves", "Chemical gloves", "FR clothing", "Chemical apron"] },
+      { task: "Working on a man-lift", ppe: ["Safety boots", "Safety glasses", "Ear muffs / plugs", "Hard hat", "Safety gloves", "FR clothing", "Full body harness"] }
+    ] },
+    { name: "Mechanical Tasks", rows: [
+      { task: "Hot work", ppe: ["Safety boots", "Safety glasses", "Ear muffs / plugs", "Respirator", "Hard hat", "Welding gloves", "FR clothing", "Welder's spats"] },
+      { task: "Working in a confined space", ppe: ["Safety boots", "Safety glasses", "Hard hat", "Safety gloves", "FR clothing", "Full body harness"] },
+      { task: "Lifting, moving and carrying loads", ppe: ["Safety boots", "Safety glasses", "Ear muffs / plugs", "Hard hat", "Safety gloves", "FR clothing"] },
+      { task: "Working with pressurized air", ppe: ["Safety boots", "Safety goggles", "Face shield", "Ear muffs / plugs", "Hard hat", "Safety gloves", "FR clothing"] },
+      { task: "Using a grinder", ppe: ["Safety boots", "Safety glasses", "Face shield", "Ear muffs / plugs", "Respirator", "Hard hat", "Safety gloves", "FR clothing"] }
+    ] },
+    { name: "Operations Tasks", rows: [
+      { task: "Monitoring of plant", ppe: ["Safety boots", "Safety glasses", "Ear muffs / plugs", "Hard hat", "Safety gloves", "FR clothing"] },
+      { task: "Removing HV Switch Gear from Cubicle", ppe: ["Safety boots", "Safety glasses", "Ear muffs / plugs", "Hard hat", "Safety gloves", "FR clothing", "Arc flash suit with hood"] }
+    ] },
+    { name: "Quality / Assurance", rows: [
+      { task: "Using infrared equipment in the HV switch yard", ppe: ["Safety boots", "Safety glasses", "Ear muffs / plugs", "Hard hat", "Safety gloves", "FR clothing"] }
+    ] }
+  ]
+};
+
+// Which matrix rows relate to which Fieldwise task card (closest matches).
+const SITE_MATRIX_LINKS = {
+  "hot-work": ["Hot work"],
+  "confined-space": ["Working in a confined space"],
+  "lifting": ["Lifting, moving and carrying loads"],
+  "hand-power-tools": ["Using a grinder"],
+  "work-at-height": ["Working at height"],
+  "electrical-work": ["Working around live electrical equipment", "Removing HV Switch Gear from Cubicle", "Using infrared equipment in the HV switch yard"],
+  "housekeeping": ["Monitoring of plant"],
+  "chemical-handling": ["Working with chemicals"],
+  "man-lift": ["Working on a man-lift"],
+  "compressed-air": ["Working with pressurized air"]
+};
